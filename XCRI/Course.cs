@@ -143,6 +143,7 @@ namespace XCRI
 					null,
 					String.Format("{0}:{1}", writer.LookupPrefix(@"http://xcri.org/profiles/catalog/terms"), type.ToString())
 					);
+                writer.WriteStartElement(writer.LookupPrefix(@"http://www.w3.org/1999/xhtml"), "div", "http://www.w3.org/1999/xhtml");
 				if (this.Descriptions[type].IsHtmlEncoded == false)
 				{
 					writer.WriteValue(this.Descriptions[type].Data);
@@ -151,6 +152,7 @@ namespace XCRI
 				{
 					writer.WriteRaw(this.Descriptions[type].Data);
 				}
+                writer.WriteEndElement();
 				writer.WriteEndElement();
 			}
 			writer.WriteElementString("url", this.Uri.ToString());

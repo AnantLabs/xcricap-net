@@ -134,15 +134,6 @@ namespace XCRI
 				throw new ArgumentException("XCRI Profile not supported");
 			xmlWriter.WriteStartDocument(true);
 			xmlWriter.WriteStartElement("catalog", @"http://xcri.org/profiles/catalog");
-			/*
-			xmlWriter.WriteAttributeString("xmlns", "xhtml", null, @"http://www.w3.org/1999/xhtml");
-			xmlWriter.WriteAttributeString("xmlns", "xcri", null, @"http://xcri.org/profiles/catalog");
-			xmlWriter.WriteAttributeString("xmlns", "terms", null, @"http://xcri.org/profiles/catalog/terms");
-			xmlWriter.WriteAttributeString("xmlns", "xsi", null, @"http://www.w3.org/2001/XMLSchema-instance");
-			xmlWriter.WriteAttributeString("xmlns", "ukrlp", null, @"http://www.ukrlp.co.uk");
-			xmlWriter.WriteAttributeString("xmlns", "geo", null, @"http://www.w3.org/2003/01/geo/wgs84_pos");
-			xmlWriter.WriteAttributeString("xsi", "schemaLocation", null, @"http://xcri.org/profiles/catalog http://www.xcri.org/bindings/xcri_cap_1_1.xsd http://xcri.org/profiles/catalog/terms http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
-			*/
 			if (namespaceData != null)
 			{
 				StringBuilder schemaLocation = new StringBuilder();
