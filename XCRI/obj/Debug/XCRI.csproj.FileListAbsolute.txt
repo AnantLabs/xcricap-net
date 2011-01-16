@@ -1,0 +1,20 @@
+E:\Users\Craig Hawker.STLPDC\Documents\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\ResolveAssemblyReference.cache
+E:\Users\Craig Hawker.STLPDC\Documents\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.dll
+E:\Users\Craig Hawker.STLPDC\Documents\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.pdb
+E:\Users\Craig Hawker.STLPDC\Documents\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.dll
+E:\Users\Craig Hawker.STLPDC\Documents\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.pdb
+F:\Users\Craig\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.dll
+F:\Users\Craig\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.pdb
+F:\Users\Craig\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\ResolveAssemblyReference.cache
+F:\Users\Craig\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.dll
+F:\Users\Craig\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.pdb
+E:\Users\Craig Hawker.STLPDC\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.dll
+E:\Users\Craig Hawker.STLPDC\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\bin\Debug\XCRI.pdb
+E:\Users\Craig Hawker.STLPDC\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\ResolveAssemblyReference.cache
+E:\Users\Craig Hawker.STLPDC\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.dll
+E:\Users\Craig Hawker.STLPDC\Documents\My Dropbox\Work\Visual Studio 2008\Projects\XCRI\XCRI\obj\Debug\XCRI.pdb
+F:\Users\Craig\Documents\Visual Studio 2010\Projects\XCRI\XCRI\bin\Debug\XCRI.dll
+F:\Users\Craig\Documents\Visual Studio 2010\Projects\XCRI\XCRI\bin\Debug\XCRI.pdb
+F:\Users\Craig\Documents\Visual Studio 2010\Projects\XCRI\XCRI\obj\Debug\ResolveAssemblyReference.cache
+F:\Users\Craig\Documents\Visual Studio 2010\Projects\XCRI\XCRI\obj\Debug\XCRI.dll
+F:\Users\Craig\Documents\Visual Studio 2010\Projects\XCRI\XCRI\obj\Debug\XCRI.pdb
