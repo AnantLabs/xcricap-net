@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("XCRI")]
+[assembly: AssemblyTitle("XCRI Generator Library")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("XCRI")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCompany("Craig Hawker")]
+[assembly: AssemblyProduct("XCRI Generator Library")]
+[assembly: AssemblyCopyright("This library is open source (Apache 2.0 licence), available from http://code.google.com/p/xcricap-net/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
