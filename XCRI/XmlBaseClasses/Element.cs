@@ -28,7 +28,6 @@ namespace XCRI.XmlBaseClasses
         #region Private
 
         private List<Attribute> __Attributes = new List<Attribute>();
-        private List<Element> __ChildElements = new List<Element>();
         private string __ElementName = String.Empty;
         private string __ElementNamespace = String.Empty;
         private XsiTypeAttribute __XsiType = new XsiTypeAttribute()
@@ -44,11 +43,6 @@ namespace XCRI.XmlBaseClasses
         protected List<Attribute> _Attributes
         {
             get { return this.__Attributes; }
-        }
-
-        protected List<Element> _ChildElements
-        {
-            get { return this.__ChildElements; }
         }
 
         protected string _ElementName
