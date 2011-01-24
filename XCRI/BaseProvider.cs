@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
@@ -17,7 +18,7 @@ namespace XCRI
 		#region Public
 
 		public BaseProvider()
-			: base("provider")
+            : base("provider", Configuration.XCRINamespaceUri)
 		{
 		}
 
@@ -144,7 +145,7 @@ namespace XCRI
 			{
 				foreach (Element el in this._ChildElements)
 				{
-					if ((el.Name ?? String.Empty).Equals("title", StringComparison.CurrentCultureIgnoreCase))
+					if ((el.ElementName ?? String.Empty).Equals("title", StringComparison.CurrentCultureIgnoreCase))
 						yield return el;
 				}
 			}
@@ -156,7 +157,7 @@ namespace XCRI
 			{
 				foreach (Element el in this._ChildElements)
 				{
-					if ((el.Name ?? String.Empty).Equals("description", StringComparison.CurrentCultureIgnoreCase))
+					if ((el.ElementName ?? String.Empty).Equals("description", StringComparison.CurrentCultureIgnoreCase))
 						yield return el;
 				}
 			}
@@ -187,7 +188,7 @@ namespace XCRI
 
 		public void AddDescription(string description)
 		{
-			this.AddDescription(new Element("description")
+			this.AddDescription(new ElementWithStringValue("description", Configuration.XCRINamespaceUri)
 			{
 				Value = description
 			});
@@ -200,7 +201,7 @@ namespace XCRI
 
 		public void AddTitle(string title)
 		{
-			this.AddTitle(new Element("title")
+            this.AddTitle(new ElementWithStringValue("title", Configuration.XCRINamespaceUri)
 			{
 				Value = title
 			});
@@ -243,12 +244,8 @@ namespace XCRI
 				{
 					Value = this.ReferenceNumber.Value.ToString()
 				};
-				ident.AddAttribute
-					(
-					"type",
-					@"http://www.w3.org/2001/XMLSchema-instance", 
-					String.Format("{0}:ukprn", writer.LookupPrefix(@"http://www.ukrlp.co.uk"))
-					);
+                ident.XsiType.AttributeValueNamespace = @"http://www.ukrlp.co.uk";
+                ident.XsiType.Value = "ukprn";
 				ident.GenerateTo(writer, Profile);
 			}
 			foreach (Element el in this.Titles)
@@ -263,7 +260,7 @@ namespace XCRI
 			}
 			if (this.WebAddress != null)
 			{
-				Element element = new Element("url", @"http://xcri.org/profiles/catalog")
+				Element element = new ElementWithStringValue("url", Configuration.XCRINamespaceUri)
 				{
 					Value = this.WebAddress.ToString()
 				};

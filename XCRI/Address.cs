@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
@@ -9,7 +10,7 @@ namespace XCRI
 	/// Provides a base implementation of Interfaces.IAddress.
 	/// Represents common address elements within the XCRI feed.
 	/// </summary>
-	public class Address : Element, Interfaces.IAddress
+    public class Address : ElementWithStringValue, Interfaces.IAddress
 	{
 
 		#region Constructors
@@ -17,7 +18,7 @@ namespace XCRI
 		#region Public
 
 		public Address()
-			: base("address", @"http://xcri.org/profiles/catalog")
+			: base("address", Configuration.XCRINamespaceUri)
 		{
 		}
 
@@ -227,42 +228,32 @@ namespace XCRI
 				throw new ArgumentException("XCRI Profile not supported");
 			if (this.Latitude.HasValue)
 			{
-				writer.WriteStartElement("address");
-                writer.WriteAttributeString
-                    (
-                   writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
-                    "type",
-                    null,
-                    String.Format("{0}:lat", writer.LookupPrefix(@"http://www.w3.org/2003/01/geo/wgs84_pos"))
-                    );
-				writer.WriteValue(this.Latitude.Value);
-				writer.WriteEndElement();
+                ElementWithStringValue latitude = new ElementWithStringValue("address", Configuration.XCRINamespaceUri);
+                latitude.XsiType.Value = "lat";
+                latitude.XsiType.AttributeValueNamespace = @"http://www.w3.org/2003/01/geo/wgs84_pos";
+                latitude.Value = this.Latitude.Value.ToString();
+                latitude.GenerateTo(writer, Profile);
 			}
 			if (this.Longitude.HasValue)
 			{
-				writer.WriteStartElement("address");
-				writer.WriteAttributeString
-                    (
-                    writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
-                    "type", 
-                    null, 
-                    String.Format("{0}:long", writer.LookupPrefix(@"http://www.w3.org/2003/01/geo/wgs84_pos"))
-                    );
-				writer.WriteValue(this.Longitude.Value);
-				writer.WriteEndElement();
+                ElementWithStringValue longitude = new ElementWithStringValue("address", Configuration.XCRINamespaceUri);
+                longitude.XsiType.Value = "long";
+                longitude.XsiType.AttributeValueNamespace = @"http://www.w3.org/2003/01/geo/wgs84_pos";
+                longitude.Value = this.Longitude.Value.ToString();
+                longitude.GenerateTo(writer, Profile);
 			}
 			if (String.IsNullOrEmpty(this.Street) == false)
-				writer.WriteElementString("street", this.Street);
+                writer.WriteElementString("street", Configuration.XCRINamespaceUri, this.Street);
 			if (String.IsNullOrEmpty(this.Town) == false)
-				writer.WriteElementString("town", this.Town);
+                writer.WriteElementString("town", Configuration.XCRINamespaceUri, this.Town);
 			if (String.IsNullOrEmpty(this.Postcode) == false)
-				writer.WriteElementString("postcode", this.Postcode);
+                writer.WriteElementString("postcode", Configuration.XCRINamespaceUri, this.Postcode);
 			if (String.IsNullOrEmpty(this.PhoneNumber) == false)
-				writer.WriteElementString("phone", this.PhoneNumber);
+                writer.WriteElementString("phone", Configuration.XCRINamespaceUri, this.PhoneNumber);
 			if (String.IsNullOrEmpty(this.FaxNumber) == false)
-				writer.WriteElementString("fax", this.FaxNumber);
+                writer.WriteElementString("fax", Configuration.XCRINamespaceUri, this.FaxNumber);
 			if (String.IsNullOrEmpty(this.EmailAddress) == false)
-				writer.WriteElementString("email", this.EmailAddress);
+                writer.WriteElementString("email", Configuration.XCRINamespaceUri, this.EmailAddress);
 		}
 
 		#endregion

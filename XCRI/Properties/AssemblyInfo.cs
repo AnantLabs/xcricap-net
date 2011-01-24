@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Craig Hawker")]
 [assembly: AssemblyProduct("XCRI Generator Library")]
-[assembly: AssemblyCopyright("This library is open source (Apache 2.0 licence), available from http://code.google.com/p/xcricap-net/")]
+[assembly: AssemblyCopyright("This library is open source (Creative Commons 3.0), available from http://code.google.com/p/xcricap-net/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -107,7 +107,7 @@ namespace XCRI
 			xmlWriterSettings.Indent = true;
 			xmlWriterSettings.Encoding = Encoding.UTF8;
 			xmlWriterSettings.NewLineOnAttributes = true;
-			//xmlWriterSettings.OmitXmlDeclaration = true;
+            xmlWriterSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
 			using (System.Xml.XmlWriter xmlWriter = System.Xml.XmlTextWriter.Create(textWriter, xmlWriterSettings))
 			{
 				this.GenerateTo(xmlWriter, namespaceData, Profile);
@@ -133,7 +133,7 @@ namespace XCRI
 			if (Profile != XCRIProfiles.XCRI_v1_1)
 				throw new ArgumentException("XCRI Profile not supported");
 			xmlWriter.WriteStartDocument(true);
-			xmlWriter.WriteStartElement("catalog", @"http://xcri.org/profiles/catalog");
+            xmlWriter.WriteStartElement("catalog", Configuration.XCRINamespaceUri);
 			if (namespaceData != null)
 			{
 				StringBuilder schemaLocation = new StringBuilder();

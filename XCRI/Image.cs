@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-	public class Image : Element, Interfaces.IXmlGenerator
+	public class Image : ElementWithStringValue, Interfaces.IXmlGenerator
 	{
 
 		#region Constructors
@@ -13,7 +14,7 @@ namespace XCRI
 		#region Public
 
 		public Image()
-			: base("image")
+            : base("image", Configuration.XCRINamespaceUri)
 		{
 		}
 
@@ -88,6 +89,8 @@ namespace XCRI
 			writer.WriteAttributeString("title", this.Title);
 			base.WriteEndElement(writer, Profile);
 		}
+
+        public override void WriteElementContents(System.Xml.XmlWriter writer, XCRIProfiles Profile) { }
 
 		#endregion
 

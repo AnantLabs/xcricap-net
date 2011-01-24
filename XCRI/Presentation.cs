@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
@@ -13,7 +14,7 @@ namespace XCRI
 		#region Public
 
 		public Presentation()
-			: base("presentation", @"http://xcri.org/profiles/catalog")
+			: base("presentation", Configuration.XCRINamespaceUri)
 		{
 		}
 
@@ -363,40 +364,40 @@ namespace XCRI
 		{
 			if (Profile != XCRIProfiles.XCRI_v1_1)
 				throw new ArgumentException("XCRI Profile not supported");
-			writer.WriteStartElement("presentation");
+            base.WriteStartElement(writer, Profile);
 			foreach (Identifier identifier in this.Identifiers)
 			{
 				if (identifier != null)
 					identifier.GenerateTo(writer, Profile);
 			}
 			if (this.Start.HasValue)
-				writer.WriteElementString("start", this.Start.Value.ToXCRIString());
+                writer.WriteElementString("start", Configuration.XCRINamespaceUri, this.Start.Value.ToXCRIString());
 			if (this.End.HasValue)
-				writer.WriteElementString("end", this.End.Value.ToXCRIString());
+                writer.WriteElementString("end", Configuration.XCRINamespaceUri, this.End.Value.ToXCRIString());
 			if (String.IsNullOrEmpty(this.Duration) == false)
-				writer.WriteElementString("duration", this.Duration);
+                writer.WriteElementString("duration", Configuration.XCRINamespaceUri, this.Duration);
 			if (this.StudyMode != XCRI.Interfaces.StudyModes.Unknown)
 			{
-				writer.WriteStartElement("studyMode");
+                writer.WriteStartElement("studyMode", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
                     writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
                     null, 
-                    String.Format("{0}:studyModeType", writer.LookupPrefix(@"http://xcri.org/profiles/catalog/terms"))
+                    String.Format("{0}:studyModeType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.StudyMode.ToXCRIString());
 				writer.WriteEndElement();
 			}
 			if (this.AttendanceMode != XCRI.Interfaces.AttendanceModes.Unknown)
 			{
-				writer.WriteStartElement("attendanceMode");
+                writer.WriteStartElement("attendanceMode", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
                     writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
                     null, 
-                    String.Format("{0}:attendanceModeType", writer.LookupPrefix(@"http://xcri.org/profiles/catalog/terms"))
+                    String.Format("{0}:attendanceModeType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.AttendanceMode.ToXCRIString());
 				writer.WriteEndElement();
@@ -407,22 +408,22 @@ namespace XCRI
 			}
 			if (this.AttendancePattern != XCRI.Interfaces.AttendancePatterns.Unknown)
 			{
-				writer.WriteStartElement("attendancePattern");
+                writer.WriteStartElement("attendancePattern", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
                     writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
                     null, 
-                    String.Format("{0}:attendancePatternType", writer.LookupPrefix(@"http://xcri.org/profiles/catalog/terms"))
+                    String.Format("{0}:attendancePatternType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.AttendancePattern.ToXCRIString());
 				writer.WriteEndElement();
 			}
 			if (String.IsNullOrEmpty(this.ApplyTo) == false)
-				writer.WriteElementString("applyTo", this.ApplyTo);
+                writer.WriteElementString("applyTo", Configuration.XCRINamespaceUri, this.ApplyTo);
 			if (String.IsNullOrEmpty(this.EnquireTo) == false)
-				writer.WriteElementString("enquireTo", this.EnquireTo);
-			writer.WriteEndElement();
+                writer.WriteElementString("enquireTo", Configuration.XCRINamespaceUri, this.EnquireTo);
+            base.WriteEndElement(writer, Profile);
 		}
 
 		#endregion

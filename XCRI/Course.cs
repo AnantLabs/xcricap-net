@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
@@ -17,7 +18,7 @@ namespace XCRI
 		#region Public
 
 		public Course()
-			: base("course", @"http://xcri.org/profiles/catalog")
+			: base("course", Configuration.XCRINamespaceUri)
 		{
 		}
 
@@ -126,36 +127,25 @@ namespace XCRI
 					identifier.GenerateTo(writer, Profile);
 			}
 			if (String.IsNullOrEmpty(this.Title) == false)
-				writer.WriteElementString("title", this.Title);
+                writer.WriteElementString("title", Configuration.XCRINamespaceUri, this.Title);
 			foreach (string subject in this.Subjects)
 			{
 				if (String.IsNullOrEmpty(subject))
 					continue;
-				writer.WriteElementString("subject", subject);
+                writer.WriteElementString("subject", Configuration.XCRINamespaceUri, subject);
 			}
 			foreach (XCRI.Interfaces.DescriptionTypes type in this.Descriptions.Keys)
 			{
-				writer.WriteStartElement("description");
-				writer.WriteAttributeString
-					(
-					writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
-					"type",
-					null,
-					String.Format("{0}:{1}", writer.LookupPrefix(@"http://xcri.org/profiles/catalog/terms"), type.ToString())
-					);
-                writer.WriteStartElement(writer.LookupPrefix(@"http://www.w3.org/1999/xhtml"), "div", "http://www.w3.org/1999/xhtml");
-				if (this.Descriptions[type].IsHtmlEncoded == false)
-				{
-					writer.WriteValue(this.Descriptions[type].Data);
-				}
-				else
-				{
-					writer.WriteRaw(this.Descriptions[type].Data);
-				}
-                writer.WriteEndElement();
-				writer.WriteEndElement();
+                ElementWithChildElements description = new ElementWithChildElements("description", Configuration.XCRINamespaceUri);
+                description.XsiType.AttributeValueNamespace = Configuration.XCRITermsNamespaceUri;
+                description.XsiType.Value = type.ToString();
+                ElementWithStringValue htmlDiv = new ElementWithStringValue("div", @"http://www.w3.org/1999/xhtml");
+                htmlDiv.Value = this.Descriptions[type].Data;
+                htmlDiv.RenderRaw = this.Descriptions[type].IsXHtmlEncoded;
+                description.ChildElements.Add(htmlDiv);
+                description.GenerateTo(writer, Profile);
 			}
-			writer.WriteElementString("url", this.Uri.ToString());
+            writer.WriteElementString("url", Configuration.XCRINamespaceUri, this.Uri.ToString());
 			if (this.Qualification != null)
 				Qualification.GenerateTo(writer, Profile);
 			foreach (Interfaces.IPresentation presentation in this.Presentations)
@@ -170,11 +160,11 @@ namespace XCRI
 	}
 	public struct DescriptionData
 	{
-		public bool IsHtmlEncoded;
+		public bool IsXHtmlEncoded;
 		public string Data;
 		public DescriptionData(string Data)
 		{
-			this.IsHtmlEncoded = false;
+			this.IsXHtmlEncoded = false;
 			this.Data = Data;
 		}
 		public static implicit operator DescriptionData(string Data)

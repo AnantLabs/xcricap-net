@@ -71,7 +71,10 @@
     <Compile Include="Venue.cs" />
     <Compile Include="XCRIGenerator.cs" />
     <Compile Include="XCRIProfiles.cs" />
-    <Compile Include="XmlBaseClasses.cs" />
+    <Compile Include="XmlBaseClasses\Attribute.cs" />
+    <Compile Include="XmlBaseClasses\Element.cs" />
+    <Compile Include="XmlBaseClasses\XmlBaseClass.cs" />
+    <Compile Include="XmlBaseClasses\XsiTypeAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
