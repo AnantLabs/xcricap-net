@@ -100,7 +100,6 @@ namespace XCRI.XmlBaseClasses
             {
                 writer.WriteStartAttribute
                     (
-                    writer.LookupPrefix(this.AttributeNamespace),
                     this.AttributeName,
                     this.AttributeNamespace
                     );

@@ -381,9 +381,8 @@ namespace XCRI
                 writer.WriteStartElement("studyMode", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
-                    writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
-                    null, 
+                    Configuration.XMLSchemaInstanceNamespaceUri,
                     String.Format("{0}:studyModeType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.StudyMode.ToXCRIString());
@@ -394,9 +393,8 @@ namespace XCRI
                 writer.WriteStartElement("attendanceMode", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
-                    writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
-                    null, 
+                    Configuration.XMLSchemaInstanceNamespaceUri, 
                     String.Format("{0}:attendanceModeType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.AttendanceMode.ToXCRIString());
@@ -411,9 +409,8 @@ namespace XCRI
                 writer.WriteStartElement("attendancePattern", Configuration.XCRINamespaceUri);
 				writer.WriteAttributeString
                     (
-                    writer.LookupPrefix(@"http://www.w3.org/2001/XMLSchema-instance"),
                     "type",
-                    null, 
+                    Configuration.XMLSchemaInstanceNamespaceUri, 
                     String.Format("{0}:attendancePatternType", writer.LookupPrefix(Configuration.XCRITermsNamespaceUri))
                     );
 				writer.WriteValue(this.AttendancePattern.ToXCRIString());

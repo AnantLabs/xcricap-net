@@ -34,7 +34,7 @@ namespace XCRI.XmlBaseClasses
         private XsiTypeAttribute __XsiType = new XsiTypeAttribute()
         {
             AttributeName = "type",
-            AttributeNamespace = @"http://www.w3.org/2001/XMLSchema-instance"
+            AttributeNamespace = Configuration.XMLSchemaInstanceNamespaceUri
         };
 
         #endregion
