@@ -5,7 +5,8 @@ using System.Text;
 
 namespace XCRI.XmlBaseClasses
 {
-    public abstract class Element : XmlBaseClass
+
+    public abstract class Element : NotifyBaseClass, Interfaces.IXmlElement
     {
 
         #region Constructors
@@ -27,7 +28,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Private
 
-        private List<Attribute> __Attributes = new List<Attribute>();
+        private List<XCRI.Interfaces.IXmlAttribute> __Attributes = new List<XCRI.Interfaces.IXmlAttribute>();
         private string __ElementName = String.Empty;
         private string __ElementNamespace = String.Empty;
         private XsiTypeAttribute __XsiType = new XsiTypeAttribute()
@@ -40,7 +41,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Protected
 
-        protected List<Attribute> _Attributes
+        protected List<XCRI.Interfaces.IXmlAttribute> _Attributes
         {
             get { return this.__Attributes; }
         }
@@ -78,7 +79,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public IEnumerable<Attribute> Attributes
+        public ICollection<XCRI.Interfaces.IXmlAttribute> Attributes
         {
             get { return this._Attributes; }
         }
@@ -106,56 +107,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Methods
 
-        #region Public virtual
-
-        public virtual void WriteEndElement(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            writer.WriteEndElement();
-        }
-
-        public virtual void WriteAttributes(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            foreach (Attribute attribute in this.Attributes)
-            {
-                attribute.GenerateTo(writer, Profile);
-            }
-            this.XsiType.GenerateTo(writer, Profile);
-        }
-
-        public virtual void WriteStartElement(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            if (
-                String.IsNullOrEmpty(this.ElementNamespace)
-                )
-            {
-                writer.WriteStartElement
-                    (
-                    this.ElementName
-                    );
-            }
-            else
-            {
-                writer.WriteStartElement
-                    (
-                    this.ElementName,
-                    this.ElementNamespace
-                    );
-            }
-            this.WriteAttributes(writer, Profile);
-        }
-
-        public abstract void WriteElementContents(System.Xml.XmlWriter writer, XCRIProfiles Profile);
-
-        #endregion
-
         #region Public override
-
-        public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            this.WriteStartElement(writer, Profile);
-            this.WriteElementContents(writer, Profile);
-            this.WriteEndElement(writer, Profile);
-        }
 
         #endregion
 
@@ -218,7 +170,8 @@ namespace XCRI.XmlBaseClasses
         #endregion
 
     }
-    public class ElementWithStringValue : Element
+
+    public class ElementWithStringValue : Element, Interfaces.IXmlElementWithStringValue
     {
         
         #region Properties and Fields
@@ -290,32 +243,10 @@ namespace XCRI.XmlBaseClasses
 
         #endregion
 
-        #region Methods
-
-        #region Public override
-
-        public override void WriteElementContents(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            if (String.IsNullOrEmpty(this.Value))
-                return;
-            if (this.RenderRaw)
-                writer.WriteRaw
-                    (
-                    this.Value
-                    );
-            else
-                writer.WriteValue
-                    (
-                    this.Value
-                    );
-        }
-
-        #endregion
-
-        #endregion
 
     }
-    public class ElementWithChildElements : Element
+
+    public class ElementWithChildElements : Element, Interfaces.IXmlElementWithChildElements
     {
 
         #region Constructors
@@ -336,13 +267,13 @@ namespace XCRI.XmlBaseClasses
 
         #region Private
 
-        private List<Element> __ChildElements = new List<Element>();
+        private List<Interfaces.IXmlElement> __ChildElements = new List<Interfaces.IXmlElement>();
         
         #endregion
 
         #region Protected
 
-        protected List<Element> _ChildElements
+        protected List<Interfaces.IXmlElement> _ChildElements
         {
             get { return this.__ChildElements; }
         }
@@ -351,25 +282,9 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public List<Element> ChildElements
+        public ICollection<Interfaces.IXmlElement> ChildElements
         {
             get { return this._ChildElements; }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Methods
-
-        #region Public override
-
-        public override void WriteElementContents(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            foreach (Element childElement in this._ChildElements)
-            {
-                childElement.GenerateTo(writer, Profile);
-            }
         }
 
         #endregion

@@ -99,7 +99,7 @@ namespace XCRI
 			get { return this.__Descriptions; }
 		}
 
-		public List<String> Subjects
+		public ICollection<String> Subjects
 		{
 			get { return this.__Subjects; }
 		}
@@ -111,49 +111,6 @@ namespace XCRI
 		}
 
 		public abstract IEnumerable<XCRI.Interfaces.IPresentation> Presentations { get; }
-
-		#endregion
-
-		#region IXmlGenerator Members
-
-		public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-		{
-			if (Profile != XCRIProfiles.XCRI_v1_1)
-				throw new ArgumentException("XCRI Profile not supported");
-			base.WriteStartElement(writer, Profile);
-			foreach (Identifier identifier in this.Identifiers)
-			{
-				if (identifier != null)
-					identifier.GenerateTo(writer, Profile);
-			}
-			if (String.IsNullOrEmpty(this.Title) == false)
-                writer.WriteElementString("title", Configuration.XCRINamespaceUri, this.Title);
-			foreach (string subject in this.Subjects)
-			{
-				if (String.IsNullOrEmpty(subject))
-					continue;
-                writer.WriteElementString("subject", Configuration.XCRINamespaceUri, subject);
-			}
-			foreach (XCRI.Interfaces.DescriptionTypes type in this.Descriptions.Keys)
-			{
-                ElementWithChildElements description = new ElementWithChildElements("description", Configuration.XCRINamespaceUri);
-                description.XsiType.AttributeValueNamespace = Configuration.XCRITermsNamespaceUri;
-                description.XsiType.Value = type.ToString();
-                ElementWithStringValue htmlDiv = new ElementWithStringValue("div", @"http://www.w3.org/1999/xhtml");
-                htmlDiv.Value = this.Descriptions[type].Data;
-                htmlDiv.RenderRaw = this.Descriptions[type].IsXHtmlEncoded;
-                description.ChildElements.Add(htmlDiv);
-                description.GenerateTo(writer, Profile);
-			}
-            writer.WriteElementString("url", Configuration.XCRINamespaceUri, this.Uri.ToString());
-			if (this.Qualification != null)
-				Qualification.GenerateTo(writer, Profile);
-			foreach (Interfaces.IPresentation presentation in this.Presentations)
-			{
-				presentation.GenerateTo(writer, Profile);
-			}
-			writer.WriteEndElement();
-		}
 
 		#endregion
 

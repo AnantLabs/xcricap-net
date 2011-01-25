@@ -6,7 +6,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-	public class Image : ElementWithStringValue, Interfaces.IXmlGenerator
+	public class Image : ElementWithStringValue, Interfaces.IXmlElement
 	{
 
 		#region Constructors
@@ -71,26 +71,6 @@ namespace XCRI
 			get { return this._Title; }
 			set { this._Title = value; }
 		}
-
-		#endregion
-
-		#endregion
-
-		#region Methods
-
-		#region Public override
-
-		public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-		{
-			if (this.Source == null)
-				return;
-			base.WriteStartElement(writer, Profile);
-			writer.WriteAttributeString("src", this.Source.ToString());
-			writer.WriteAttributeString("title", this.Title);
-			base.WriteEndElement(writer, Profile);
-		}
-
-        public override void WriteElementContents(System.Xml.XmlWriter writer, XCRIProfiles Profile) { }
 
 		#endregion
 

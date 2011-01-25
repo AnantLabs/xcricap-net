@@ -97,24 +97,6 @@ namespace XCRI
 			set { this._Image = value; }
 		}
 
-		public new void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-		{
-			if (Profile != XCRIProfiles.XCRI_v1_1)
-				throw new ArgumentException("XCRI Profile not supported");
-			foreach (Identifier identifier in this.Identifiers)
-			{
-				if (identifier != null)
-					identifier.GenerateTo(writer, Profile);
-			}
-			if (String.IsNullOrEmpty(this.Title))
-				writer.WriteElementString("title", this.Title);
-			base.GenerateTo(writer, Profile);
-			if (this.Uri != null)
-				writer.WriteElementString("url", this.Uri.ToString());
-			if (this.Image != null)
-				this.Image.GenerateTo(writer, Profile);
-		}
-
 		#endregion
 
 	}

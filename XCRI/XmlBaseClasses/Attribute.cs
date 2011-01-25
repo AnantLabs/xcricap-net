@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.XmlBaseClasses
 {
-    public class Attribute : XmlBaseClass
+    public class Attribute : NotifyBaseClass, XCRI.Interfaces.IXmlAttribute
     {
 
         #region Properties and Fields
@@ -79,34 +79,6 @@ namespace XCRI.XmlBaseClasses
         }
 
         #endregion
-
-        #endregion
-
-        #region IXmlGenerator Members
-
-        public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            if (String.IsNullOrEmpty(this.Value))
-                return;
-            if (String.IsNullOrEmpty(this.AttributeNamespace))
-            {
-                writer.WriteAttributeString
-                    (
-                    this.AttributeName,
-                    this.Value
-                    );
-            }
-            else
-            {
-                writer.WriteStartAttribute
-                    (
-                    this.AttributeName,
-                    this.AttributeNamespace
-                    );
-                writer.WriteString(this.Value);
-                writer.WriteEndAttribute();
-            }
-        }
 
         #endregion
 

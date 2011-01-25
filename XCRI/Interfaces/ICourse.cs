@@ -8,13 +8,14 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Course element in the XCRI standard.
 	/// </summary>
-	public interface ICourse : IXmlGenerator //, IObjectWithIdentifiers
+	public interface ICourse : IXmlElement, IElementWithIdentifiers
 	{
 
 		/// <summary>
 		/// The name of the course 
 		/// </summary>
 		string Title { get; set; }
+        ICollection<String> Subjects { get; }
 		Uri Uri { get; set; }
 		Dictionary<DescriptionTypes, DescriptionData> Descriptions { get; }
 		IQualification Qualification { get; set; }

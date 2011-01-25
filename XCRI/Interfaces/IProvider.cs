@@ -9,7 +9,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Provider element in the XCRI standard.
 	/// </summary>
-	public interface IProvider : IXmlGenerator //, IObjectWithIdentifiers
+    public interface IProvider : IXmlElement, IElementWithIdentifiers
 	{
 
 		/// <summary>
@@ -32,6 +32,8 @@ namespace XCRI.Interfaces
 		*/
 
 		IEnumerable<Element> Titles { get; }
+
+        IEnumerable<Element> Descriptions { get; }
 
 		/// <summary>
 		/// The main address of the course provider

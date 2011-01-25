@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Presentation element within the XCRI standard.
 	/// </summary>
-	public interface IPresentation : IXmlGenerator //, IObjectWithIdentifiers
+	public interface IPresentation : IXmlElement, IElementWithIdentifiers
 	{
 
 		string Title { get; set; }

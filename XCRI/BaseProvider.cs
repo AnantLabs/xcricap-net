@@ -139,14 +139,16 @@ namespace XCRI
 		}
 		*/
 
-		public IEnumerable<Element> Titles
+        public IEnumerable<Element> Titles
 		{
 			get
 			{
 				foreach (Element el in this._ChildElements)
 				{
-					if ((el.ElementName ?? String.Empty).Equals("title", StringComparison.CurrentCultureIgnoreCase))
-						yield return el;
+					if (
+                        ((el.ElementName ?? String.Empty).Equals("title", StringComparison.CurrentCultureIgnoreCase))
+                        )
+                        yield return el as Element;
 				}
 			}
 		}
@@ -210,76 +212,6 @@ namespace XCRI
 		public void AddTitle(Element title)
 		{
 			this._ChildElements.Add(title);
-		}
-
-		/// <summary>
-		/// Writes the XML elements associated with the object to the
-		/// provided XmlWriter object.
-		/// </summary>
-		/// <param name="writer">The XmlWriter to output the XML elements to.</param>
-		public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-		{
-			if (Profile != XCRIProfiles.XCRI_v1_1)
-				throw new ArgumentException("XCRI Profile not supported");
-			this.WriteStartElement(writer, Profile);
-			bool outputIdentifier = false;
-			foreach (Identifier identifier in this.Identifiers)
-			{
-				if (identifier == null)
-					continue;
-				outputIdentifier = true;
-				identifier.GenerateTo(writer, Profile);
-			}
-			if(outputIdentifier == false)
-			{
-				Identifier ident = new Identifier()
-				{
-					Value = this.WebAddress.ToString()
-				};
-				ident.GenerateTo(writer, Profile);
-			}
-			if (this.ReferenceNumber.HasValue)
-			{
-				Identifier ident = new Identifier()
-				{
-					Value = this.ReferenceNumber.Value.ToString()
-				};
-                ident.XsiType.AttributeValueNamespace = @"http://www.ukrlp.co.uk";
-                ident.XsiType.Value = "ukprn";
-				ident.GenerateTo(writer, Profile);
-			}
-			foreach (Element el in this.Titles)
-			{
-				if (el != null)
-					el.GenerateTo(writer, Profile);
-			}
-			foreach (Element el in this.Descriptions)
-			{
-				if (el != null)
-					el.GenerateTo(writer, Profile);
-			}
-			if (this.WebAddress != null)
-			{
-				Element element = new ElementWithStringValue("url", Configuration.XCRINamespaceUri)
-				{
-					Value = this.WebAddress.ToString()
-				};
-				element.GenerateTo(writer, Profile);
-			}
-			if (this.Image != null)
-			{
-				this.Image.GenerateTo(writer, Profile);
-			}
-			if (this.Address != null)
-			{
-				this.Address.GenerateTo(writer, Profile);
-			}
-			// Load courses and generate
-			foreach (Course course in this.Courses)
-			{
-				course.GenerateTo(writer, Profile);
-			}
-			writer.WriteEndElement();
 		}
 
 		#endregion

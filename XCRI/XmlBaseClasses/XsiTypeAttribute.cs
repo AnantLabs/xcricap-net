@@ -44,42 +44,5 @@ namespace XCRI.XmlBaseClasses
 
         #endregion
 
-        #region Methods
-
-        #region Public override
-
-        public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-        {
-            if (String.IsNullOrEmpty(this.AttributeNamespace))
-                base.GenerateTo(writer, Profile);
-            else
-            {
-                if (String.IsNullOrEmpty(this.Value))
-                    return;
-                writer.WriteStartAttribute
-                    (
-                    this.AttributeName,
-                    this.AttributeNamespace
-                    );
-                if (String.IsNullOrEmpty(this.AttributeValueNamespace))
-                    writer.WriteString(this.Value);
-                else
-                {
-                    string prefix = writer.LookupPrefix(this.AttributeValueNamespace);
-                    writer.WriteString(String.Format
-                        (
-                        "{0}:{1}",
-                        prefix,
-                        this.Value
-                        ));
-                }
-                writer.WriteEndAttribute();
-            }
-        }
-
-        #endregion
-
-        #endregion
-
     }
 }

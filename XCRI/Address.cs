@@ -217,45 +217,6 @@ namespace XCRI
 			set { this._EmailAddress = value; }
 		}
 
-		/// <summary>
-		/// Writes the XML elements associated with the address to the
-		/// provided XmlWriter object.
-		/// </summary>
-		/// <param name="writer">The XmlWriter to output the XML elements to.</param>
-		public override void GenerateTo(System.Xml.XmlWriter writer, XCRIProfiles Profile)
-		{
-			if (Profile != XCRIProfiles.XCRI_v1_1)
-				throw new ArgumentException("XCRI Profile not supported");
-			if (this.Latitude.HasValue)
-			{
-                ElementWithStringValue latitude = new ElementWithStringValue("address", Configuration.XCRINamespaceUri);
-                latitude.XsiType.Value = "lat";
-                latitude.XsiType.AttributeValueNamespace = @"http://www.w3.org/2003/01/geo/wgs84_pos";
-                latitude.Value = this.Latitude.Value.ToString();
-                latitude.GenerateTo(writer, Profile);
-			}
-			if (this.Longitude.HasValue)
-			{
-                ElementWithStringValue longitude = new ElementWithStringValue("address", Configuration.XCRINamespaceUri);
-                longitude.XsiType.Value = "long";
-                longitude.XsiType.AttributeValueNamespace = @"http://www.w3.org/2003/01/geo/wgs84_pos";
-                longitude.Value = this.Longitude.Value.ToString();
-                longitude.GenerateTo(writer, Profile);
-			}
-			if (String.IsNullOrEmpty(this.Street) == false)
-                writer.WriteElementString("street", Configuration.XCRINamespaceUri, this.Street);
-			if (String.IsNullOrEmpty(this.Town) == false)
-                writer.WriteElementString("town", Configuration.XCRINamespaceUri, this.Town);
-			if (String.IsNullOrEmpty(this.Postcode) == false)
-                writer.WriteElementString("postcode", Configuration.XCRINamespaceUri, this.Postcode);
-			if (String.IsNullOrEmpty(this.PhoneNumber) == false)
-                writer.WriteElementString("phone", Configuration.XCRINamespaceUri, this.PhoneNumber);
-			if (String.IsNullOrEmpty(this.FaxNumber) == false)
-                writer.WriteElementString("fax", Configuration.XCRINamespaceUri, this.FaxNumber);
-			if (String.IsNullOrEmpty(this.EmailAddress) == false)
-                writer.WriteElementString("email", Configuration.XCRINamespaceUri, this.EmailAddress);
-		}
-
 		#endregion
 
 	}

@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Qualification element in the XCRI standard
 	/// </summary>
-	public interface IQualification : IXmlGenerator //, IObjectWithIdentifiers
+	public interface IQualification : IXmlElement //, IObjectWithIdentifiers
 	{
 
 		string Title { get; set; }

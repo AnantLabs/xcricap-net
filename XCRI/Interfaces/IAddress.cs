@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents common address elements within the XCRI feed.
 	/// </summary>
-	public interface IAddress : IXmlGenerator
+	public interface IAddress : IXmlElement
 	{
 
 		/// <summary>
