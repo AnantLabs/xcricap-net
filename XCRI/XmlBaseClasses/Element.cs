@@ -36,10 +36,23 @@ namespace XCRI.XmlBaseClasses
             AttributeName = "type",
             AttributeNamespace = Configuration.XMLSchemaInstanceNamespaceUri
         };
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
         #endregion
 
         #region Protected
+
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
 
         protected List<XCRI.Interfaces.IXmlAttribute> _Attributes
         {
@@ -79,7 +92,13 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public ICollection<XCRI.Interfaces.IXmlAttribute> Attributes
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
+
+        public IList<XCRI.Interfaces.IXmlAttribute> Attributes
         {
             get { return this._Attributes; }
         }
@@ -123,7 +142,12 @@ namespace XCRI.XmlBaseClasses
             Attribute attr = this.GetAttribute(Name, Namespace);
             if (attr == null)
             {
-                this.AddAttribute(Name, Namespace, Value);
+                this.Attributes.Add(new Attribute()
+                {
+                    AttributeName = Name,
+                    AttributeNamespace = Namespace, 
+                    Value = Value
+                });
             }
             else
             {
@@ -150,47 +174,32 @@ namespace XCRI.XmlBaseClasses
             return null;
         }
 
-        public void AddAttribute(string Name, string Namespace, string Value)
-        {
-            this.AddAttribute(new Attribute()
-            {
-                AttributeName = Name,
-                AttributeNamespace = Namespace,
-                Value = Value
-            });
-        }
-
-        public void AddAttribute(Attribute attribute)
-        {
-            this._Attributes.Add(attribute);
-        }
-
         #endregion
 
         #endregion
 
     }
 
-    public class ElementWithStringValue : Element, Interfaces.IXmlElementWithStringValue
+    public class ElementWithSingleValue : Element, Interfaces.IXmlElementWithSingleValue
     {
         
         #region Properties and Fields
 
         #region Private
 
-        private string __Value = String.Empty;
+        private object __Value = null;
         private bool __RenderRaw = false;
 
         #endregion
 
         #region Protected
 
-        protected string _Value
+        protected object _Value
         {
             get { return this.__Value; }
             set
             {
-                if (this.__Value == value) { return; }
+                if (value == this.__Value) { return; }
                 this.OnPropertyChanging("Value");
                 this.__Value = value;
                 this.OnPropertyChanged("Value");
@@ -213,7 +222,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public string Value
+        public virtual object Value
         {
             get { return this._Value; }
             set { this._Value = value; }
@@ -233,7 +242,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public ElementWithStringValue(string Name, string Namespace)
+        public ElementWithSingleValue(string Name, string Namespace)
             : base(Name, Namespace)
         {
             this.ElementNamespace = Namespace;
@@ -243,6 +252,44 @@ namespace XCRI.XmlBaseClasses
 
         #endregion
 
+    }
+
+    public class ElementWithSingleValue<T> : ElementWithSingleValue, Interfaces.IXmlElementWithSingleValue<T>
+    {
+
+        #region Constructors
+
+        #region Public
+
+        public ElementWithSingleValue(string Name, string Namespace)
+            : base(Name, Namespace)
+        {
+            this.ElementNamespace = Namespace;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Properties and Fields
+
+        #region Public
+
+        public new T Value
+        {
+            get
+            {
+                return (T)base.Value;
+            }
+            set
+            {
+                base.Value = value;
+            }
+        }
+
+        #endregion
+
+        #endregion
 
     }
 
@@ -282,7 +329,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public ICollection<Interfaces.IXmlElement> ChildElements
+        public IList<Interfaces.IXmlElement> ChildElements
         {
             get { return this._ChildElements; }
         }
@@ -292,7 +339,7 @@ namespace XCRI.XmlBaseClasses
         #endregion
 
     }
-    public class ElementWithIdentifiers : ElementWithChildElements
+    public class ElementWithIdentifiers : ElementWithChildElements, Interfaces.IElementWithIdentifiers
     {
 
         #region Constructors
@@ -310,31 +357,26 @@ namespace XCRI.XmlBaseClasses
 
         #region Properties and Fields
 
-        #region Public
+        #region Private
 
-        public IEnumerable<Identifier> Identifiers
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+
+        #endregion
+
+        #region Protected
+
+        protected IList<Interfaces.IIdentifier> _Identifiers
         {
-            get
-            {
-                foreach (Element el in this._ChildElements)
-                {
-                    if (el is Identifier)
-                        yield return el as Identifier;
-                }
-            }
+            get { return this.__Identifiers; }
         }
 
         #endregion
 
-        #endregion
-
-        #region Methods
-
         #region Public
 
-        public void AddIdentifier(Identifier identifier)
+        public IList<Interfaces.IIdentifier> Identifiers
         {
-            this._ChildElements.Add(identifier);
+            get { return this._Identifiers; }
         }
 
         #endregion

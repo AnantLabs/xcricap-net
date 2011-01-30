@@ -14,13 +14,14 @@ namespace XCRI.Interfaces
 		/// <summary>
 		/// The name of the course 
 		/// </summary>
-		string Title { get; set; }
-        ICollection<String> Subjects { get; }
+		IList<ITitle> Titles { get; }
+        IList<ISubject> Subjects { get; }
 		Uri Uri { get; set; }
+        Image Image { get; set; }
 		Dictionary<DescriptionTypes, DescriptionData> Descriptions { get; }
-		IQualification Qualification { get; set; }
-		IEnumerable<IPresentation> Presentations { get; }
-		
+		IList<IQualification> Qualifications { get; }
+		IList<IPresentation> Presentations { get; }
+        // TODO: Credit: http://www.xcri.org/wiki/index.php/Credit
 		
 	}
 	/// <summary>

@@ -18,7 +18,7 @@ namespace XCRI
 		#region Public
 
 		public Address()
-			: base("address", Configuration.XCRINamespaceUri)
+			: base("address", Configuration.XCRICAP11NamespaceUri)
 		{
 		}
 

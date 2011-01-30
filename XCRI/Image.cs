@@ -6,7 +6,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-	public class Image : ElementWithStringValue, Interfaces.IXmlElement
+    public class Image : Element, Interfaces.IXmlElement, Interfaces.IImage
 	{
 
 		#region Constructors
@@ -14,7 +14,7 @@ namespace XCRI
 		#region Public
 
 		public Image()
-            : base("image", Configuration.XCRINamespaceUri)
+            : base("image", Configuration.XCRICAP11NamespaceUri)
 		{
 		}
 
@@ -28,6 +28,7 @@ namespace XCRI
 
 		private Uri __Source = null;
 		private string __Title = String.Empty;
+        private string __Alt = String.Empty;
 
 		#endregion
 
@@ -57,6 +58,18 @@ namespace XCRI
 			}
 		}
 
+        protected string _Alt
+        {
+            get { return this.__Alt; }
+            set
+            {
+                if (this.__Alt == value) { return; }
+                this.OnPropertyChanging("Alt");
+                this.__Alt = value;
+                this.OnPropertyChanged("Alt");
+            }
+        }
+
 		#endregion
 
 		#region Public
@@ -66,11 +79,18 @@ namespace XCRI
 			get { return this._Source; }
 			set { this._Source = value; }
 		}
+
 		public string Title
 		{
 			get { return this._Title; }
 			set { this._Title = value; }
 		}
+
+        public string Alt
+        {
+            get { return this._Alt; }
+            set { this._Alt = value; }
+        }
 
 		#endregion
 

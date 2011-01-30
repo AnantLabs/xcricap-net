@@ -7,6 +7,9 @@ namespace XCRI.Interfaces
 {
     public interface IElementWithIdentifiers
     {
-        IEnumerable<Identifier> Identifiers { get; }
+        IList<IIdentifier> Identifiers { get; }
+    }
+    public interface IIdentifier : IXmlElementWithSingleValue<string>
+    {
     }
 }

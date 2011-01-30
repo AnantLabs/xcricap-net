@@ -8,14 +8,34 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Qualification element in the XCRI standard
 	/// </summary>
-	public interface IQualification : IXmlElement //, IObjectWithIdentifiers
+	public interface IQualification : IXmlElement, IElementWithIdentifiers
 	{
 
-		string Title { get; set; }
-		Uri Uri { get; set; }
-		string Level { get; set; }
-		string Type { get; set; }
-		string AwardedBy { get; set; }
+		IList<ITitle> Titles { get; }
+        IList<IDescription> Descriptions { get; }
+		Uri Url { get; set; }
+        Image Image { get; set; }
+        IQualificationLevel Level { get; set; }
+        IQualificationType Type { get; set; }
+        IList<IQualificationAwardedBy> AwardedBy { get; }
+        IList<IQualificationAccreditedBy> AccreditedBy { get; }
 
 	}
+
+    public interface IQualificationLevel : IXmlElementWithSingleValue<string>
+    {
+    }
+
+    public interface IQualificationType : IXmlElementWithSingleValue<string>
+    {
+    }
+
+    public interface IQualificationAwardedBy : IXmlElementWithSingleValue<string>
+    {
+    }
+
+    public interface IQualificationAccreditedBy : IXmlElementWithSingleValue<string>
+    {
+    }
+
 }

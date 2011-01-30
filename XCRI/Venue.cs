@@ -15,7 +15,8 @@ namespace XCRI
 
 		private string __Title = String.Empty;
 		private Uri __Uri = null;
-		private Image __Image = null;
+        private Image __Image = null;
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
 		#endregion
 
@@ -57,21 +58,19 @@ namespace XCRI
 			}
 		}
 
+        protected IList<Interfaces.IIdentifier> _Identifiers
+        {
+            get { return this.__Identifiers; }
+        }
+
 		#endregion
 
-		#region Public
+        #region Public
 
-		public IEnumerable<Identifier> Identifiers
-		{
-			get
-			{
-				foreach (Element el in this._ChildElements)
-				{
-					if (el is Identifier)
-						yield return el as Identifier;
-				}
-			}
-		}
+        public IList<Interfaces.IIdentifier> Identifiers
+        {
+            get { return this._Identifiers; }
+        }
 
 		#endregion
 

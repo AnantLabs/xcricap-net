@@ -14,7 +14,7 @@ namespace XCRI
 		#region Public
 
 		public Presentation()
-			: base("presentation", Configuration.XCRINamespaceUri)
+			: base("presentation", Configuration.XCRICAP11NamespaceUri)
 		{
 		}
 

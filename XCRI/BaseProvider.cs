@@ -18,7 +18,7 @@ namespace XCRI
 		#region Public
 
 		public BaseProvider()
-            : base("provider", Configuration.XCRINamespaceUri)
+            : base("provider", Configuration.XCRICAP11NamespaceUri)
 		{
 		}
 
@@ -35,10 +35,22 @@ namespace XCRI
 		//private string __Title = String.Empty;
 		private Interfaces.IAddress __Address = null;
 		private Image __Image = null;
+        private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
+        private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
 
 		#endregion
 
 		#region Protected
+
+        protected List<Interfaces.ITitle> _Titles
+        {
+            get { return this.__Titles; }
+        }
+
+        protected List<Interfaces.IDescription> _Descriptions
+        {
+            get { return this.__Descriptions; }
+        }
 
 		protected Uri _WebAddress
 		{
@@ -127,42 +139,14 @@ namespace XCRI
 			set { this._ReferenceNumber = value; }
 		}
 
-		/*
-		/// <summary>
-		/// The name of the company or organisation that provides the learning opportunity.
-		/// This should be the trading name.
-		/// </summary>
-		public string Title
+        public IList<Interfaces.ITitle> Titles
 		{
-			get { return this._Title; }
-			set { this._Title = value; }
-		}
-		*/
-
-        public IEnumerable<Element> Titles
-		{
-			get
-			{
-				foreach (Element el in this._ChildElements)
-				{
-					if (
-                        ((el.ElementName ?? String.Empty).Equals("title", StringComparison.CurrentCultureIgnoreCase))
-                        )
-                        yield return el as Element;
-				}
-			}
+            get { return this._Titles; }
 		}
 
-		public IEnumerable<Element> Descriptions
+        public IList<Interfaces.IDescription> Descriptions
 		{
-			get
-			{
-				foreach (Element el in this._ChildElements)
-				{
-					if ((el.ElementName ?? String.Empty).Equals("description", StringComparison.CurrentCultureIgnoreCase))
-						yield return el;
-				}
-			}
+            get { return this._Descriptions; }
 		}
 
 		/// <summary>
@@ -186,33 +170,23 @@ namespace XCRI
 		/// <summary>
 		/// Retrieves the courses from the course provider's database.
 		/// </summary>
-		public abstract IEnumerable<Course> Courses { get; }
+		public abstract IEnumerable<Interfaces.ICourse> Courses { get; }
 
 		public void AddDescription(string description)
 		{
-			this.AddDescription(new ElementWithStringValue("description", Configuration.XCRINamespaceUri)
+			this.Descriptions.Add(new Description()
 			{
 				Value = description
 			});
 		}
 
-		public void AddDescription(Element description)
-		{
-			this._ChildElements.Add(description);
-		}
-
-		public void AddTitle(string title)
-		{
-            this.AddTitle(new ElementWithStringValue("title", Configuration.XCRINamespaceUri)
-			{
-				Value = title
-			});
-		}
-
-		public void AddTitle(Element title)
-		{
-			this._ChildElements.Add(title);
-		}
+        public void AddTitle(string title)
+        {
+            this.Titles.Add(new Title()
+            {
+                Value = title
+            });
+        }
 
 		#endregion
 

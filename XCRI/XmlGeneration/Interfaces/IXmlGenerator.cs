@@ -5,40 +5,34 @@ using System.Text;
 
 namespace XCRI.XmlGeneration.Interfaces
 {
-    public interface IXmlGenerator
+    public interface IXmlGenerator : XCRI.Interfaces.ICatalog
     {
         void Generate
             (
             System.Xml.XmlWriter xmlWriter,
-            NamespaceList namespaceList,
-            params XCRI.Interfaces.IProvider[] Providers
+            NamespaceList namespaceList
             );
         void Generate
             (
-            System.Xml.XmlWriter xmlWriter,
-            params XCRI.Interfaces.IProvider[] Providers
-            );
-        void Generate
-            (
-            System.IO.StringWriter stringWriter,
-            NamespaceList namespaceList,
-            params XCRI.Interfaces.IProvider[] Providers
+            System.Xml.XmlWriter xmlWriter
             );
         void Generate
             (
             System.IO.StringWriter stringWriter,
-            params XCRI.Interfaces.IProvider[] Providers
+            NamespaceList namespaceList
+            );
+        void Generate
+            (
+            System.IO.StringWriter stringWriter
             );
         void Generate
             (
             System.Text.StringBuilder stringBuilder,
-            NamespaceList namespaceList,
-            params XCRI.Interfaces.IProvider[] Providers
+            NamespaceList namespaceList
             );
         void Generate
             (
-            System.Text.StringBuilder stringBuilder,
-            params XCRI.Interfaces.IProvider[] Providers
+            System.Text.StringBuilder stringBuilder
             );
     }
 }

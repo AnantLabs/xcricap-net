@@ -6,7 +6,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-    public class Identifier : ElementWithStringValue
+    public class Identifier : ElementWithSingleValue<string>, Interfaces.IIdentifier
 	{
 
 		#region Constructors
@@ -14,7 +14,7 @@ namespace XCRI
 		#region Public
 
 		public Identifier()
-            : base("identifier", Configuration.XCRINamespaceUri)
+            : base("identifier", Configuration.XCRICAP11NamespaceUri)
 		{
 
 		}

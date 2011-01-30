@@ -23,17 +23,9 @@ namespace XCRI.Interfaces
 		/// </summary>
 		long? ReferenceNumber { get; set; }
 
-		/*
-		/// <summary>
-		/// The name of the company or organisation that provides the learning opportunity.
-		/// This should be the trading name.
-		/// </summary>
-		string Title { get; set; }
-		*/
+		IList<ITitle> Titles { get; }
 
-		IEnumerable<Element> Titles { get; }
-
-        IEnumerable<Element> Descriptions { get; }
+        IList<IDescription> Descriptions { get; }
 
 		/// <summary>
 		/// The main address of the course provider
@@ -48,7 +40,7 @@ namespace XCRI.Interfaces
 		/// <summary>
 		/// Retrieves the courses from the course provider's database.
 		/// </summary>
-		IEnumerable<Course> Courses { get; }
+        IEnumerable<ICourse> Courses { get; }
 		
 	}
 }

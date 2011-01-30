@@ -13,8 +13,8 @@ namespace XCRI
 			get
 			{
 				NamespaceList list = new NamespaceList();
-				list.Add(Configuration.XCRINamespaceUri, String.Empty, @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
-				list.Add(Configuration.XCRITermsNamespaceUri, "terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
+				list.Add(Configuration.XCRICAP11NamespaceUri, String.Empty, @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
+				list.Add(Configuration.XCRICAP11TermsNamespaceUri, "terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
 				list.Add(Configuration.XMLSchemaInstanceNamespaceUri, "xsi", "");
 				list.Add(@"http://www.ukrlp.co.uk", "ukrlp", "http://www.craighawker.co.uk/xcri/validation/xsds/ukprn.xsd");
                 list.Add(@"http://www.w3.org/2003/01/geo/wgs84_pos", "geo", "http://www.craighawker.co.uk/xcri/validation/xsds/geo.xsd");
@@ -22,12 +22,12 @@ namespace XCRI
 			}
 		}
 
-        public static string XCRINamespaceUri
+        public static string XCRICAP11NamespaceUri
         {
             get { return @"http://xcri.org/profiles/catalog"; }
         }
 
-        public static string XCRITermsNamespaceUri
+        public static string XCRICAP11TermsNamespaceUri
         {
             get { return @"http://xcri.org/profiles/catalog/terms"; }
         }
