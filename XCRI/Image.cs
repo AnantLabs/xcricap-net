@@ -9,19 +9,6 @@ namespace XCRI
     public class Image : Element, Interfaces.IXmlElement, Interfaces.IImage
 	{
 
-		#region Constructors
-
-		#region Public
-
-		public Image()
-            : base("image", Configuration.XCRICAP11NamespaceUri)
-		{
-		}
-
-		#endregion
-
-		#endregion
-
 		#region Properties and Fields
 
 		#region Private

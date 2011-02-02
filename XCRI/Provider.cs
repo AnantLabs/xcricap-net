@@ -10,21 +10,8 @@ namespace XCRI
 	/// Provides a base implementation of Interfaces.IProvider.
 	/// Represents the provider element in the XCRI standard.
 	/// </summary>
-	public abstract class BaseProvider : ElementWithIdentifiers, Interfaces.IProvider
+	public class Provider : ElementWithIdentifiers, Interfaces.IProvider
 	{
-
-		#region Constructors
-
-		#region Public
-
-		public BaseProvider()
-            : base("provider", Configuration.XCRICAP11NamespaceUri)
-		{
-		}
-
-		#endregion
-
-		#endregion
 
 		#region Properties and Fields
 
@@ -36,6 +23,7 @@ namespace XCRI
 		private Interfaces.IAddress __Address = null;
 		private Image __Image = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
+        private List<Interfaces.ICourse> __Courses = new List<Interfaces.ICourse>();
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
 
 		#endregion
@@ -45,6 +33,11 @@ namespace XCRI
         protected List<Interfaces.ITitle> _Titles
         {
             get { return this.__Titles; }
+        }
+
+        protected List<Interfaces.ICourse> _Courses
+        {
+            get { return this.__Courses; }
         }
 
         protected List<Interfaces.IDescription> _Descriptions
@@ -75,20 +68,6 @@ namespace XCRI
 				this.OnPropertyChanged("ReferenceNumber");
 			}
 		}
-
-		/*
-		protected string _Title
-		{
-			get { return this.__Title; }
-			set
-			{
-				if (this.__Title == value) { return; }
-				this.OnPropertyChanging("Title");
-				this.__Title = value;
-				this.OnPropertyChanged("Title");
-			}
-		}
-		*/
 
 		protected Interfaces.IAddress _Address
 		{
@@ -170,7 +149,10 @@ namespace XCRI
 		/// <summary>
 		/// Retrieves the courses from the course provider's database.
 		/// </summary>
-		public abstract IEnumerable<Interfaces.ICourse> Courses { get; }
+        public IList<Interfaces.ICourse> Courses
+        {
+            get { return this._Courses; }
+        }
 
 		public void AddDescription(string description)
 		{

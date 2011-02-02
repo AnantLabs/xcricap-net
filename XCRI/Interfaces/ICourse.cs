@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Course element in the XCRI standard.
 	/// </summary>
-	public interface ICourse : IXmlElement, IElementWithIdentifiers
+	public interface ICourse : IXmlElement, IXmlElementWithIdentifiers
 	{
 
 		/// <summary>

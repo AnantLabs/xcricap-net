@@ -10,21 +10,8 @@ namespace XCRI
 	/// Provides a base implementation of Interfaces.IAddress.
 	/// Represents common address elements within the XCRI feed.
 	/// </summary>
-    public class Address : ElementWithChildElements, Interfaces.IAddress
+    public class Address : Element, Interfaces.IAddress
 	{
-
-		#region Constructors
-
-		#region Public
-
-		public Address()
-			: base("address", Configuration.XCRICAP11NamespaceUri)
-		{
-		}
-
-		#endregion
-
-		#endregion
 
 		#region Properties and Fields
 

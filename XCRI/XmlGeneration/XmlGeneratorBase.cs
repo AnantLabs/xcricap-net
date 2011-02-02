@@ -105,69 +105,208 @@ namespace XCRI.XmlGeneration
             this.Generate(stringBuilder, Configuration.StandardNamespaces);
         }
 
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IIdentifier identifier
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ITitle title
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IDescription description
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ISubject subject
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualification qualification
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IPresentation presentation
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IVenue venue
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            Uri uri
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            Uri uri,
+            string Namespace
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAddress address
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ICourse course
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IImage image
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationLevel qualLevel
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationType qualType
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationAwardedBy awardedBy
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IProvider provider
+            );
+
         #endregion
 
         #region Methods
 
         #region Protected virtual
 
-        protected virtual void _WriteAttribute(System.Xml.XmlWriter xmlWriter, XmlBaseClasses.Attribute attribute)
+        protected virtual void _Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            ResourceStatus resourceStatus
+            )
         {
-            if (String.IsNullOrEmpty(attribute.Value))
+            if (resourceStatus == ResourceStatus.Unknown)
                 return;
-            if (String.IsNullOrEmpty(attribute.AttributeNamespace))
+            xmlWriter.WriteAttributeString
+                (
+                "recstatus",
+                Configuration.XCRICAP11NamespaceUri,
+                ((int)resourceStatus).ToString()
+                );
+        }
+
+        protected virtual void _WriteXmlLanguageAttribute
+            (
+            System.Xml.XmlWriter xmlWriter,
+            string xmlLanguage
+            )
+        {
+            this._WriteAttribute
+                (
+                xmlWriter,
+                "xml:lang",
+                String.Empty,
+                xmlLanguage,
+                String.Empty
+                );
+        }
+
+        protected virtual void _WriteXsiTypeAttribute
+            (
+            System.Xml.XmlWriter xmlWriter,
+            string xsiTypeValue,
+            string xsiTypeValueNamespace
+            )
+        {
+            this._WriteAttribute
+                (
+                xmlWriter,
+                "type",
+                Configuration.XMLSchemaInstanceNamespaceUri,
+                xsiTypeValue,
+                xsiTypeValueNamespace
+                );
+        }
+
+        protected virtual void _WriteAttribute
+            (
+            System.Xml.XmlWriter xmlWriter,
+            string attributeName,
+            string attributeNamespace,
+            string attributeValue,
+            string attributeValueNamespace
+            )
+        {
+            if (String.IsNullOrEmpty(attributeValue))
+                return;
+            if (attributeName.Contains(":"))
             {
-                xmlWriter.WriteAttributeString
+                xmlWriter.WriteStartAttribute
                     (
-                    attribute.AttributeName,
-                    attribute.Value
+                    attributeName.Substring(0, attributeName.IndexOf(":")),
+                    attributeName.Substring(attributeName.IndexOf(":")+1),
+                    String.Empty
                     );
             }
             else
             {
                 xmlWriter.WriteStartAttribute
                     (
-                    attribute.AttributeName,
-                    attribute.AttributeNamespace
+                    attributeName,
+                    attributeNamespace
                     );
-                xmlWriter.WriteString(attribute.Value);
-                xmlWriter.WriteEndAttribute();
             }
-        }
-
-        protected virtual void _WriteAttribute(System.Xml.XmlWriter xmlWriter, XmlBaseClasses.XsiTypeAttribute attribute)
-        {
-            if (String.IsNullOrEmpty(attribute.AttributeNamespace))
-            {
-                this._WriteAttribute(xmlWriter, attribute as XmlBaseClasses.Attribute);
-                return;
-            }
+            if (String.IsNullOrEmpty(attributeValueNamespace))
+                xmlWriter.WriteString(attributeValue);
             else
-            {
-                if (String.IsNullOrEmpty(attribute.Value))
-                    return;
-                xmlWriter.WriteStartAttribute
+                xmlWriter.WriteString(String.Format
                     (
-                    attribute.AttributeName,
-                    attribute.AttributeNamespace
-                    );
-                if (String.IsNullOrEmpty(attribute.AttributeValueNamespace))
-                    xmlWriter.WriteString(attribute.Value);
-                else
-                {
-                    string prefix = xmlWriter.LookupPrefix(attribute.AttributeValueNamespace);
-                    xmlWriter.WriteString(String.Format
-                        (
-                        "{0}:{1}",
-                        prefix,
-                        attribute.Value
-                        ));
-                }
-                xmlWriter.WriteEndAttribute();
-            }
+                    "{0}:{1}",
+                    xmlWriter.LookupPrefix(attributeValueNamespace),
+                    attributeValue
+                    ));
+            xmlWriter.WriteEndAttribute();
         }
 
-        protected virtual void _WriteEndElement(System.Xml.XmlWriter xmlWriter)
+        protected virtual void _WriteEndElement
+            (
+            System.Xml.XmlWriter xmlWriter
+            )
         {
             xmlWriter.WriteEndElement();
         }
@@ -175,45 +314,26 @@ namespace XCRI.XmlGeneration
         protected virtual void _WriteStartElement
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElement element
+            string elementName,
+            string elementNamespace
             )
         {
             if (
-                String.IsNullOrEmpty(element.ElementNamespace)
+                String.IsNullOrEmpty(elementNamespace)
                 )
             {
                 xmlWriter.WriteStartElement
                     (
-                    element.ElementName
+                    elementName
                     );
             }
             else
             {
                 xmlWriter.WriteStartElement
                     (
-                    element.ElementName,
-                    element.ElementNamespace
+                    elementName,
+                    elementNamespace
                     );
-            }
-            if (element.ResourceStatus != ResourceStatus.Unknown)
-            {
-                this._WriteAttribute(xmlWriter, new XmlBaseClasses.Attribute()
-                {
-                    AttributeName = "recstatus",
-                    AttributeNamespace = Configuration.XCRICAP11NamespaceUri,
-                    Value = ((int)element.ResourceStatus).ToString()
-                });
-            }
-            if (element.Attributes != null)
-                this._WriteAttributes(xmlWriter, element.Attributes);
-            this._WriteAttribute(xmlWriter, element.XsiType);
-        }
-
-        protected virtual void _WriteAttributes(System.Xml.XmlWriter xmlWriter, IEnumerable<XCRI.Interfaces.IXmlAttribute> attributes)
-        {
-            foreach (XmlBaseClasses.Attribute attribute in attributes)
-            {
-                this._WriteAttribute(xmlWriter, attribute);
             }
         }
 
@@ -228,98 +348,60 @@ namespace XCRI.XmlGeneration
             else
                 xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString());
             foreach (XCRI.Interfaces.IIdentifier identifier in catalog.Identifiers)
-                this._Write(xmlWriter, identifier);
+                this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
-                this._Write(xmlWriter, title);
+                this.Write(xmlWriter, title);
             foreach (XCRI.Interfaces.IDescription description in catalog.Descriptions)
-                this._Write(xmlWriter, description);
+                this.Write(xmlWriter, description);
             if (catalog.Url != null)
-                this._Write(xmlWriter, catalog.Url);
+                this.Write(xmlWriter, catalog.Url);
             if (catalog.Image != null)
-                this._Write(xmlWriter, catalog.Image);
+                this.Write(xmlWriter, catalog.Image);
             foreach (XCRI.Interfaces.IProvider provider in catalog.Providers)
-                this._Write(xmlWriter, provider);
+                this.Write(xmlWriter, provider);
+        }
+
+        protected virtual void _Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            string elementName,
+            string elementNamespace,
+            string elementValue,
+            bool renderRaw,
+            string xsiType,
+            string xsiTypeNamespace,
+            string xmlLanguage
+            )
+        {
+            this._WriteStartElement(xmlWriter, elementName, elementNamespace);
+            this._WriteXsiTypeAttribute
+                (
+                xmlWriter,
+                xsiType,
+                xsiTypeNamespace
+                );
+            this._WriteXmlLanguageAttribute
+                (
+                xmlWriter,
+                xmlLanguage
+                );
+            if (String.IsNullOrEmpty(elementValue))
+                return;
+            if (renderRaw)
+                xmlWriter.WriteRaw
+                    (
+                    elementValue
+                    );
+            else
+                xmlWriter.WriteValue
+                    (
+                    elementValue
+                    );
+            this._WriteEndElement(xmlWriter);
         }
 
         #endregion
-
-        #region Protected abstract
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualification qualification
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IPresentation presentation
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue venue
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            Uri uri
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            Uri uri,
-            string Namespace
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAddress address
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICourse course
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IImage image
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElement element
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElementWithChildElements element
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElementWithSingleValue element
-            );
-
-        protected abstract void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IProvider provider
-            );
-
-        #endregion
-
+        
         #endregion
 
         #region Properties and Fields

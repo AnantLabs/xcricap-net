@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace XCRI.Interfaces
 {
-	public interface IXmlElement
+	public interface IXmlElement : INotifyPropertyChanged, INotifyPropertyChanging
 	{
-        string ElementName { get; set; }
-        string ElementNamespace { get; set; }
-        IList<IXmlAttribute> Attributes { get; }
-        XmlBaseClasses.XsiTypeAttribute XsiType { get; }
+        string XsiTypeValue { get; set; }
+        string XsiTypeValueNamespace { get; set; }
+        string XmlLanguage { get; set; }
         ResourceStatus ResourceStatus { get; set; }
 	}
     public interface IXmlElementWithSingleValue : IXmlElement
@@ -21,9 +21,5 @@ namespace XCRI.Interfaces
     public interface IXmlElementWithSingleValue<T> : IXmlElementWithSingleValue
     {
         new T Value { get; set; }
-    }
-    public interface IXmlElementWithChildElements : IXmlElement
-    {
-        IList<IXmlElement> ChildElements { get; }
     }
 }

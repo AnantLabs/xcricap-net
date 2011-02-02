@@ -9,19 +9,5 @@ namespace XCRI
     public class Identifier : ElementWithSingleValue<string>, Interfaces.IIdentifier
 	{
 
-		#region Constructors
-
-		#region Public
-
-		public Identifier()
-            : base("identifier", Configuration.XCRICAP11NamespaceUri)
-		{
-
-		}
-
-		#endregion
-
-		#endregion
-
 	}
 }

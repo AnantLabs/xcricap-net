@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-	public interface IVenue : IAddress, IXmlElement, IElementWithIdentifiers
+	public interface IVenue : IAddress, IXmlElement, IXmlElementWithIdentifiers
 	{
 
 		string Title { get; set; }

@@ -13,19 +13,6 @@ namespace XCRI
 	public class Course : ElementWithIdentifiers, Interfaces.ICourse
 	{
 
-		#region Constructors
-
-		#region Public
-
-		public Course()
-			: base("course", Configuration.XCRICAP11NamespaceUri)
-		{
-		}
-
-		#endregion
-
-		#endregion
-
 		#region Properties and Fields
 
 		#region Private

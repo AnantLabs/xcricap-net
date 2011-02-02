@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Qualification element in the XCRI standard
 	/// </summary>
-	public interface IQualification : IXmlElement, IElementWithIdentifiers
+	public interface IQualification : IXmlElement, IXmlElementWithIdentifiers
 	{
 
 		IList<ITitle> Titles { get; }

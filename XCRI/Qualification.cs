@@ -8,19 +8,6 @@ namespace XCRI
     public class Qualification : XmlBaseClasses.ElementWithIdentifiers, Interfaces.IQualification
     {
 
-        #region Constructors
-
-        #region Public
-
-        public Qualification()
-            : base("qualification", Configuration.XCRICAP11NamespaceUri)
-        {
-        }
-
-        #endregion
-
-        #endregion
-
         #region Properties and Fields
 
         #region Private
@@ -191,72 +178,20 @@ namespace XCRI
     public class QualificationLevel : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationLevel
     {
 
-        #region Constructors
-
-        #region Public
-
-        public QualificationLevel()
-            : base("level", Configuration.XCRICAP11NamespaceUri)
-        {
-        }
-
-        #endregion
-
-        #endregion
-
     }
 
     public class QualificationType : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationType
     {
-
-        #region Constructors
-
-        #region Public
-
-        public QualificationType()
-            : base("type", Configuration.XCRICAP11NamespaceUri)
-        {
-        }
-
-        #endregion
-
-        #endregion
 
     }
 
     public class QualificationAwardedBy : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationAwardedBy
     {
 
-        #region Constructors
-
-        #region Public
-
-        public QualificationAwardedBy()
-            : base("awardedBy", Configuration.XCRICAP11NamespaceUri)
-        {
-        }
-
-        #endregion
-
-        #endregion
-
     }
 
     public class QualificationAccreditedBy : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationAccreditedBy
     {
-
-        #region Constructors
-
-        #region Public
-
-        public QualificationAccreditedBy()
-            : base("accreditedBy", Configuration.XCRICAP11NamespaceUri)
-        {
-        }
-
-        #endregion
-
-        #endregion
 
     }
 

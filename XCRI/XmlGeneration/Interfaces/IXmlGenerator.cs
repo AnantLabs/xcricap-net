@@ -7,6 +7,7 @@ namespace XCRI.XmlGeneration.Interfaces
 {
     public interface IXmlGenerator : XCRI.Interfaces.ICatalog
     {
+        // Generate overloads
         void Generate
             (
             System.Xml.XmlWriter xmlWriter,
@@ -33,6 +34,131 @@ namespace XCRI.XmlGeneration.Interfaces
         void Generate
             (
             System.Text.StringBuilder stringBuilder
+            );
+
+        // Write methods
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IIdentifier identifier
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ITitle title
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IDescription description
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ISubject subject
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualification qualification
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IPresentation presentation
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IVenue venue
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            Uri uri
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            Uri uri,
+            string Namespace
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAddress address
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ICourse course
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IImage image
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationLevel qualLevel
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationType qualType
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationAwardedBy awardedBy
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
+            );
+
+        /*
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IXmlElement element
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IXmlElementWithChildElements element
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IXmlElementWithSingleValue element
+            );
+        */
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IProvider provider
             );
     }
 }

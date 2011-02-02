@@ -9,19 +9,6 @@ namespace XCRI
 	public class Presentation : ElementWithIdentifiers, Interfaces.IPresentation
 	{
 
-		#region Constructors
-
-		#region Public
-
-		public Presentation()
-			: base("presentation", Configuration.XCRICAP11NamespaceUri)
-		{
-		}
-
-		#endregion
-
-		#endregion
-
 		#region Properties and Fields
 
 		#region Private
