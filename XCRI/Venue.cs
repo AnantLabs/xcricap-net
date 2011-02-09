@@ -17,10 +17,23 @@ namespace XCRI
 		private Uri __Uri = null;
         private Image __Image = null;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
 		#endregion
 
-		#region Protected
+        #region Protected
+
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
 
 		protected string _Title
 		{
@@ -76,7 +89,13 @@ namespace XCRI
 
 		#endregion
 
-		#region IVenue Members
+        #region IVenue Members
+
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
 
 		public string Title
 		{

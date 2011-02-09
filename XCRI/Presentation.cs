@@ -13,50 +13,49 @@ namespace XCRI
 
 		#region Private
 
-		private string __Title = String.Empty;
-		private Dictionary<XCRI.Interfaces.DescriptionTypes, string> __Descriptions = new Dictionary<XCRI.Interfaces.DescriptionTypes, string>();
+		private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
+        private List<XCRI.Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
 		private Uri __Uri = null;
 		private Image __Image = null;
 		private DateTime? __Start = null;
 		private DateTime? __End = null;
 		private string __Duration = String.Empty;
-		private XCRI.Interfaces.StudyModes __StudyMode = XCRI.Interfaces.StudyModes.Unknown;
-		private XCRI.Interfaces.AttendanceModes __AttendanceMode = XCRI.Interfaces.AttendanceModes.Unknown;
-		private XCRI.Interfaces.AttendancePatterns __AttendancePattern = XCRI.Interfaces.AttendancePatterns.Unknown;
-		private List<XCRI.Interfaces.Languages> __LanguageOfInstruction = new List<XCRI.Interfaces.Languages>();
-		private List<XCRI.Interfaces.Languages> __LanguageOfAssessment = new List<XCRI.Interfaces.Languages>();
+        private Interfaces.IStudyMode __StudyMode = new StudyMode();
+        private Interfaces.IAttendanceMode __AttendanceMode = new AttendanceMode();
+        private Interfaces.IAttendancePattern __AttendancePattern = new AttendancePattern();
+        private List<string> __LanguageOfInstruction = new List<string>();
+        private List<string> __LanguageOfAssessment = new List<string>();
 		private string __PlacesAvailable = String.Empty;
 		private string __Cost = String.Empty;
 		private List<XCRI.Interfaces.IVenue> __Venues = new List<XCRI.Interfaces.IVenue>();
 		private string __EnquireTo = String.Empty;
-		private string __ApplyTo = String.Empty;
+        private string __ApplyTo = String.Empty;
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
 		#endregion
 
-		#region Protected
+        #region Protected
 
-		protected string _Title
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
+
+		protected List<Interfaces.ITitle> _Titles
 		{
-			get { return this.__Title; }
-			set
-			{
-				if (this.__Title == value) { return; }
-				this.OnPropertyChanging("Title");
-				this.__Title = value;
-				this.OnPropertyChanged("Title");
-			}
+			get { return this.__Titles; }
 		}
 
-		protected Dictionary<XCRI.Interfaces.DescriptionTypes, string> _Descriptions
+		protected List<Interfaces.IDescription> _Descriptions
 		{
 			get { return this.__Descriptions; }
-			set
-			{
-				if (this.__Descriptions == value) { return; }
-				this.OnPropertyChanging("Descriptions");
-				this.__Descriptions = value;
-				this.OnPropertyChanged("Descriptions");
-			}
 		}
 
 		protected Uri _Uri
@@ -119,7 +118,7 @@ namespace XCRI
 			}
 		}
 
-		protected XCRI.Interfaces.StudyModes _StudyMode
+        protected Interfaces.IStudyMode _StudyMode
 		{
 			get { return this.__StudyMode; }
 			set
@@ -131,7 +130,7 @@ namespace XCRI
 			}
 		}
 
-		protected XCRI.Interfaces.AttendanceModes _AttendanceMode
+        protected Interfaces.IAttendanceMode _AttendanceMode
 		{
 			get { return this.__AttendanceMode; }
 			set
@@ -143,7 +142,7 @@ namespace XCRI
 			}
 		}
 
-		protected XCRI.Interfaces.AttendancePatterns _AttendancePattern
+        protected Interfaces.IAttendancePattern _AttendancePattern
 		{
 			get { return this.__AttendancePattern; }
 			set
@@ -155,28 +154,14 @@ namespace XCRI
 			}
 		}
 
-		protected List<XCRI.Interfaces.Languages> _LanguageOfInstruction
+        protected List<string> _LanguageOfInstruction
 		{
 			get { return this.__LanguageOfInstruction; }
-			set
-			{
-				if (this.__LanguageOfInstruction == value) { return; }
-				this.OnPropertyChanging("LanguageOfInstruction");
-				this.__LanguageOfInstruction = value;
-				this.OnPropertyChanged("LanguageOfInstruction");
-			}
 		}
 
-		protected List<XCRI.Interfaces.Languages> _LanguageOfAssessment
+        protected List<string> _LanguageOfAssessment
 		{
 			get { return this.__LanguageOfAssessment; }
-			set
-			{
-				if (this.__LanguageOfAssessment == value) { return; }
-				this.OnPropertyChanging("LanguageOfAssessment");
-				this.__LanguageOfAssessment = value;
-				this.OnPropertyChanged("LanguageOfAssessment");
-			}
 		}
 
 		protected string _PlacesAvailable
@@ -243,15 +228,20 @@ namespace XCRI
 
 		#endregion
 
-		#region IPresentation Members
+        #region IPresentation Members
 
-		public string Title
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
+
+		public IList<Interfaces.ITitle> Titles
 		{
-			get { return this._Title; }
-			set { this._Title = value; }
+			get { return this._Titles; }
 		}
 
-		public Dictionary<XCRI.Interfaces.DescriptionTypes, string> Descriptions
+		public IList<Interfaces.IDescription> Descriptions
 		{
 			get { return this._Descriptions; }
 		}
@@ -286,32 +276,32 @@ namespace XCRI
 			set { this._Duration = value; }
 		}
 
-		public XCRI.Interfaces.StudyModes StudyMode
+        public Interfaces.IStudyMode StudyMode
 		{
 			get { return this._StudyMode; }
 			set { this._StudyMode = value; }
 		}
 
-		public XCRI.Interfaces.AttendanceModes AttendanceMode
+        public Interfaces.IAttendanceMode AttendanceMode
 		{
 			get { return this._AttendanceMode; }
 			set { this._AttendanceMode = value; }
 		}
 
-		public XCRI.Interfaces.AttendancePatterns AttendancePattern
+        public Interfaces.IAttendancePattern AttendancePattern
 		{
 			get { return this._AttendancePattern; }
 			set { this._AttendancePattern = value; }
 		}
 
-		public List<XCRI.Interfaces.Languages> LanguageOfInstruction
+        public IList<string> LanguageOfInstruction
 		{
-			get { throw new NotImplementedException(); }
+			get { return this._LanguageOfInstruction; }
 		}
 
-		public List<XCRI.Interfaces.Languages> LanguageOfAssessment
+        public IList<string> LanguageOfAssessment
 		{
-			get { throw new NotImplementedException(); }
+			get { return this._LanguageOfAssessment; }
 		}
 
 		public string PlacesAvailable
@@ -326,7 +316,7 @@ namespace XCRI
 			set { this._Cost = value; }
 		}
 
-		public List<XCRI.Interfaces.IVenue> Venues
+		public IList<XCRI.Interfaces.IVenue> Venues
 		{
 			get { return this._Venues; }
 		}

@@ -17,18 +17,31 @@ namespace XCRI
 
 		#region Private
 
-		private Uri __WebAddress = null;
+		private Uri __Url = null;
 		private long? __ReferenceNumber = null;
-		//private string __Title = String.Empty;
 		private Interfaces.IAddress __Address = null;
 		private Image __Image = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<Interfaces.ICourse> __Courses = new List<Interfaces.ICourse>();
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
+        private List<Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
 		#endregion
 
-		#region Protected
+        #region Protected
+
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
 
         protected List<Interfaces.ITitle> _Titles
         {
@@ -40,20 +53,25 @@ namespace XCRI
             get { return this.__Courses; }
         }
 
+        protected List<Interfaces.ISubject> _Subjects
+        {
+            get { return this.__Subjects; }
+        }
+
         protected List<Interfaces.IDescription> _Descriptions
         {
             get { return this.__Descriptions; }
         }
 
-		protected Uri _WebAddress
+		protected Uri _Url
 		{
-			get { return this.__WebAddress; }
+			get { return this.__Url; }
 			set
 			{
-				if (this.__WebAddress == value) { return; }
-				this.OnPropertyChanging("WebAddress");
-				this.__WebAddress = value;
-				this.OnPropertyChanged("WebAddress");
+				if (this.__Url == value) { return; }
+                this.OnPropertyChanging("Url");
+				this.__Url = value;
+                this.OnPropertyChanged("Url");
 			}
 		}
 
@@ -97,15 +115,21 @@ namespace XCRI
 
 		#endregion
 
-		#region IProvider Members
+        #region IProvider Members
+
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
 
 		/// <summary>
 		/// The public web address for the course provider
 		/// </summary>
-		public Uri WebAddress
+		public Uri Url
 		{
-			get { return this._WebAddress; }
-			set { this._WebAddress = value; }
+			get { return this._Url; }
+			set { this._Url = value; }
 		}
 
 		/// <summary>
@@ -123,10 +147,15 @@ namespace XCRI
             get { return this._Titles; }
 		}
 
+        public IList<Interfaces.ISubject> Subjects
+        {
+            get { return this._Subjects; }
+        }
+
         public IList<Interfaces.IDescription> Descriptions
-		{
+        {
             get { return this._Descriptions; }
-		}
+        }
 
 		/// <summary>
 		/// The main address of the course provider
@@ -134,7 +163,7 @@ namespace XCRI
 		public XCRI.Interfaces.IAddress Address
 		{
 			get { return this._Address; }
-			set { this._Address = value; }
+            set { this._Address = value; }
 		}
 
 		/// <summary>

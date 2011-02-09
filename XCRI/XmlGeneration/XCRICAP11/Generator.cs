@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.XmlGeneration;
 
-namespace XCRI.XmlGeneration
+namespace XCRI.XmlGeneration.XCRICAP11
 {
-    public class XCRICAP11Generator : XmlGeneratorBase
+    public class Generator : XmlGeneratorBase
     {
 
         #region Constructors
 
         #region Internal
 
-        internal XCRICAP11Generator()
+        internal Generator()
             : base()
         {
         }
@@ -35,7 +36,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "identifier",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 identifier.Value,
                 identifier.RenderRaw,
                 identifier.XsiTypeValue,
@@ -54,7 +55,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "title",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 title.Value,
                 title.RenderRaw,
                 title.XsiTypeValue,
@@ -69,7 +70,7 @@ namespace XCRI.XmlGeneration
             XCRI.Interfaces.IDescription description
             )
         {
-            this._WriteStartElement(xmlWriter, "description", Configuration.XCRICAP11NamespaceUri);
+            this._WriteStartElement(xmlWriter, "description", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._WriteXsiTypeAttribute
                 (
                 xmlWriter, 
@@ -81,7 +82,16 @@ namespace XCRI.XmlGeneration
                 xmlWriter,
                 description.XmlLanguage
                 );
-            this._WriteStartElement(xmlWriter, "div", Configuration.XHTMLNamespaceUri);
+            if (description.Href != null)
+                this._WriteAttribute
+                    (
+                    xmlWriter,
+                    "href",
+                    Configuration.Namespaces.XCRICAP11NamespaceUri,
+                    description.Href.ToString(),
+                    String.Empty
+                    );
+            this._WriteStartElement(xmlWriter, "div", Configuration.Namespaces.XHTMLNamespaceUri);
             if (String.IsNullOrEmpty(description.Value))
                 return;
             if (description.RenderRaw)
@@ -108,7 +118,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "subject",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 subject.Value,
                 subject.RenderRaw,
                 subject.XsiTypeValue,
@@ -127,7 +137,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "level",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 qualLevel.Value,
                 qualLevel.RenderRaw,
                 qualLevel.XsiTypeValue,
@@ -146,7 +156,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "type",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 qualType.Value,
                 qualType.RenderRaw,
                 qualType.XsiTypeValue,
@@ -165,7 +175,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "awardedBy",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 awardedBy.Value,
                 awardedBy.RenderRaw,
                 awardedBy.XsiTypeValue,
@@ -184,7 +194,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "awaaccreditedByrdedBy",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 accreditedBy.Value,
                 accreditedBy.RenderRaw,
                 accreditedBy.XsiTypeValue,
@@ -199,11 +209,9 @@ namespace XCRI.XmlGeneration
             XCRI.Interfaces.IQualification qualification
             )
         {
-            this._WriteStartElement(xmlWriter, "qualification", Configuration.XCRICAP11NamespaceUri);
+            this._WriteStartElement(xmlWriter, "qualification", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (qualification.ResourceStatus != ResourceStatus.Unknown)
-            {
                 this._Write(xmlWriter, qualification.ResourceStatus);
-            }
             this._WriteXsiTypeAttribute(xmlWriter, qualification.XsiTypeValue, qualification.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, qualification.XmlLanguage);
             foreach (XCRI.Interfaces.IIdentifier identifier in qualification.Identifiers)
@@ -230,10 +238,76 @@ namespace XCRI.XmlGeneration
         public override void Write
             (
             System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IStudyMode studyMode
+            )
+        {
+            string value = studyMode.GetElementValueAsString();
+            if(String.IsNullOrEmpty(value))
+                return;
+            this._Write
+                (
+                xmlWriter,
+                "studyMode",
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
+                value,
+                false,
+                studyMode.XsiTypeValue,
+                studyMode.XsiTypeValueNamespace,
+                studyMode.XmlLanguage
+                );
+        }
+
+        public override void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendanceMode attendanceMode
+            )
+        {
+            string value = attendanceMode.GetElementValueAsString();
+            if (String.IsNullOrEmpty(value))
+                return;
+            this._Write
+                (
+                xmlWriter,
+                "attendanceMode",
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
+                value,
+                false,
+                attendanceMode.XsiTypeValue,
+                attendanceMode.XsiTypeValueNamespace,
+                attendanceMode.XmlLanguage
+                );
+        }
+
+        public override void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendancePattern attendancePattern
+            )
+        {
+            string value = attendancePattern.GetElementValueAsString();
+            if (String.IsNullOrEmpty(value))
+                return;
+            this._Write
+                (
+                xmlWriter,
+                "attendancePattern",
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
+                value,
+                false,
+                attendancePattern.XsiTypeValue,
+                attendancePattern.XsiTypeValueNamespace,
+                attendancePattern.XmlLanguage
+                );
+        }
+
+        public override void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IPresentation presentation
             )
         {
-            this._WriteStartElement(xmlWriter, "presentation", Configuration.XCRICAP11NamespaceUri);
+            this._WriteStartElement(xmlWriter, "presentation", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (presentation.ResourceStatus != ResourceStatus.Unknown)
             {
                 this._Write(xmlWriter, presentation.ResourceStatus);
@@ -243,55 +317,32 @@ namespace XCRI.XmlGeneration
             foreach (Identifier identifier in presentation.Identifiers)
                 this.Write(xmlWriter, identifier);
             if (presentation.Start.HasValue)
-                xmlWriter.WriteElementString("start", Configuration.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString());
+                xmlWriter.WriteElementString("start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString());
             if (presentation.End.HasValue)
-                xmlWriter.WriteElementString("end", Configuration.XCRICAP11NamespaceUri, presentation.End.Value.ToXCRIString());
+                xmlWriter.WriteElementString("end", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.End.Value.ToXCRIString());
             if (String.IsNullOrEmpty(presentation.Duration) == false)
-                xmlWriter.WriteElementString("duration", Configuration.XCRICAP11NamespaceUri, presentation.Duration);
-            if (presentation.StudyMode != XCRI.Interfaces.StudyModes.Unknown)
-            {
-                xmlWriter.WriteStartElement("studyMode", Configuration.XCRICAP11NamespaceUri);
-                xmlWriter.WriteAttributeString
-                    (
-                    "type",
-                    Configuration.XMLSchemaInstanceNamespaceUri,
-                    String.Format("{0}:studyModeType", xmlWriter.LookupPrefix(Configuration.XCRICAP11TermsNamespaceUri))
-                    );
-                xmlWriter.WriteValue(presentation.StudyMode.ToXCRIString());
-                xmlWriter.WriteEndElement();
-            }
-            if (presentation.AttendanceMode != XCRI.Interfaces.AttendanceModes.Unknown)
-            {
-                xmlWriter.WriteStartElement("attendanceMode", Configuration.XCRICAP11NamespaceUri);
-                xmlWriter.WriteAttributeString
-                    (
-                    "type",
-                    Configuration.XMLSchemaInstanceNamespaceUri,
-                    String.Format("{0}:attendanceModeType", xmlWriter.LookupPrefix(Configuration.XCRICAP11TermsNamespaceUri))
-                    );
-                xmlWriter.WriteValue(presentation.AttendanceMode.ToXCRIString());
-                xmlWriter.WriteEndElement();
-            }
+                xmlWriter.WriteElementString("duration", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Duration);
+            this.Write
+                (
+                xmlWriter,
+                presentation.StudyMode
+                );
+            this.Write
+                (
+                xmlWriter,
+                presentation.AttendanceMode
+                );
             foreach (XCRI.Interfaces.IVenue venue in presentation.Venues)
-            {
                 this.Write(xmlWriter, venue);
-            }
-            if (presentation.AttendancePattern != XCRI.Interfaces.AttendancePatterns.Unknown)
-            {
-                xmlWriter.WriteStartElement("attendancePattern", Configuration.XCRICAP11NamespaceUri);
-                xmlWriter.WriteAttributeString
-                    (
-                    "type",
-                    Configuration.XMLSchemaInstanceNamespaceUri,
-                    String.Format("{0}:attendancePatternType", xmlWriter.LookupPrefix(Configuration.XCRICAP11TermsNamespaceUri))
-                    );
-                xmlWriter.WriteValue(presentation.AttendancePattern.ToXCRIString());
-                xmlWriter.WriteEndElement();
-            }
+            this.Write
+                (
+                xmlWriter,
+                presentation.AttendancePattern
+                );
             if (String.IsNullOrEmpty(presentation.ApplyTo) == false)
-                xmlWriter.WriteElementString("applyTo", Configuration.XCRICAP11NamespaceUri, presentation.ApplyTo);
+                xmlWriter.WriteElementString("applyTo", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.ApplyTo);
             if (String.IsNullOrEmpty(presentation.EnquireTo) == false)
-                xmlWriter.WriteElementString("enquireTo", Configuration.XCRICAP11NamespaceUri, presentation.EnquireTo);
+                xmlWriter.WriteElementString("enquireTo", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.EnquireTo);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -320,7 +371,7 @@ namespace XCRI.XmlGeneration
             Uri uri
             )
         {
-            this.Write(xmlWriter, uri, Configuration.XCRICAP11NamespaceUri);
+            this.Write(xmlWriter, uri, Configuration.Namespaces.XCRICAP11NamespaceUri);
         }
 
         public override void Write
@@ -351,17 +402,17 @@ namespace XCRI.XmlGeneration
                 address.Longitude
                 );
             if (String.IsNullOrEmpty(address.Street) == false)
-                xmlWriter.WriteElementString("street", Configuration.XCRICAP11NamespaceUri, address.Street);
+                xmlWriter.WriteElementString("street", Configuration.Namespaces.XCRICAP11NamespaceUri, address.Street);
             if (String.IsNullOrEmpty(address.Town) == false)
-                xmlWriter.WriteElementString("town", Configuration.XCRICAP11NamespaceUri, address.Town);
+                xmlWriter.WriteElementString("town", Configuration.Namespaces.XCRICAP11NamespaceUri, address.Town);
             if (String.IsNullOrEmpty(address.Postcode) == false)
-                xmlWriter.WriteElementString("postcode", Configuration.XCRICAP11NamespaceUri, address.Postcode);
+                xmlWriter.WriteElementString("postcode", Configuration.Namespaces.XCRICAP11NamespaceUri, address.Postcode);
             if (String.IsNullOrEmpty(address.PhoneNumber) == false)
-                xmlWriter.WriteElementString("phone", Configuration.XCRICAP11NamespaceUri, address.PhoneNumber);
+                xmlWriter.WriteElementString("phone", Configuration.Namespaces.XCRICAP11NamespaceUri, address.PhoneNumber);
             if (String.IsNullOrEmpty(address.FaxNumber) == false)
-                xmlWriter.WriteElementString("fax", Configuration.XCRICAP11NamespaceUri, address.FaxNumber);
+                xmlWriter.WriteElementString("fax", Configuration.Namespaces.XCRICAP11NamespaceUri, address.FaxNumber);
             if (String.IsNullOrEmpty(address.EmailAddress) == false)
-                xmlWriter.WriteElementString("email", Configuration.XCRICAP11NamespaceUri, address.EmailAddress);
+                xmlWriter.WriteElementString("email", Configuration.Namespaces.XCRICAP11NamespaceUri, address.EmailAddress);
         }
 
         public override void Write
@@ -370,7 +421,7 @@ namespace XCRI.XmlGeneration
             XCRI.Interfaces.ICourse course
             )
         {
-            this._WriteStartElement(xmlWriter, "course", Configuration.XCRICAP11NamespaceUri);
+            this._WriteStartElement(xmlWriter, "course", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._Write(xmlWriter, course.ResourceStatus);
             this._WriteXsiTypeAttribute(xmlWriter, course.XsiTypeValue, course.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, course.XmlLanguage);
@@ -383,19 +434,12 @@ namespace XCRI.XmlGeneration
                 this.Write(xmlWriter, title);
             foreach (XCRI.Interfaces.ISubject subject in course.Subjects)
                 this.Write(xmlWriter, subject);
-            foreach (XCRI.Interfaces.DescriptionTypes type in course.Descriptions.Keys)
-            {
-                Description description = new Description();
-                description.XsiTypeValue = type.ToString();
-                description.XsiTypeValueNamespace = Configuration.XCRICAP11TermsNamespaceUri;
-                description.Value = course.Descriptions[type].Data;
-                description.RenderRaw = course.Descriptions[type].IsXHtmlEncoded;
+            foreach (XCRI.Interfaces.IDescription description in course.Descriptions)
                 this.Write(xmlWriter, description);
-            }
             xmlWriter.WriteElementString
                 (
                 "url",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 course.Uri.ToString()
                 );
             foreach (XCRI.Interfaces.IQualification qualification in course.Qualifications)
@@ -417,9 +461,7 @@ namespace XCRI.XmlGeneration
                 return;
             if (image.Source == null)
                 return;
-            this._WriteStartElement(xmlWriter, "image", Configuration.XCRICAP11NamespaceUri);
-            if (image.ResourceStatus != ResourceStatus.Unknown)
-                this._Write(xmlWriter, image.ResourceStatus);
+            this._WriteStartElement(xmlWriter, "image", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._WriteXsiTypeAttribute(xmlWriter, image.XsiTypeValue, image.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, image.XmlLanguage);
             xmlWriter.WriteAttributeString("src", image.Source.ToString());
@@ -436,7 +478,7 @@ namespace XCRI.XmlGeneration
             XCRI.Interfaces.IProvider provider
             )
         {
-            this._WriteStartElement(xmlWriter, "provider", Configuration.XCRICAP11NamespaceUri);
+            this._WriteStartElement(xmlWriter, "provider", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (provider.ResourceStatus != ResourceStatus.Unknown)
                 this._Write(xmlWriter, provider.ResourceStatus);
             this._WriteXsiTypeAttribute(xmlWriter, provider.XsiTypeValue, provider.XsiTypeValueNamespace);
@@ -453,7 +495,7 @@ namespace XCRI.XmlGeneration
             {
                 Identifier ident = new Identifier()
                 {
-                    Value = provider.WebAddress.ToString()
+                    Value = provider.Url.ToString()
                 };
                 this.Write(xmlWriter, ident);
             }
@@ -464,7 +506,7 @@ namespace XCRI.XmlGeneration
                     Value = provider.ReferenceNumber.Value.ToString()
                 };
                 ident.XsiTypeValue = "ukprn";
-                ident.XsiTypeValueNamespace = @"http://www.ukrlp.co.uk";
+                ident.XsiTypeValueNamespace = Configuration.Namespaces.UKRegisterOfLearningProvidersNamespaceUri;
                 this.Write(xmlWriter, ident);
             }
             foreach (XCRI.Interfaces.ITitle el in provider.Titles)
@@ -477,9 +519,9 @@ namespace XCRI.XmlGeneration
                 if (el != null)
                     this.Write(xmlWriter, el);
             }
-            if (provider.WebAddress != null)
+            if (provider.Url != null)
             {
-                xmlWriter.WriteElementString("url", Configuration.XCRICAP11NamespaceUri, provider.WebAddress.ToString());
+                xmlWriter.WriteElementString("url", Configuration.Namespaces.XCRICAP11NamespaceUri, provider.Url.ToString());
             }
             if (provider.Image != null)
             {
@@ -514,15 +556,15 @@ namespace XCRI.XmlGeneration
                     (
                     xmlWriter,
                     "address",
-                    Configuration.XCRICAP11NamespaceUri
+                    Configuration.Namespaces.XCRICAP11NamespaceUri
                     );
                 this._WriteAttribute
                     (
                     xmlWriter,
                     "type",
-                    Configuration.XMLSchemaInstanceNamespaceUri,
+                    Configuration.Namespaces.XmlSchemaInstanceNamespaceUri,
                     "lat",
-                    Configuration.GeolocationNamespaceUri
+                    Configuration.Namespaces.GeolocationNamespaceUri
                     );
                 xmlWriter.WriteValue(longitude.Value);
                 this._WriteEndElement(xmlWriter);
@@ -533,15 +575,15 @@ namespace XCRI.XmlGeneration
                     (
                     xmlWriter,
                     "address",
-                    Configuration.XCRICAP11NamespaceUri
+                    Configuration.Namespaces.XCRICAP11NamespaceUri
                     );
                 this._WriteAttribute
                     (
                     xmlWriter,
                     "type",
-                    Configuration.XMLSchemaInstanceNamespaceUri,
+                    Configuration.Namespaces.XmlSchemaInstanceNamespaceUri,
                     "long",
-                    Configuration.GeolocationNamespaceUri
+                    Configuration.Namespaces.GeolocationNamespaceUri
                     );
                 xmlWriter.WriteValue(longitude.Value);
                 this._WriteEndElement(xmlWriter);

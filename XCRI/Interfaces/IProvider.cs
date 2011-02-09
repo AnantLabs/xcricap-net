@@ -9,13 +9,13 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Provider element in the XCRI standard.
 	/// </summary>
-    public interface IProvider : IXmlElement, IXmlElementWithIdentifiers
+	public interface IProvider : IElement, IElementWithIdentifiers
 	{
 
 		/// <summary>
 		/// The public web address for the course provider
 		/// </summary>
-		Uri WebAddress { get; set; }
+		Uri Url { get; set; }
 
 		/// <summary>
 		/// The UK Provider Reference Number for the course provider,
@@ -25,12 +25,15 @@ namespace XCRI.Interfaces
 
 		IList<ITitle> Titles { get; }
 
-        IList<IDescription> Descriptions { get; }
+        
+		IList<IDescription> Descriptions { get; }
+
+        IList<ISubject> Subjects { get; }
 
 		/// <summary>
 		/// The main address of the course provider
 		/// </summary>
-		IAddress Address { get; set; }
+        IAddress Address { get; set; }
 
 		/// <summary>
 		/// An image element enabling images to be displayed by an aggregator.
@@ -40,7 +43,12 @@ namespace XCRI.Interfaces
 		/// <summary>
 		/// Retrieves the courses from the course provider's database.
 		/// </summary>
-        IList<ICourse> Courses { get; }
-		
+		IList<ICourse> Courses { get; }
+
+        /// <summary>
+        /// When used with the delta update pattern (http://www.xcri.org/wiki/index.php/Delta_update_pattern)
+        /// indicates the status of this resource.
+        /// </summary>
+        ResourceStatus ResourceStatus { get; set; }
 	}
 }

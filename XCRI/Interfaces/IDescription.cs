@@ -5,7 +5,12 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IDescription : IXmlElementWithSingleValue<string>
+    /// <summary>
+    /// Represents the Description node in the XCRI definition.
+    /// http://www.xcri.org/wiki/index.php/Description.
+    /// </summary>
+    public interface IDescription : IElementWithSingleValue<string>
     {
+        Uri Href { get; set; }
     }
 }

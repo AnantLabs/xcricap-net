@@ -12,7 +12,7 @@ namespace XCRI.XmlGeneration
             switch (profile)
             {
                 case XCRIProfiles.XCRI_v1_1:
-                    return new XCRICAP11Generator();
+                    return new XCRI.XmlGeneration.XCRICAP11.Generator();
                 default:
                     throw new NotSupportedException("The XCRI profile provided was not supported by the factory object");
             }

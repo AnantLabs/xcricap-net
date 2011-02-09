@@ -20,10 +20,23 @@ namespace XCRI
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
         private List<Interfaces.IQualificationAwardedBy> __AwardedBy = new List<Interfaces.IQualificationAwardedBy>();
         private List<Interfaces.IQualificationAccreditedBy> __AccreditedBy = new List<Interfaces.IQualificationAccreditedBy>();
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
         #endregion
 
         #region Protected
+
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
 
         protected Interfaces.IQualificationType _Type
         {
@@ -126,6 +139,12 @@ namespace XCRI
         #endregion
 
         #region IQualification Members
+
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
 
         public IList<Interfaces.ITitle> Titles
         {

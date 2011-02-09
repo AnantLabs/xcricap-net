@@ -8,7 +8,7 @@ namespace XCRI.Interfaces
 	/// <summary>
 	/// Represents the Qualification element in the XCRI standard
 	/// </summary>
-	public interface IQualification : IXmlElement, IXmlElementWithIdentifiers
+	public interface IQualification : IElement, IElementWithIdentifiers
 	{
 
 		IList<ITitle> Titles { get; }
@@ -19,22 +19,27 @@ namespace XCRI.Interfaces
         IQualificationType Type { get; set; }
         IList<IQualificationAwardedBy> AwardedBy { get; }
         IList<IQualificationAccreditedBy> AccreditedBy { get; }
+        /// <summary>
+        /// When used with the delta update pattern (http://www.xcri.org/wiki/index.php/Delta_update_pattern)
+        /// indicates the status of this resource.
+        /// </summary>
+        ResourceStatus ResourceStatus { get; set; }
 
 	}
 
-    public interface IQualificationLevel : IXmlElementWithSingleValue<string>
+    public interface IQualificationLevel : IElementWithSingleValue<string>
     {
     }
 
-    public interface IQualificationType : IXmlElementWithSingleValue<string>
+    public interface IQualificationType : IElementWithSingleValue<string>
     {
     }
 
-    public interface IQualificationAwardedBy : IXmlElementWithSingleValue<string>
+    public interface IQualificationAwardedBy : IElementWithSingleValue<string>
     {
     }
 
-    public interface IQualificationAccreditedBy : IXmlElementWithSingleValue<string>
+    public interface IQualificationAccreditedBy : IElementWithSingleValue<string>
     {
     }
 

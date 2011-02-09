@@ -7,29 +7,15 @@ namespace XCRI.XmlGeneration.Interfaces
 {
     public interface IXmlGenerator : XCRI.Interfaces.ICatalog
     {
+        NamespaceList Namespaces { get; }
         // Generate overloads
-        void Generate
-            (
-            System.Xml.XmlWriter xmlWriter,
-            NamespaceList namespaceList
-            );
         void Generate
             (
             System.Xml.XmlWriter xmlWriter
             );
         void Generate
             (
-            System.IO.StringWriter stringWriter,
-            NamespaceList namespaceList
-            );
-        void Generate
-            (
             System.IO.StringWriter stringWriter
-            );
-        void Generate
-            (
-            System.Text.StringBuilder stringBuilder,
-            NamespaceList namespaceList
             );
         void Generate
             (
@@ -72,6 +58,24 @@ namespace XCRI.XmlGeneration.Interfaces
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IPresentation presentation
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IStudyMode studyMode
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendanceMode attendanceMode
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendancePattern attendancePattern
             );
 
         void Write
@@ -134,26 +138,6 @@ namespace XCRI.XmlGeneration.Interfaces
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
             );
-
-        /*
-        void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElement element
-            );
-
-        void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElementWithChildElements element
-            );
-
-        void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IXmlElementWithSingleValue element
-            );
-        */
 
         void Write
             (

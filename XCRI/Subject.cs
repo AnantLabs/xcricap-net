@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI.Interfaces
+namespace XCRI
 {
-    public interface IIdentifier : IElementWithSingleValue<string>
+    public class Subject : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.ISubject
     {
+
     }
 }

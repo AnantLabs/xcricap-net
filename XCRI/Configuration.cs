@@ -5,46 +5,66 @@ using System.Text;
 
 namespace XCRI
 {
+    /// <summary>
+    /// Exposed configuration information
+    /// </summary>
 	public class Configuration
 	{
 
-		public static NamespaceList StandardNamespaces
-		{
-			get
-			{
-				NamespaceList list = new NamespaceList();
-				list.Add(Configuration.XCRICAP11NamespaceUri, String.Empty, @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
-				list.Add(Configuration.XCRICAP11TermsNamespaceUri, "terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
-				list.Add(Configuration.XMLSchemaInstanceNamespaceUri, "xsi", "");
-				list.Add(@"http://www.ukrlp.co.uk", "ukrlp", "http://www.craighawker.co.uk/xcri/validation/xsds/ukprn.xsd");
-                list.Add(Configuration.GeolocationNamespaceUri, "geo", "http://www.craighawker.co.uk/xcri/validation/xsds/geo.xsd");
-				return list;
-			}
-		}
-
-        public static string GeolocationNamespaceUri
+        /// <summary>
+        /// Exposes information about common namespaces
+        /// </summary>
+        public static class Namespaces
         {
-            get { return @"http://www.w3.org/2003/01/geo/wgs84_pos"; }
-        }
 
-        public static string XHTMLNamespaceUri
-        {
-            get { return @"http://www.w3.org/1999/xhtml"; }
-        }
+            /// <summary>
+            /// The namespace (as a URI) of the UK Register of Learning Providers
+            /// </summary>
+            public static string UKRegisterOfLearningProvidersNamespaceUri
+            {
+                get { return @"http://www.ukrlp.co.uk"; }
+            }
 
-        public static string XCRICAP11NamespaceUri
-        {
-            get { return @"http://xcri.org/profiles/catalog"; }
-        }
+            /// <summary>
+            /// The namespace (as a URI) of the W3C geopositioning vocabulary
+            /// </summary>
+            public static string GeolocationNamespaceUri
+            {
+                get { return @"http://www.w3.org/2003/01/geo/wgs84_pos"; }
+            }
 
-        public static string XCRICAP11TermsNamespaceUri
-        {
-            get { return @"http://xcri.org/profiles/catalog/terms"; }
-        }
+            /// <summary>
+            /// The namespace (as a URI) of the 1999 XHTML vocabulary
+            /// </summary>
+            public static string XHTMLNamespaceUri
+            {
+                get { return @"http://www.w3.org/1999/xhtml"; }
+            }
 
-        public static string XMLSchemaInstanceNamespaceUri
-        {
-            get { return @"http://www.w3.org/2001/XMLSchema-instance"; }
+            /// <summary>
+            /// The namespace (as a URI) of the XCRICAP 1.1 vocabulary
+            /// </summary>
+            public static string XCRICAP11NamespaceUri
+            {
+                get { return @"http://xcri.org/profiles/catalog"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the XCRICAP 1.1 Terms vocabulary
+            /// </summary>
+            public static string XCRICAP11TermsNamespaceUri
+            {
+                get { return @"http://xcri.org/profiles/catalog/terms"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the 2001 XML Schema Instance vocabulary
+            /// </summary>
+            public static string XmlSchemaInstanceNamespaceUri
+            {
+                get { return @"http://www.w3.org/2001/XMLSchema-instance"; }
+            }
+
         }
 
 	}

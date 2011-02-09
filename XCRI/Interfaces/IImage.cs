@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IImage : IXmlElement
+    public interface IImage : IElement
     {
         Uri Source { get; set; }
         string Title { get; set; }

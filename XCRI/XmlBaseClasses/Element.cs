@@ -6,34 +6,20 @@ using System.Text;
 namespace XCRI.XmlBaseClasses
 {
 
-    public abstract class Element : NotifyBaseClass, Interfaces.IXmlElement
+    public abstract class Element : NotifyBaseClass, Interfaces.IElement
     {
 
         #region Properties and Fields
 
         #region Private
 
-        private List<XCRI.Interfaces.IXmlAttribute> __Attributes = new List<XCRI.Interfaces.IXmlAttribute>();
         private string __XsiTypeValue = String.Empty;
         private string __XsiTypeValueNamespace = String.Empty;
         private string __XmlLanguage = String.Empty;
-        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
 
         #endregion
 
         #region Protected
-
-        protected ResourceStatus _ResourceStatus
-        {
-            get { return this.__ResourceStatus; }
-            set
-            {
-                if (this.__ResourceStatus == value) { return; }
-                this.OnPropertyChanging("ResourceStatus");
-                this.__ResourceStatus = value;
-                this.OnPropertyChanged("ResourceStatus");
-            }
-        }
 
         protected string _XsiTypeValue
         {
@@ -78,13 +64,7 @@ namespace XCRI.XmlBaseClasses
 
         #region Public
 
-        public ResourceStatus ResourceStatus
-        {
-            get { return this._ResourceStatus; }
-            set { this._ResourceStatus = value; }
-        }
-
-        public string XsiTypeValue
+        public virtual string XsiTypeValue
         {
             get { return this._XsiTypeValue; }
             set { this._XsiTypeValue = value; }
@@ -108,7 +88,7 @@ namespace XCRI.XmlBaseClasses
 
     }
 
-    public class ElementWithSingleValue : Element, Interfaces.IXmlElementWithSingleValue
+    public class ElementWithSingleValue : Element, Interfaces.IElementWithSingleValue
     {
         
         #region Properties and Fields
@@ -168,7 +148,7 @@ namespace XCRI.XmlBaseClasses
 
     }
 
-    public class ElementWithSingleValue<T> : ElementWithSingleValue, Interfaces.IXmlElementWithSingleValue<T>
+    public class ElementWithSingleValue<T> : ElementWithSingleValue, Interfaces.IElementWithSingleValue<T>
     {
 
         #region Properties and Fields
@@ -191,8 +171,23 @@ namespace XCRI.XmlBaseClasses
 
         #endregion
 
+        #region Methods
+
+        #region Public virtual
+
+        public virtual string GetElementValueAsString()
+        {
+            return this.Value == null 
+                ? String.Empty : 
+                this.Value.ToString();
+        }
+
+        #endregion
+
+        #endregion
+
     }
-    public class ElementWithIdentifiers : Element, Interfaces.IXmlElementWithIdentifiers
+    public class ElementWithIdentifiers : Element, Interfaces.IElementWithIdentifiers
     {
 
         #region Properties and Fields

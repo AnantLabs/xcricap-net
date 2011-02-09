@@ -23,20 +23,70 @@ namespace XCRI.XmlGeneration
 
         #endregion
 
+        #region Properties and Fields
+
+        #region Private
+
+        private NamespaceList __Namespaces = NamespaceList.GetNamespaces();
+        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
+
+        #endregion
+
+        #region Protected
+
+        protected ResourceStatus _ResourceStatus
+        {
+            get { return this.__ResourceStatus; }
+            set
+            {
+                if (this.__ResourceStatus == value) { return; }
+                this.OnPropertyChanging("ResourceStatus");
+                this.__ResourceStatus = value;
+                this.OnPropertyChanged("ResourceStatus");
+            }
+        }
+
+        protected NamespaceList _Namespaces
+        {
+            get { return this.__Namespaces; }
+            set
+            {
+                if (this.__Namespaces == value)
+                    return;
+                this.OnPropertyChanging("Namespaces");
+                this.__Namespaces = value;
+                this.OnPropertyChanged("Namespaces");
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #region IXmlGenerator Members
+
+        public ResourceStatus ResourceStatus
+        {
+            get { return this._ResourceStatus; }
+            set { this._ResourceStatus = value; }
+        }
+
+        public NamespaceList Namespaces
+        {
+            get { return this._Namespaces; }
+        }
 
         public virtual void Generate
             (
-            System.Xml.XmlWriter xmlWriter,
-            NamespaceList namespaceList
+            System.Xml.XmlWriter xmlWriter
             )
         {
             xmlWriter.WriteStartDocument(true);
-            xmlWriter.WriteStartElement("catalog", Configuration.XCRICAP11NamespaceUri);
-            if (namespaceList != null)
+            xmlWriter.WriteStartElement("catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
+            if (this.Namespaces != null)
             {
                 StringBuilder schemaLocation = new StringBuilder();
-                foreach (NamespaceData ns in namespaceList)
+                foreach (NamespaceData ns in this.Namespaces)
                 {
                     if (String.IsNullOrEmpty(ns.NamespaceUri) == true)
                         continue;
@@ -54,16 +104,7 @@ namespace XCRI.XmlGeneration
 
         public void Generate
             (
-            System.Xml.XmlWriter xmlWriter
-            )
-        {
-            this.Generate(xmlWriter, Configuration.StandardNamespaces);
-        }
-
-        public void Generate
-            (
-            System.IO.StringWriter stringWriter,
-            NamespaceList namespaceList
+            System.IO.StringWriter stringWriter
             )
         {
             System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
@@ -73,36 +114,37 @@ namespace XCRI.XmlGeneration
             xmlWriterSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
             using (System.Xml.XmlWriter xmlWriter = System.Xml.XmlTextWriter.Create(stringWriter, xmlWriterSettings))
             {
-                this.Generate(xmlWriter, namespaceList);
+                this.Generate(xmlWriter);
             }
         }
 
-        public void Generate
+        public abstract void Write
             (
-            System.IO.StringWriter stringWriter
-            )
-        {
-            this.Generate(stringWriter, Configuration.StandardNamespaces);
-        }
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IStudyMode studyMode
+            );
 
-        public void Generate
+        public abstract void Write
             (
-            System.Text.StringBuilder stringBuilder,
-            NamespaceList namespaceList
-            )
-        {
-            using (System.IO.StringWriter writer = new System.IO.StringWriter(stringBuilder))
-            {
-                this.Generate(writer, namespaceList);
-            }
-        }
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendanceMode attendanceMode
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IAttendancePattern attendancePattern
+            );
 
         public void Generate
             (
             System.Text.StringBuilder stringBuilder
             )
         {
-            this.Generate(stringBuilder, Configuration.StandardNamespaces);
+            using (System.IO.StringWriter writer = new System.IO.StringWriter(stringBuilder))
+            {
+                this.Generate(writer);
+            }
         }
 
         public abstract void Write
@@ -225,7 +267,7 @@ namespace XCRI.XmlGeneration
             xmlWriter.WriteAttributeString
                 (
                 "recstatus",
-                Configuration.XCRICAP11NamespaceUri,
+                Configuration.Namespaces.XCRICAP11NamespaceUri,
                 ((int)resourceStatus).ToString()
                 );
         }
@@ -257,7 +299,7 @@ namespace XCRI.XmlGeneration
                 (
                 xmlWriter,
                 "type",
-                Configuration.XMLSchemaInstanceNamespaceUri,
+                Configuration.Namespaces.XmlSchemaInstanceNamespaceUri,
                 xsiTypeValue,
                 xsiTypeValueNamespace
                 );

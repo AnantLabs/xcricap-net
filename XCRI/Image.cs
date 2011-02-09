@@ -6,7 +6,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-    public class Image : Element, Interfaces.IXmlElement, Interfaces.IImage
+    public class Image : Element, Interfaces.IElement, Interfaces.IImage
 	{
 
 		#region Properties and Fields

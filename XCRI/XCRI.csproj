@@ -51,7 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="StudyMode.cs" />
+    <Compile Include="AttendancePattern.cs" />
+    <Compile Include="AttendanceMode.cs" />
+    <Compile Include="Interfaces\IAttendanceMode.cs" />
+    <Compile Include="Interfaces\IAttendancePattern.cs" />
     <Compile Include="Interfaces\IIdentifier.cs" />
+    <Compile Include="Interfaces\IStudyMode.cs" />
     <Compile Include="Provider.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Course.cs" />
@@ -61,7 +68,7 @@
     <Compile Include="Interfaces\ICatalog.cs" />
     <Compile Include="Interfaces\ICourse.cs" />
     <Compile Include="Interfaces\IDescription.cs" />
-    <Compile Include="Interfaces\IXmlElementWithIdentifiers.cs" />
+    <Compile Include="Interfaces\IElementWithIdentifiers.cs" />
     <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\IProvider.cs" />
     <Compile Include="Interfaces\IAddress.cs" />
@@ -70,8 +77,7 @@
     <Compile Include="Interfaces\ISubject.cs" />
     <Compile Include="Interfaces\ITitle.cs" />
     <Compile Include="Interfaces\IVenue.cs" />
-    <Compile Include="Interfaces\IXmlElement.cs" />
-    <Compile Include="Interfaces\IXmlAttribute.cs" />
+    <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="NamespaceList.cs" />
     <Compile Include="NotifyBaseClass.cs" />
     <Compile Include="Interfaces\IPresentation.cs" />
@@ -81,10 +87,19 @@
     <Compile Include="ResourceStatus.cs" />
     <Compile Include="Title.cs" />
     <Compile Include="Venue.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendancePatternTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendanceModeTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendancePattern.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendanceMode.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\StudyMode.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\Description.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\DescriptionTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\ExtensionMethods.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\StudyModeTypes.cs" />
     <Compile Include="XCRIProfiles.cs" />
     <Compile Include="XmlBaseClasses\Element.cs" />
     <Compile Include="XmlGeneration\Interfaces\IXmlGenerator.cs" />
-    <Compile Include="XmlGeneration\XCRICAP11Generator.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />
     <Compile Include="XmlGeneration\XmlGeneratorBase.cs" />
     <Compile Include="XmlGeneration\XmlGeneratorFactory.cs" />
   </ItemGroup>

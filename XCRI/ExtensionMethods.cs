@@ -17,47 +17,5 @@ namespace XCRI
 		{
 			return input.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss+00:00");
 		}
-
-		public static string ToXCRIString(this Interfaces.StudyModes input)
-		{
-			switch (input)
-			{ 
-				case XCRI.Interfaces.StudyModes.FullTime:
-					return "Full Time";
-				case XCRI.Interfaces.StudyModes.PartTime:
-					return "Part Time";
-				default:
-					return input.ToString();
-			}
-		}
-
-		public static string ToXCRIString(this Interfaces.AttendanceModes input)
-		{
-			switch (input)
-			{
-				case XCRI.Interfaces.AttendanceModes.DistanceWithAttendance:
-					return "Distance with attendance";
-				case XCRI.Interfaces.AttendanceModes.DistanceWithoutAttendance:
-					return "Distance without attendance";
-				case XCRI.Interfaces.AttendanceModes.WorkBased:
-					return "Work-based";
-				default:
-					return input.ToString();
-			}
-		}
-
-		public static string ToXCRIString(this Interfaces.AttendancePatterns input)
-		{
-			switch (input)
-			{
-				case XCRI.Interfaces.AttendancePatterns.DayOrBlockRelease:
-					return "Day/Block release";
-				case XCRI.Interfaces.AttendancePatterns.StandardDays:
-					return "Standard days";
-				default:
-					return input.ToString();
-			}
-		}
-
 	}
 }
