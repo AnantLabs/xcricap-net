@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XCRI.Interfaces;
 
 namespace XCRI.XmlGeneration.Interfaces
 {
-    public interface IXmlGenerator : XCRI.Interfaces.ICatalog
+    public interface IXmlGenerator
     {
         NamespaceList Namespaces { get; }
+        IElement RootElement { get; set; }
         // Generate overloads
         void Generate
             (
@@ -101,6 +103,12 @@ namespace XCRI.XmlGeneration.Interfaces
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IAddress address
+            );
+
+        void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ICatalog catalog
             );
 
         void Write

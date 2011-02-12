@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XCRI.XmlGeneration;
+using XCRI.XmlBaseClasses;
+using XCRI.Interfaces;
 
 namespace XCRI.XmlGeneration.XCRICAP11
 {
@@ -25,6 +27,48 @@ namespace XCRI.XmlGeneration.XCRICAP11
         #region Methods
 
         #region Public override
+
+        public override void Generate
+            (
+            System.Xml.XmlWriter xmlWriter
+            )
+        {
+            this._WrittenRootNode = false;
+            xmlWriter.WriteStartDocument(true);
+            if (this.RootElement is ICatalog)
+                this.Write(xmlWriter, this.RootElement as ICatalog);
+            if (this.RootElement is IProvider)
+                this.Write(xmlWriter, this.RootElement as IProvider);
+            if (this.RootElement is ICourse)
+                this.Write(xmlWriter, this.RootElement as ICourse);
+            xmlWriter.Flush();
+        }
+
+        public override void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ICatalog catalog
+            )
+        {
+            this._WriteStartElement(xmlWriter, "catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
+            if (catalog.Generated.HasValue == false)
+                xmlWriter.WriteAttributeString("generated", DateTime.Now.ToXCRIString());
+            else
+                xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString());
+            foreach (XCRI.Interfaces.IIdentifier identifier in catalog.Identifiers)
+                this.Write(xmlWriter, identifier);
+            foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
+                this.Write(xmlWriter, title);
+            foreach (XCRI.Interfaces.IDescription description in catalog.Descriptions)
+                this.Write(xmlWriter, description);
+            if (catalog.Url != null)
+                this.Write(xmlWriter, catalog.Url);
+            if (catalog.Image != null)
+                this.Write(xmlWriter, catalog.Image);
+            foreach (XCRI.Interfaces.IProvider provider in catalog.Providers)
+                this.Write(xmlWriter, provider);
+            this._WriteEndElement(xmlWriter);
+        }
 
         public override void Write
             (
@@ -587,6 +631,36 @@ namespace XCRI.XmlGeneration.XCRICAP11
                     );
                 xmlWriter.WriteValue(longitude.Value);
                 this._WriteEndElement(xmlWriter);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Properties and Fields
+
+        #region Public override
+
+        public override IElement RootElement
+        {
+            get { return this._RootElement; }
+            set
+            {
+                if (this._RootElement == value)
+                    return;
+                bool validType = false;
+                if(value == null)
+                    validType = true;
+                if (value is ICatalog)
+                    validType = true;
+                if (value is IProvider)
+                    validType = true;
+                if (value is ICourse)
+                    validType = true;
+                if (validType == false)
+                    throw new InvalidOperationException("The RootElement must be set to an ICatalog, IProvider or ICourse");
+                this._RootElement = value;
             }
         }
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XCRI.Interfaces;
+using XCRI.XmlBaseClasses;
 
 namespace XCRI.XmlGeneration
 {
-    public abstract class XmlGeneratorBase : NotifyBaseClass, Interfaces.IXmlGenerator, XCRI.Interfaces.ICatalog
+    public abstract class XmlGeneratorBase : NotifyBaseClass, Interfaces.IXmlGenerator
 
     {
 
@@ -29,10 +30,37 @@ namespace XCRI.XmlGeneration
 
         private NamespaceList __Namespaces = NamespaceList.GetNamespaces();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
+        private IElement __RootElement = null;
+        private bool __WrittenRootNode = false;
 
         #endregion
 
         #region Protected
+
+        protected IElement _RootElement
+        {
+            get { return this.__RootElement; }
+            set
+            {
+                if (this.__RootElement == value)
+                    return;
+                this.OnPropertyChanging("RootElement");
+                this.__RootElement = value;
+                this.OnPropertyChanged("RootElement");
+            }
+        }
+
+        protected bool _WrittenRootNode
+        {
+            get { return this.__WrittenRootNode; }
+            set
+            {
+                if (this.__WrittenRootNode == value) { return; }
+                this.OnPropertyChanging("WrittenRootNode");
+                this.__WrittenRootNode = value;
+                this.OnPropertyChanged("WrittenRootNode");
+            }
+        }
 
         protected ResourceStatus _ResourceStatus
         {
@@ -65,6 +93,8 @@ namespace XCRI.XmlGeneration
 
         #region IXmlGenerator Members
 
+        public abstract IElement RootElement { get; set; }
+
         public ResourceStatus ResourceStatus
         {
             get { return this._ResourceStatus; }
@@ -76,31 +106,10 @@ namespace XCRI.XmlGeneration
             get { return this._Namespaces; }
         }
 
-        public virtual void Generate
+        public abstract void Generate
             (
             System.Xml.XmlWriter xmlWriter
-            )
-        {
-            xmlWriter.WriteStartDocument(true);
-            xmlWriter.WriteStartElement("catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
-            if (this.Namespaces != null)
-            {
-                StringBuilder schemaLocation = new StringBuilder();
-                foreach (NamespaceData ns in this.Namespaces)
-                {
-                    if (String.IsNullOrEmpty(ns.NamespaceUri) == true)
-                        continue;
-                    if (String.IsNullOrEmpty(ns.Prefix) == false)
-                        xmlWriter.WriteAttributeString("xmlns", ns.Prefix, null, ns.NamespaceUri);
-                    if (String.IsNullOrEmpty(ns.XSDLocation) == false)
-                        schemaLocation.AppendFormat("{0} {1} ", ns.NamespaceUri, ns.XSDLocation);
-                }
-                xmlWriter.WriteAttributeString("xsi", "schemaLocation", null, schemaLocation.ToString().Trim());
-            }
-            this._Write(xmlWriter, this as ICatalog);
-            xmlWriter.WriteEndElement();
-            xmlWriter.Flush();
-        }
+            );
 
         public void Generate
             (
@@ -187,6 +196,12 @@ namespace XCRI.XmlGeneration
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IVenue venue
+            );
+
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.ICatalog catalog
             );
 
         public abstract void Write
@@ -377,30 +392,25 @@ namespace XCRI.XmlGeneration
                     elementNamespace
                     );
             }
-        }
+            if (this.__WrittenRootNode == false)
+            {
 
-        protected virtual void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICatalog catalog
-            )
-        {
-            if(catalog.Generated.HasValue == false)
-                xmlWriter.WriteAttributeString("generated", DateTime.Now.ToXCRIString());
-            else
-                xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString());
-            foreach (XCRI.Interfaces.IIdentifier identifier in catalog.Identifiers)
-                this.Write(xmlWriter, identifier);
-            foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
-                this.Write(xmlWriter, title);
-            foreach (XCRI.Interfaces.IDescription description in catalog.Descriptions)
-                this.Write(xmlWriter, description);
-            if (catalog.Url != null)
-                this.Write(xmlWriter, catalog.Url);
-            if (catalog.Image != null)
-                this.Write(xmlWriter, catalog.Image);
-            foreach (XCRI.Interfaces.IProvider provider in catalog.Providers)
-                this.Write(xmlWriter, provider);
+                if (this.Namespaces != null)
+                {
+                    StringBuilder schemaLocation = new StringBuilder();
+                    foreach (NamespaceData ns in this.Namespaces)
+                    {
+                        if (String.IsNullOrEmpty(ns.NamespaceUri) == true)
+                            continue;
+                        if (String.IsNullOrEmpty(ns.Prefix) == false)
+                            xmlWriter.WriteAttributeString("xmlns", ns.Prefix, null, ns.NamespaceUri);
+                        if (String.IsNullOrEmpty(ns.XSDLocation) == false)
+                            schemaLocation.AppendFormat("{0} {1} ", ns.NamespaceUri, ns.XSDLocation);
+                    }
+                    xmlWriter.WriteAttributeString("xsi", "schemaLocation", null, schemaLocation.ToString().Trim());
+                }
+            }
+            this.__WrittenRootNode = true;
         }
 
         protected virtual void _Write
@@ -427,18 +437,19 @@ namespace XCRI.XmlGeneration
                 xmlWriter,
                 xmlLanguage
                 );
-            if (String.IsNullOrEmpty(elementValue))
-                return;
-            if (renderRaw)
-                xmlWriter.WriteRaw
-                    (
-                    elementValue
-                    );
-            else
-                xmlWriter.WriteValue
-                    (
-                    elementValue
-                    );
+            if (!String.IsNullOrEmpty(elementValue))
+            {
+                if (renderRaw)
+                    xmlWriter.WriteRaw
+                        (
+                        elementValue
+                        );
+                else
+                    xmlWriter.WriteValue
+                        (
+                        elementValue
+                        );
+            }
             this._WriteEndElement(xmlWriter);
         }
 
@@ -446,155 +457,6 @@ namespace XCRI.XmlGeneration
         
         #endregion
 
-        #region Properties and Fields
-
-        #region Private
-
-        private DateTime? __Generated = null;
-        private ResourceStatus __RecStatus = ResourceStatus.Unknown;
-        private List<IIdentifier> __Identifiers = new List<IIdentifier>();
-        private List<ITitle> __Titles = new List<ITitle>();
-        private List<ISubject> __Subjects = new List<ISubject>();
-        private List<IDescription> __Descriptions = new List<IDescription>();
-        private Uri __Url = null;
-        private Image __Image = new Image();
-        private List<IProvider> __Providers = new List<IProvider>();
-
-        #endregion
-
-        #region Protected
-
-        protected DateTime? _Generated
-        {
-            get { return this.__Generated; }
-            set
-            {
-                if (this.__Generated == value)
-                    return;
-                this.OnPropertyChanging("Generated");
-                this.__Generated = value;
-                this.OnPropertyChanged("Generated");
-            }
-        }
-
-        protected ResourceStatus _RecStatus
-        {
-            get { return this.__RecStatus; }
-            set
-            {
-                if (this.__RecStatus == value)
-                    return;
-                this.OnPropertyChanging("RecStatus");
-                this.__RecStatus = value;
-                this.OnPropertyChanged("RecStatus");
-            }
-        }
-
-        protected List<IIdentifier> _Identifiers
-        {
-            get { return this.__Identifiers; }
-        }
-
-        protected List<ITitle> _Titles
-        {
-            get { return this.__Titles; }
-        }
-
-        protected List<ISubject> _Subjects
-        {
-            get { return this.__Subjects; }
-        }
-
-        protected List<IDescription> _Descriptions
-        {
-            get { return this.__Descriptions; }
-        }
-
-        protected Uri _Url
-        {
-            get { return this.__Url; }
-            set
-            {
-                if (this.__Url == value)
-                    return;
-                this.OnPropertyChanging("Url");
-                this.__Url = value;
-                this.OnPropertyChanged("Url");
-            }
-        }
-
-        protected Image _Image
-        {
-            get { return this.__Image; }
-            set
-            {
-                if (this.__Image == value)
-                    return;
-                this.OnPropertyChanging("Image");
-                this.__Image = value;
-                this.OnPropertyChanged("Image");
-            }
-        }
-
-        protected List<IProvider> _Providers 
-        {
-            get { return this.__Providers; }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region ICatalog Members
-
-        public DateTime? Generated
-        {
-            get { return this._Generated; }
-            set { this._Generated = value; }
-        }
-
-        public ResourceStatus RecStatus
-        {
-            get { return this._RecStatus; }
-            set { this._RecStatus = value; }
-        }
-
-        public IList<IIdentifier> Identifiers
-        {
-            get { return this._Identifiers; }
-        }
-
-        public IList<ITitle> Titles
-        {
-            get { return this._Titles; }
-        }
-
-        public IList<XCRI.Interfaces.ISubject> Subjects
-        {
-            get { return this._Subjects; }
-        }
-
-        public IList<XCRI.Interfaces.IDescription> Descriptions
-        {
-            get { return this._Descriptions; }
-        }
-
-        public Uri Url
-        {
-            get { return this._Url; }
-        }
-
-        public Image Image
-        {
-            get { return this._Image; }
-        }
-
-        public IList<XCRI.Interfaces.IProvider> Providers
-        {
-            get { return this._Providers; }
-        }
-
-        #endregion
 
     }
 }

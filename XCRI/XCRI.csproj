@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Catalog.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="StudyMode.cs" />
     <Compile Include="AttendancePattern.cs" />

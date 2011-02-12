@@ -10,7 +10,7 @@ namespace XCRI.Interfaces
     /// Represents the default root "Catalog" node in the XCRI definition.
     /// http://www.xcri.org/wiki/index.php/Catalog.
     /// </summary>
-    public interface ICatalog : INotifyPropertyChanging, INotifyPropertyChanged
+    public interface ICatalog : IElement
     {
 
         /// <summary>

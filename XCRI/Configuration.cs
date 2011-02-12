@@ -18,6 +18,14 @@ namespace XCRI
         {
 
             /// <summary>
+            /// XML Namespace (for xml:lang)
+            /// </summary>
+            public static string XmlNamespace
+            {
+                get { return @"http://www.w3.org/XML/1998/namespace"; }
+            }
+
+            /// <summary>
             /// The namespace (as a URI) of the UK Register of Learning Providers
             /// </summary>
             public static string UKRegisterOfLearningProvidersNamespaceUri
