@@ -37,11 +37,11 @@ namespace XCRI.Interfaces
         /// <summary>
         /// A url for further information about the resource
         /// </summary>
-        Uri Url { get; }
+        Uri Url { get; set; }
         /// <summary>
         /// An image that represents the resource, such as a photo or logo
         /// </summary>
-        Image Image { get; }
+        Image Image { get; set; }
         /// <summary>
         /// The providers which this catalog contains.
         /// In almost all cases there should be only one provider in a feed, however if this

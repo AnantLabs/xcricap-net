@@ -659,7 +659,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 if (value is ICourse)
                     validType = true;
                 if (validType == false)
-                    throw new InvalidOperationException("The RootElement must be set to an ICatalog, IProvider or ICourse");
+                    throw new NotSupportedException("The RootElement must be set to an ICatalog, IProvider or ICourse");
                 this._RootElement = value;
             }
         }

@@ -135,11 +135,13 @@ namespace XCRI
         public Uri Url
         {
             get { return this._Url; }
+            set { this._Url = value; }
         }
 
         public Image Image
         {
             get { return this._Image; }
+            set { this._Image = value; }
         }
 
         public IList<XCRI.Interfaces.IProvider> Providers
