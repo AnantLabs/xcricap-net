@@ -183,22 +183,6 @@ namespace XCRI
             get { return this._Courses; }
         }
 
-		public void AddDescription(string description)
-		{
-			this.Descriptions.Add(new Description()
-			{
-				Value = description
-			});
-		}
-
-        public void AddTitle(string title)
-        {
-            this.Titles.Add(new Title()
-            {
-                Value = title
-            });
-        }
-
 		#endregion
 
 	}

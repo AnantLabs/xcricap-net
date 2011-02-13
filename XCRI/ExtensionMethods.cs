@@ -17,5 +17,6 @@ namespace XCRI
 		{
 			return input.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss+00:00");
 		}
+
 	}
 }

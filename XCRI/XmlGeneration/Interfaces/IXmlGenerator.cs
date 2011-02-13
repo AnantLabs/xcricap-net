@@ -13,6 +13,10 @@ namespace XCRI.XmlGeneration.Interfaces
         // Generate overloads
         void Generate
             (
+            System.IO.TextWriter textWriter
+            );
+        void Generate
+            (
             System.Xml.XmlWriter xmlWriter
             );
         void Generate

@@ -113,6 +113,22 @@ namespace XCRI.XmlGeneration
 
         public void Generate
             (
+            System.IO.TextWriter textWriter
+            )
+        {
+            System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+            xmlWriterSettings.Indent = true;
+            xmlWriterSettings.Encoding = Encoding.UTF8;
+            xmlWriterSettings.NewLineOnAttributes = true;
+            xmlWriterSettings.OmitXmlDeclaration = true;
+            using (System.Xml.XmlWriter xmlWriter = System.Xml.XmlTextWriter.Create(textWriter, xmlWriterSettings))
+            {
+                this.Generate(xmlWriter);
+            }
+        }
+
+        public void Generate
+            (
             System.IO.StringWriter stringWriter
             )
         {

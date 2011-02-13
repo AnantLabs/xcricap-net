@@ -114,30 +114,6 @@ namespace XCRI
 
         #endregion
 
-        #region Methods
-
-        #region Public
-
-        public void AddDescription(string description)
-        {
-            this.Descriptions.Add(new Description()
-            {
-                Value = description
-            });
-        }
-
-        public void AddTitle(string title)
-        {
-            this.Titles.Add(new Title()
-            {
-                Value = title
-            });
-        }
-
-        #endregion
-
-        #endregion
-
         #region IQualification Members
 
         public ResourceStatus ResourceStatus

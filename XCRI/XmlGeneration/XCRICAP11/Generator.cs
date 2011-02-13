@@ -237,7 +237,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
             base._Write
                 (
                 xmlWriter,
-                "awaaccreditedByrdedBy",
+                "accreditedBy",
                 Configuration.Namespaces.XCRICAP11NamespaceUri,
                 accreditedBy.Value,
                 accreditedBy.RenderRaw,
