@@ -13,8 +13,10 @@ namespace XCRI
 
 		#region Private
 
-		private string __Title = String.Empty;
-		private Uri __Uri = null;
+        private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
+        private List<Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
+        private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
+        private Uri __Uri = null;
         private Image __Image = null;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
@@ -35,17 +37,20 @@ namespace XCRI
             }
         }
 
-		protected string _Title
-		{
-			get { return this.__Title; }
-			set
-			{
-				if (this.__Title == value) { return; }
-				this.OnPropertyChanging("Title");
-				this.__Title = value;
-				this.OnPropertyChanged("Title");
-			}
-		}
+        protected List<Interfaces.ITitle> _Titles
+        {
+            get { return this.__Titles; }
+        }
+
+        protected List<Interfaces.ISubject> _Subjects
+        {
+            get { return this.__Subjects; }
+        }
+
+        protected List<Interfaces.IDescription> _Descriptions
+        {
+            get { return this.__Descriptions; }
+        }
 
 		protected Uri _Uri
 		{
@@ -97,11 +102,20 @@ namespace XCRI
             set { this._ResourceStatus = value; }
         }
 
-		public string Title
-		{
-			get { return this._Title; }
-			set { this._Title = value; }
-		}
+        public IList<Interfaces.ITitle> Titles
+        {
+            get { return this._Titles; }
+        }
+
+        public IList<Interfaces.ISubject> Subjects
+        {
+            get { return this._Subjects; }
+        }
+
+        public IList<Interfaces.IDescription> Descriptions
+        {
+            get { return this._Descriptions; }
+        }
 
 		public Uri Uri
 		{

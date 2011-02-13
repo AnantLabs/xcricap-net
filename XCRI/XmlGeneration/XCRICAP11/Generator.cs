@@ -353,13 +353,21 @@ namespace XCRI.XmlGeneration.XCRICAP11
         {
             this._WriteStartElement(xmlWriter, "presentation", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (presentation.ResourceStatus != ResourceStatus.Unknown)
-            {
                 this._Write(xmlWriter, presentation.ResourceStatus);
-            }
             this._WriteXsiTypeAttribute(xmlWriter, presentation.XsiTypeValue, presentation.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, presentation.XmlLanguage);
-            foreach (Identifier identifier in presentation.Identifiers)
+            foreach (IIdentifier identifier in presentation.Identifiers)
                 this.Write(xmlWriter, identifier);
+            foreach (ITitle title in presentation.Titles)
+                this.Write(xmlWriter, title);
+            foreach (ISubject subject in presentation.Subjects)
+                this.Write(xmlWriter, subject);
+            foreach (IDescription description in presentation.Descriptions)
+                this.Write(xmlWriter, description);
+            if (presentation.Uri != null)
+                this.Write(xmlWriter, presentation.Uri);
+            if (presentation.Image != null)
+                this.Write(xmlWriter, presentation.Image);
             if (presentation.Start.HasValue)
                 xmlWriter.WriteElementString("start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString());
             if (presentation.End.HasValue)
@@ -376,13 +384,23 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 xmlWriter,
                 presentation.AttendanceMode
                 );
-            foreach (XCRI.Interfaces.IVenue venue in presentation.Venues)
-                this.Write(xmlWriter, venue);
             this.Write
                 (
                 xmlWriter,
                 presentation.AttendancePattern
                 );
+            foreach (string language in presentation.LanguageOfInstruction)
+                if (String.IsNullOrEmpty(language) == false)
+                    xmlWriter.WriteElementString("languageOfInstruction", Configuration.Namespaces.XCRICAP11NamespaceUri, language);
+            foreach (string language in presentation.LanguageOfAssessment)
+                if (String.IsNullOrEmpty(language) == false)
+                    xmlWriter.WriteElementString("languageOfAssessment", Configuration.Namespaces.XCRICAP11NamespaceUri, language);
+            foreach (IVenue venue in presentation.Venues)
+                this.Write(xmlWriter, venue);
+            if (String.IsNullOrEmpty(presentation.PlacesAvailable) == false)
+                xmlWriter.WriteElementString("placesAvailable", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.PlacesAvailable);
+            if (String.IsNullOrEmpty(presentation.Cost) == false)
+                xmlWriter.WriteElementString("cost", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Cost);
             if (String.IsNullOrEmpty(presentation.ApplyTo) == false)
                 xmlWriter.WriteElementString("applyTo", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.ApplyTo);
             if (String.IsNullOrEmpty(presentation.EnquireTo) == false)
@@ -396,17 +414,20 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.IVenue venue
             )
         {
-            foreach (Identifier identifier in venue.Identifiers)
-            {
-                if (identifier != null)
-                    this.Write(xmlWriter, identifier);
-            }
-            if (String.IsNullOrEmpty(venue.Title))
-                xmlWriter.WriteElementString("title", venue.Title);
+            this._WriteStartElement(xmlWriter, "venue", Configuration.Namespaces.XCRICAP11NamespaceUri);
+            foreach (IIdentifier identifier in venue.Identifiers)
+                this.Write(xmlWriter, identifier);
+            foreach (ITitle title in venue.Titles)
+                this.Write(xmlWriter, title);
+            foreach (ISubject subject in venue.Subjects)
+                this.Write(xmlWriter, subject);
+            foreach (IDescription description in venue.Descriptions)
+                this.Write(xmlWriter, description);
             this.Write(xmlWriter, venue as XCRI.Interfaces.IAddress);
             this.Write(xmlWriter, venue.Uri);
             if (venue.Image != null)
                 this.Write(xmlWriter, venue.Image);
+            this._WriteEndElement(xmlWriter);
         }
 
         public override void Write
@@ -425,6 +446,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
             string Namespace
             )
         {
+            if (uri == null)
+                return;
             xmlWriter.WriteElementString
                 (
                 "url",
@@ -528,7 +551,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteXsiTypeAttribute(xmlWriter, provider.XsiTypeValue, provider.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, provider.XmlLanguage);
             bool outputIdentifier = false;
-            foreach (Identifier identifier in provider.Identifiers)
+            foreach (IIdentifier identifier in provider.Identifiers)
             {
                 if (identifier == null)
                     continue;

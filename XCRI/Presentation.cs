@@ -15,7 +15,8 @@ namespace XCRI
 
 		private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<XCRI.Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
-		private Uri __Uri = null;
+        private List<XCRI.Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
+        private Uri __Uri = null;
 		private Image __Image = null;
 		private DateTime? __Start = null;
 		private DateTime? __End = null;
@@ -57,6 +58,11 @@ namespace XCRI
 		{
 			get { return this.__Descriptions; }
 		}
+
+        protected List<Interfaces.ISubject> _Subjects
+        {
+            get { return this.__Subjects; }
+        }
 
 		protected Uri _Uri
 		{
@@ -241,10 +247,15 @@ namespace XCRI
 			get { return this._Titles; }
 		}
 
-		public IList<Interfaces.IDescription> Descriptions
-		{
-			get { return this._Descriptions; }
-		}
+        public IList<Interfaces.IDescription> Descriptions
+        {
+            get { return this._Descriptions; }
+        }
+
+        public IList<Interfaces.ISubject> Subjects
+        {
+            get { return this._Subjects; }
+        }
 
 		public Uri Uri
 		{

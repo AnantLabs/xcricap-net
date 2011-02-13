@@ -13,6 +13,7 @@ namespace XCRI.Interfaces
 
 		IList<ITitle> Titles { get; }
 		IList<IDescription> Descriptions { get; }
+        IList<ISubject> Subjects { get; }
 		Uri Uri { get; set; }
 		Image Image { get; set; }
 		DateTime? Start { get; set; }

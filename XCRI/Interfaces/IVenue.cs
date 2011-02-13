@@ -8,7 +8,9 @@ namespace XCRI.Interfaces
 	public interface IVenue : IAddress, IElement, IElementWithIdentifiers
 	{
 
-		string Title { get; set; }
+        IList<ITitle> Titles { get; }
+        IList<ISubject> Subjects { get; }
+        IList<IDescription> Descriptions { get; }
 		Uri Uri { get; set; }
 		Image Image { get; set; }
         /// <summary>
