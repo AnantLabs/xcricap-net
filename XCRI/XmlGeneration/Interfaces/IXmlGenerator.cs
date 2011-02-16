@@ -99,13 +99,6 @@ namespace XCRI.XmlGeneration.Interfaces
         void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            Uri uri,
-            string Namespace
-            );
-
-        void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IAddress address
             );
 

@@ -38,7 +38,7 @@ namespace XCRI.Interfaces
 		/// <summary>
 		/// An image element enabling images to be displayed by an aggregator.
 		/// </summary>
-		Image Image { get; set; }
+		IImage Image { get; set; }
 
 		/// <summary>
 		/// Retrieves the courses from the course provider's database.

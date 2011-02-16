@@ -229,13 +229,6 @@ namespace XCRI.XmlGeneration
         public abstract void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            Uri uri,
-            string Namespace
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IAddress address
             );
 
@@ -281,27 +274,17 @@ namespace XCRI.XmlGeneration
             XCRI.Interfaces.IProvider provider
             );
 
+        public abstract void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            ResourceStatus resourceStatus
+            );
+
         #endregion
 
         #region Methods
 
         #region Protected virtual
-
-        protected virtual void _Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            ResourceStatus resourceStatus
-            )
-        {
-            if (resourceStatus == ResourceStatus.Unknown)
-                return;
-            xmlWriter.WriteAttributeString
-                (
-                "recstatus",
-                Configuration.Namespaces.XCRICAP11NamespaceUri,
-                ((int)resourceStatus).ToString()
-                );
-        }
 
         protected virtual void _WriteXmlLanguageAttribute
             (

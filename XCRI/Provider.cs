@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XCRI.XmlBaseClasses;
+using XCRI.Interfaces;
 
 namespace XCRI
 {
@@ -20,7 +21,7 @@ namespace XCRI
 		private Uri __Url = null;
 		private long? __ReferenceNumber = null;
 		private Interfaces.IAddress __Address = null;
-		private Image __Image = null;
+        private IImage __Image = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<Interfaces.ICourse> __Courses = new List<Interfaces.ICourse>();
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
@@ -99,7 +100,7 @@ namespace XCRI
 			}
 		}
 
-		protected Image _Image
+        protected IImage _Image
 		{
 			get { return this.__Image; }
 			set
@@ -169,7 +170,7 @@ namespace XCRI
 		/// <summary>
 		/// An image element enabling images to be displayed by an aggregator.
 		/// </summary>
-		public Image Image
+        public IImage Image
 		{
 			get { return this._Image; }
 			set { this._Image = value; }
