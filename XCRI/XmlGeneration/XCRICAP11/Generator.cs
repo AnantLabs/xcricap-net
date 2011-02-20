@@ -155,29 +155,35 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 xmlWriter,
                 description.XmlLanguage
                 );
-            if (description.Href != null)
-                this._WriteAttribute
-                    (
-                    xmlWriter,
-                    "href",
-                    Configuration.Namespaces.XCRICAP11NamespaceUri,
-                    description.Href.ToString(),
-                    String.Empty
-                    );
-            this._WriteStartElement(xmlWriter, "div", Configuration.Namespaces.XHTMLNamespaceUri);
-            if (String.IsNullOrEmpty(description.Value))
-                return;
-            if (description.RenderRaw)
-                xmlWriter.WriteRaw
-                    (
-                    description.Value
-                    );
-            else
-                xmlWriter.WriteValue
-                    (
-                    description.Value
-                    );
-            this._WriteEndElement(xmlWriter);
+            switch (description.ContentType)
+            {
+                case DescriptionContentTypes.Href:
+                    if (description.Href != null)
+                        this._WriteAttribute
+                            (
+                            xmlWriter,
+                            "href",
+                            Configuration.Namespaces.XCRICAP11NamespaceUri,
+                            description.Href.ToString(),
+                            String.Empty
+                            );
+                    break;
+                case DescriptionContentTypes.XHTML:
+                    this._WriteStartElement(xmlWriter, "div", Configuration.Namespaces.XHTMLNamespaceUri);
+                    if (!String.IsNullOrEmpty(description.Value))
+                        xmlWriter.WriteRaw
+                            (
+                            description.Value
+                            );
+                    this._WriteEndElement(xmlWriter);
+                    break;
+                case DescriptionContentTypes.Text:
+                    xmlWriter.WriteValue
+                        (
+                        description.Value
+                        );
+                    break;
+            }
             this._WriteEndElement(xmlWriter);
         }
 

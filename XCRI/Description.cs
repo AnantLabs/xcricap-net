@@ -13,6 +13,7 @@ namespace XCRI
         #region Private
         
         private Uri __Href = null;
+        private XCRI.Interfaces.DescriptionContentTypes __ContentType = Interfaces.DescriptionContentTypes.Text;
         
         #endregion
 
@@ -31,6 +32,19 @@ namespace XCRI
             }
         }
 
+        protected XCRI.Interfaces.DescriptionContentTypes _ContentType
+        {
+            get { return this.__ContentType; }
+            set
+            {
+                if (this.__ContentType == value)
+                    return;
+                this.OnPropertyChanging("ContentType");
+                this.__ContentType = value;
+                this.OnPropertyChanged("ContentType");
+            }
+        }
+
         #endregion
 
         #region Public
@@ -39,6 +53,12 @@ namespace XCRI
         {
             get { return this._Href; }
             set { this._Href = value; }
+        }
+
+        public XCRI.Interfaces.DescriptionContentTypes ContentType
+        {
+            get { return this._ContentType; }
+            set { this._ContentType = value; }
         }
 
         #endregion
