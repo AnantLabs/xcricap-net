@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BA7A833-56BC-4900-8712-B12D530ECD99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XCRI</RootNamespace>
+    <AssemblyName>XCRI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="Catalog.cs" />
+    <Compile Include="QualificationLevel.cs" />
+    <Compile Include="QualificationType.cs" />
+    <Compile Include="QualificationAccreditedBy.cs" />
+    <Compile Include="QualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\IQualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\IQualificationAccreditedBy.cs" />
+    <Compile Include="Interfaces\IQualificationType.cs" />
+    <Compile Include="Interfaces\IQualificationLevel.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="StudyMode.cs" />
+    <Compile Include="AttendancePattern.cs" />
+    <Compile Include="AttendanceMode.cs" />
+    <Compile Include="Interfaces\IAttendanceMode.cs" />
+    <Compile Include="Interfaces\IAttendancePattern.cs" />
+    <Compile Include="Interfaces\IIdentifier.cs" />
+    <Compile Include="Interfaces\IStudyMode.cs" />
+    <Compile Include="Provider.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="Description.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Identifier.cs" />
+    <Compile Include="Interfaces\ICatalog.cs" />
+    <Compile Include="Interfaces\ICourse.cs" />
+    <Compile Include="Interfaces\IDescription.cs" />
+    <Compile Include="Interfaces\IElementWithIdentifiers.cs" />
+    <Compile Include="Interfaces\IImage.cs" />
+    <Compile Include="Interfaces\IProvider.cs" />
+    <Compile Include="Interfaces\IAddress.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="Interfaces\IQualification.cs" />
+    <Compile Include="Interfaces\ISubject.cs" />
+    <Compile Include="Interfaces\ITitle.cs" />
+    <Compile Include="Interfaces\IVenue.cs" />
+    <Compile Include="Interfaces\IElement.cs" />
+    <Compile Include="NamespaceList.cs" />
+    <Compile Include="NotifyBaseClass.cs" />
+    <Compile Include="Interfaces\IPresentation.cs" />
+    <Compile Include="Presentation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Qualification.cs" />
+    <Compile Include="ResourceStatus.cs" />
+    <Compile Include="Title.cs" />
+    <Compile Include="Venue.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendancePatternTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendanceModeTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendancePattern.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\AttendanceMode.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\StudyMode.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\Description.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\DescriptionTypes.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\ExtensionMethods.cs" />
+    <Compile Include="Vocabularies\XCRICAP11\Terms\StudyModeTypes.cs" />
+    <Compile Include="XCRIProfiles.cs" />
+    <Compile Include="XmlBaseClasses\ElementWithSingleValue.cs" />
+    <Compile Include="XmlBaseClasses\ElementWithIdentifiers.cs" />
+    <Compile Include="XmlBaseClasses\Element.cs" />
+    <Compile Include="XmlGeneration\Interfaces\IXmlGenerator.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />
+    <Compile Include="XmlGeneration\XmlGeneratorBase.cs" />
+    <Compile Include="XmlGeneration\XmlGeneratorFactory.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
