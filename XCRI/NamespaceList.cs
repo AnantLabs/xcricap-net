@@ -109,7 +109,14 @@ namespace XCRI
             XCRICAP11_All = XCRICAP11 | XCRICAP11Terms,
             UKRegisterOfLearningProviders = 8,
             Geolocation = 16,
-            LatestXCRIStandard = XCRICAP11_All,
+            LatestXCRIStandard = XCRICAP12_All,
+            XCRICAP12 = 32,
+            XCRICAP12Terms = 64,
+            MetadataForLearningOpportunities = 128,
+            DublinCore = 256,
+            DublinCoreTerms = 512,
+            CENEducationalCreditInformationModel = 1024,
+            XCRICAP12_All = XCRICAP12 | XCRICAP12Terms | MetadataForLearningOpportunities | DublinCore | DublinCoreTerms,
             All = XmlSchemaInstance | XCRICAP11_All | UKRegisterOfLearningProviders | LatestXCRIStandard
         }
 
