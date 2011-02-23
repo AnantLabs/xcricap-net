@@ -170,24 +170,4 @@ namespace XCRI
 
     }
 
-    public class QualificationLevel : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationLevel
-    {
-
-    }
-
-    public class QualificationType : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationType
-    {
-
-    }
-
-    public class QualificationAwardedBy : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationAwardedBy
-    {
-
-    }
-
-    public class QualificationAccreditedBy : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IQualificationAccreditedBy
-    {
-
-    }
-
 }

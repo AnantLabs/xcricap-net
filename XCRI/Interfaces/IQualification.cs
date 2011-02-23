@@ -27,20 +27,4 @@ namespace XCRI.Interfaces
 
 	}
 
-    public interface IQualificationLevel : IElementWithSingleValue<string>
-    {
-    }
-
-    public interface IQualificationType : IElementWithSingleValue<string>
-    {
-    }
-
-    public interface IQualificationAwardedBy : IElementWithSingleValue<string>
-    {
-    }
-
-    public interface IQualificationAccreditedBy : IElementWithSingleValue<string>
-    {
-    }
-
 }

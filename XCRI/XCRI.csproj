@@ -54,6 +54,14 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Catalog.cs" />
+    <Compile Include="QualificationLevel.cs" />
+    <Compile Include="QualificationType.cs" />
+    <Compile Include="QualificationAccreditedBy.cs" />
+    <Compile Include="QualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\IQualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\IQualificationAccreditedBy.cs" />
+    <Compile Include="Interfaces\IQualificationType.cs" />
+    <Compile Include="Interfaces\IQualificationLevel.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="StudyMode.cs" />
     <Compile Include="AttendancePattern.cs" />
@@ -100,6 +108,8 @@
     <Compile Include="Vocabularies\XCRICAP11\Terms\ExtensionMethods.cs" />
     <Compile Include="Vocabularies\XCRICAP11\Terms\StudyModeTypes.cs" />
     <Compile Include="XCRIProfiles.cs" />
+    <Compile Include="XmlBaseClasses\ElementWithSingleValue.cs" />
+    <Compile Include="XmlBaseClasses\ElementWithIdentifiers.cs" />
     <Compile Include="XmlBaseClasses\Element.cs" />
     <Compile Include="XmlGeneration\Interfaces\IXmlGenerator.cs" />
     <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />
