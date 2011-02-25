@@ -85,6 +85,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
                     xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString(true));
                 else
                     xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToXCRIString(true));
+            this.Write(xmlWriter, catalog.ResourceStatus); 
             foreach (XCRI.Interfaces.IIdentifier identifier in catalog.Identifiers)
                 this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
