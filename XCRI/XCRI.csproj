@@ -113,6 +113,7 @@
     <Compile Include="XmlBaseClasses\Element.cs" />
     <Compile Include="XmlGeneration\Interfaces\IXmlGenerator.cs" />
     <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />
+    <Compile Include="XmlGeneration\XCRICAP12\Generator.cs" />
     <Compile Include="XmlGeneration\XmlGeneratorBase.cs" />
     <Compile Include="XmlGeneration\XmlGeneratorFactory.cs" />
   </ItemGroup>

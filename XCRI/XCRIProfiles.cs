@@ -10,7 +10,13 @@ namespace XCRI
 	/// </summary>
 	public enum XCRIProfiles
 	{
-		// 1.1
-		XCRI_v1_1 = 1
+		/// <summary>
+		/// The XCRI-CAP 1.1 profile
+		/// </summary>
+		XCRI_v1_1 = 1,
+        /// <summary>
+        /// The XCRI-CAP 1.2 profile
+        /// </summary>
+        XCRI_v1_2 = 2
 	}
 }

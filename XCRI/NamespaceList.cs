@@ -71,24 +71,34 @@ namespace XCRI
 
         #region Public static
 
-        public static NamespaceList GetNamespaces()
-        {
-            return GetNamespaces(Namespaces.All);
-        }
-
         public static NamespaceList GetNamespaces(Namespaces namespacesToInclude)
         {
             NamespaceList list = new NamespaceList();
-            if((namespacesToInclude & Namespaces.XCRICAP11) > 0)
-                list.Add(Configuration.Namespaces.XCRICAP11NamespaceUri, String.Empty, @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
-            if ((namespacesToInclude & Namespaces.XCRICAP11Terms) > 0)
-                list.Add(Configuration.Namespaces.XCRICAP11TermsNamespaceUri, "terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
+            /* Generic */
             if ((namespacesToInclude & Namespaces.XmlSchemaInstance) > 0)
                 list.Add(Configuration.Namespaces.XmlSchemaInstanceNamespaceUri, "xsi", "");
             if ((namespacesToInclude & Namespaces.UKRegisterOfLearningProviders) > 0)
                 list.Add(Configuration.Namespaces.UKRegisterOfLearningProvidersNamespaceUri, "ukrlp", "http://www.craighawker.co.uk/xcri/validation/xsds/ukprn.xsd");
             if ((namespacesToInclude & Namespaces.Geolocation) > 0)
                 list.Add(Configuration.Namespaces.GeolocationNamespaceUri, "geo", "http://www.craighawker.co.uk/xcri/validation/xsds/geo.xsd");
+            /* XCRI-CAP 1.1 */
+            if((namespacesToInclude & Namespaces.XCRICAP11) > 0)
+                list.Add(Configuration.Namespaces.XCRICAP11NamespaceUri, "xcri11", @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
+            if ((namespacesToInclude & Namespaces.XCRICAP11Terms) > 0)
+                list.Add(Configuration.Namespaces.XCRICAP11TermsNamespaceUri, "xcri11terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
+            /* XCRI-CAP 1.2 */
+            if ((namespacesToInclude & Namespaces.XCRICAP12) > 0)
+                list.Add(Configuration.Namespaces.XCRICAP12NamespaceUri, "xcri12", @"http://www.xcri.org/svn/trunk/bindings/1.2/xcri_cap_1_2.xsd");
+            if ((namespacesToInclude & Namespaces.XCRICAP12Terms) > 0)
+                list.Add(Configuration.Namespaces.XCRICAP12TermsNamespaceUri, "xcri12terms", @"http://www.xcri.org/svn/trunk/bindings/1.2/xcri_cap_terms_1_2.xsd");
+            if ((namespacesToInclude & Namespaces.MetadataForLearningOpportunities) > 0)
+                list.Add(Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, "mlo", @"http://www.xcri.org/svn/trunk/bindings/1.2/mlo-strict.xsd");
+            if ((namespacesToInclude & Namespaces.DublinCore) > 0)
+                list.Add(Configuration.Namespaces.DublinCoreNamespaceUri, "dc", @"http://www.xcri.org/svn/trunk/bindings/1.2/dc.xsd");
+            if ((namespacesToInclude & Namespaces.DublinCoreTerms) > 0)
+                list.Add(Configuration.Namespaces.DublinCoreTermsNamespaceUri, "dcterms", @"http://www.xcri.org/svn/trunk/bindings/1.2/dcterms.xsd");
+            if ((namespacesToInclude & Namespaces.CENEducationalCreditInformationModel) > 0)
+                list.Add(Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri, "credit", @"http://www.xcri.org/svn/trunk/bindings/1.2/educationalcredit.xsd");
             return list;
         }
 
@@ -102,22 +112,34 @@ namespace XCRI
 
         public enum Namespaces
         {
+            /// <summary>
+            /// No namespaces (populate manually)
+            /// </summary>
             None = 0,
             XmlSchemaInstance = 1,
-            XCRICAP11 = 2,
-            XCRICAP11Terms = 4,
-            XCRICAP11_All = XCRICAP11 | XCRICAP11Terms,
             UKRegisterOfLearningProviders = 8,
             Geolocation = 16,
-            LatestXCRIStandard = XCRICAP12_All,
+            /// <summary>
+            /// Common (base) namespaces
+            /// </summary>
+            Common = XmlSchemaInstance | Geolocation | UKRegisterOfLearningProviders,
+            XCRICAP11 = 2,
+            XCRICAP11Terms = 4,
+            /// <summary>
+            /// All namespaces used during typical XCRI-CAP 1.1 document generation
+            /// </summary>
+            XCRICAP11_All = XCRICAP11 | XCRICAP11Terms | Common,
             XCRICAP12 = 32,
             XCRICAP12Terms = 64,
             MetadataForLearningOpportunities = 128,
             DublinCore = 256,
             DublinCoreTerms = 512,
             CENEducationalCreditInformationModel = 1024,
-            XCRICAP12_All = XCRICAP12 | XCRICAP12Terms | MetadataForLearningOpportunities | DublinCore | DublinCoreTerms,
-            All = XmlSchemaInstance | XCRICAP11_All | UKRegisterOfLearningProviders | LatestXCRIStandard
+            /// <summary>
+            /// All namespaces used during typical XCRI-CAP 1.2 document generation
+            /// </summary>
+            XCRICAP12_All = XCRICAP12 | XCRICAP12Terms | MetadataForLearningOpportunities
+                | DublinCore | DublinCoreTerms | Common
         }
 
         #endregion

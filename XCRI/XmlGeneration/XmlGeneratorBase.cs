@@ -28,7 +28,7 @@ namespace XCRI.XmlGeneration
 
         #region Private
 
-        private NamespaceList __Namespaces = NamespaceList.GetNamespaces();
+        private NamespaceList __Namespaces = NamespaceList.GetNamespaces(NamespaceList.Namespaces.None);
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
         private IElement __RootElement = null;
         private bool __WrittenRootNode = false;
@@ -401,7 +401,11 @@ namespace XCRI.XmlGeneration
                     {
                         if (String.IsNullOrEmpty(ns.NamespaceUri) == true)
                             continue;
-                        if (String.IsNullOrEmpty(ns.Prefix) == false)
+                        if (
+                            (String.IsNullOrEmpty(ns.Prefix) == false)
+                            && 
+                            (ns.NamespaceUri != elementNamespace)
+                            )
                             xmlWriter.WriteAttributeString("xmlns", ns.Prefix, null, ns.NamespaceUri);
                         if (String.IsNullOrEmpty(ns.XSDLocation) == false)
                             schemaLocation.AppendFormat("{0} {1} ", ns.NamespaceUri, ns.XSDLocation);

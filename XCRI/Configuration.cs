@@ -73,6 +73,54 @@ namespace XCRI
                 get { return @"http://www.w3.org/2001/XMLSchema-instance"; }
             }
 
+            /// <summary>
+            /// The namespace (as a URI) of the XCRICAP 1.2 vocabulary
+            /// </summary>
+            public static string XCRICAP12NamespaceUri
+            {
+                get { return @"http://xcri.org/profiles/1.2/catalog"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the XCRICAP 1.2 Terms vocabulary
+            /// </summary>
+            public static string XCRICAP12TermsNamespaceUri
+            {
+                get { return @"http://xcri.org/profiles/1.2/catalog/terms"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the Metadata for Learning Opportunities vocabulary
+            /// </summary>
+            public static string MetadataForLearningOpportunitiesNamespaceUri
+            {
+                get { return @"http://purl.org/net/mlo"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the Dublin Core vocabulary
+            /// </summary>
+            public static string DublinCoreNamespaceUri
+            {
+                get { return @"http://purl.org/dc/elements/1.1/"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the Dublin Core Terms vocabulary
+            /// </summary>
+            public static string DublinCoreTermsNamespaceUri
+            {
+                get { return @"http://purl.org/dc/terms/"; }
+            }
+
+            /// <summary>
+            /// The namespace (as a URI) of the CEN Educational Credit Information Model (CWA 16077:2010) vocabulary
+            /// </summary>
+            public static string CENEducationalCreditInformationModelNamespaceUri
+            {
+                get { return @"http://purl.org/net/cm"; }
+            }
+
         }
 
 	}
