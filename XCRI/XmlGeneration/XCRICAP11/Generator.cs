@@ -18,6 +18,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
         internal Generator()
             : base()
         {
+            base._Namespaces = NamespaceList.GetNamespaces(NamespaceList.Namespaces.XCRICAP11_All);
         }
 
         #endregion
@@ -76,14 +77,14 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteStartElement(xmlWriter, "catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (catalog.Generated.HasValue == false)
                 if (String.IsNullOrEmpty(xmlWriter.LookupPrefix(Configuration.Namespaces.XCRICAP11NamespaceUri)))
-                    xmlWriter.WriteAttributeString("generated", DateTime.Now.ToXCRIString());
+                    xmlWriter.WriteAttributeString("generated", DateTime.Now.ToXCRIString(true));
                 else
-                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, DateTime.Now.ToXCRIString());
+                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, DateTime.Now.ToXCRIString(true));
             else
                 if (String.IsNullOrEmpty(xmlWriter.LookupPrefix(Configuration.Namespaces.XCRICAP11NamespaceUri)))
-                    xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString());
+                    xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString(true));
                 else
-                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToXCRIString());
+                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToXCRIString(true));
             foreach (XCRI.Interfaces.IIdentifier identifier in catalog.Identifiers)
                 this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
@@ -404,9 +405,9 @@ namespace XCRI.XmlGeneration.XCRICAP11
             if (presentation.Image != null)
                 this.Write(xmlWriter, presentation.Image);
             if (presentation.Start.HasValue)
-                xmlWriter.WriteElementString("start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString());
+                xmlWriter.WriteElementString("start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString(true));
             if (presentation.End.HasValue)
-                xmlWriter.WriteElementString("end", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.End.Value.ToXCRIString());
+                xmlWriter.WriteElementString("end", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.End.Value.ToXCRIString(true));
             if (String.IsNullOrEmpty(presentation.Duration) == false)
                 xmlWriter.WriteElementString("duration", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Duration);
             this.Write
