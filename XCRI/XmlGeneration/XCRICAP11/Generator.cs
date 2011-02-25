@@ -89,6 +89,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in catalog.Titles)
                 this.Write(xmlWriter, title);
+            foreach (XCRI.Interfaces.ISubject subject in catalog.Subjects)
+                this.Write(xmlWriter, subject);
             foreach (XCRI.Interfaces.IDescription description in catalog.Descriptions)
                 this.Write(xmlWriter, description);
             if (catalog.Url != null)
