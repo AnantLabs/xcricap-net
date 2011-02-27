@@ -12,8 +12,9 @@ namespace XCRI.Interfaces
 	{
 
 		IList<ITitle> Titles { get; }
+        IList<ISubject> Subjects { get; }
         IList<IDescription> Descriptions { get; }
-		Uri Url { get; set; }
+        Uri Url { get; set; }
         Image Image { get; set; }
         IQualificationLevel Level { get; set; }
         IQualificationType Type { get; set; }

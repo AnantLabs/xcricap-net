@@ -7,7 +7,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI.XmlGeneration
 {
-    public abstract class XmlGeneratorBase : NotifyBaseClass, Interfaces.IXmlGenerator
+    public abstract class XmlGeneratorBase : NotifyBaseClass , Interfaces.IXmlGenerator
 
     {
 
