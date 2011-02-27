@@ -17,6 +17,7 @@ namespace XCRI
         private Interfaces.IQualificationType __Type = null;
         private Interfaces.IQualificationLevel __Level = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
+        private List<Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
         private List<Interfaces.IQualificationAwardedBy> __AwardedBy = new List<Interfaces.IQualificationAwardedBy>();
         private List<Interfaces.IQualificationAccreditedBy> __AccreditedBy = new List<Interfaces.IQualificationAccreditedBy>();
@@ -65,6 +66,11 @@ namespace XCRI
         protected List<Interfaces.ITitle> _Titles
         {
             get { return this.__Titles; }
+        }
+
+        protected List<Interfaces.ISubject> _Subjects
+        {
+            get { return this.__Subjects; }
         }
 
         protected List<Interfaces.IDescription> _Descriptions
@@ -125,6 +131,11 @@ namespace XCRI
         public IList<Interfaces.ITitle> Titles
         {
             get { return this._Titles; }
+        }
+
+        public IList<Interfaces.ISubject> Subjects
+        {
+            get { return this._Subjects; }
         }
 
         public IList<Interfaces.IDescription> Descriptions

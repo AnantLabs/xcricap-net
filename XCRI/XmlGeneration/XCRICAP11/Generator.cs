@@ -301,6 +301,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in qualification.Titles)
                 this.Write(xmlWriter, title);
+            foreach (XCRI.Interfaces.ISubject subject in qualification.Subjects)
+                this.Write(xmlWriter, subject);
             foreach (XCRI.Interfaces.IDescription description in qualification.Descriptions)
                 this.Write(xmlWriter, description);
             if (qualification.Url != null)
@@ -554,8 +556,6 @@ namespace XCRI.XmlGeneration.XCRICAP11
             )
         {
             if (image == null)
-                return;
-            if (image.Source == null)
                 return;
             this._WriteStartElement(xmlWriter, "image", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._WriteXsiTypeAttribute(xmlWriter, image.XsiTypeValue, image.XsiTypeValueNamespace);
