@@ -5,10 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IImage : IElement
+    public interface IImage : XCRICAP11.IImage
     {
-        Uri Source { get; set; }
-        string Title { get; set; }
-        string Alt { get; set; }
     }
 }

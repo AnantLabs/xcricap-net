@@ -6,7 +6,7 @@ using XCRI.XmlBaseClasses;
 
 namespace XCRI
 {
-	public class Presentation : ElementWithIdentifiers, Interfaces.IPresentation
+	public class Presentation : Element, Interfaces.IPresentation
 	{
 
 		#region Properties and Fields
@@ -16,8 +16,8 @@ namespace XCRI
 		private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<XCRI.Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
         private List<XCRI.Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
-        private Uri __Uri = null;
-		private Image __Image = null;
+        private Uri __Url = null;
+		private Interfaces.IImage __Image = null;
 		private DateTime? __Start = null;
 		private DateTime? __End = null;
 		private string __Duration = String.Empty;
@@ -32,10 +32,16 @@ namespace XCRI
 		private string __EnquireTo = String.Empty;
         private string __ApplyTo = String.Empty;
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
 		#endregion
 
         #region Protected
+
+        protected IList<Interfaces.IIdentifier> _Identifiers
+        {
+            get { return this.__Identifiers; }
+        }
 
         protected ResourceStatus _ResourceStatus
         {
@@ -64,19 +70,19 @@ namespace XCRI
             get { return this.__Subjects; }
         }
 
-		protected Uri _Uri
+		protected Uri _Url
 		{
-			get { return this.__Uri; }
+			get { return this.__Url; }
 			set
 			{
-				if (this.__Uri == value) { return; }
-				this.OnPropertyChanging("Uri");
-				this.__Uri = value;
-				this.OnPropertyChanged("Uri");
+				if (this.__Url == value) { return; }
+				this.OnPropertyChanging("Url");
+				this.__Url = value;
+				this.OnPropertyChanged("Url");
 			}
 		}
 
-		protected Image _Image
+        protected Interfaces.IImage _Image
 		{
 			get { return this.__Image; }
 			set
@@ -236,6 +242,11 @@ namespace XCRI
 
         #region IPresentation Members
 
+        public IList<Interfaces.IIdentifier> Identifiers
+        {
+            get { return this._Identifiers; }
+        }
+
         public ResourceStatus ResourceStatus
         {
             get { return this._ResourceStatus; }
@@ -257,13 +268,13 @@ namespace XCRI
             get { return this._Subjects; }
         }
 
-		public Uri Uri
+		public Uri Url
 		{
-			get { return this._Uri; }
-			set { this._Uri = value; }
+			get { return this._Url; }
+			set { this._Url = value; }
 		}
 
-		public Image Image
+        public Interfaces.IImage Image
 		{
 			get { return this._Image; }
 			set { this._Image = value; }

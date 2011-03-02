@@ -54,6 +54,27 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Catalog.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IAddress.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IAttendanceMode.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IAttendancePattern.cs" />
+    <Compile Include="Interfaces\XCRICAP11\ICatalog.cs" />
+    <Compile Include="Interfaces\XCRICAP11\ICourse.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IDescription.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IGeneric.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IIdentifier.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IImage.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IOrganisation.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IPresentation.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IProvider.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IQualification.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IQualificationAccreditedBy.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IQualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IQualificationLevel.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IQualificationType.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IStudyMode.cs" />
+    <Compile Include="Interfaces\XCRICAP11\ISubject.cs" />
+    <Compile Include="Interfaces\XCRICAP11\ITitle.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IVenue.cs" />
     <Compile Include="QualificationLevel.cs" />
     <Compile Include="QualificationType.cs" />
     <Compile Include="QualificationAccreditedBy.cs" />
@@ -79,7 +100,6 @@
     <Compile Include="Interfaces\ICatalog.cs" />
     <Compile Include="Interfaces\ICourse.cs" />
     <Compile Include="Interfaces\IDescription.cs" />
-    <Compile Include="Interfaces\IElementWithIdentifiers.cs" />
     <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\IProvider.cs" />
     <Compile Include="Interfaces\IAddress.cs" />
@@ -109,7 +129,6 @@
     <Compile Include="Vocabularies\XCRICAP11\Terms\StudyModeTypes.cs" />
     <Compile Include="XCRIProfiles.cs" />
     <Compile Include="XmlBaseClasses\ElementWithSingleValue.cs" />
-    <Compile Include="XmlBaseClasses\ElementWithIdentifiers.cs" />
     <Compile Include="XmlBaseClasses\Element.cs" />
     <Compile Include="XmlGeneration\Interfaces\IXmlGenerator.cs" />
     <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />

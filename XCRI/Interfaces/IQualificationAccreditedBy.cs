@@ -6,7 +6,7 @@ using System.Text;
 namespace XCRI.Interfaces
 {
 
-    public interface IQualificationAccreditedBy : IElementWithSingleValue<string>
+    public interface IQualificationAccreditedBy : XCRICAP11.IQualificationAccreditedBy
     {
     }
 

@@ -22,9 +22,6 @@ namespace XCRI
 		private string __Postcode = String.Empty;
 		private decimal? __Latitude = null;
 		private decimal? __Longitude = null;
-		private string __PhoneNumber = String.Empty;
-		private string __FaxNumber = String.Empty;
-		private string __EmailAddress = String.Empty;
 
 		#endregion
 
@@ -90,42 +87,6 @@ namespace XCRI
 			}
 		}
 
-		protected string _PhoneNumber
-		{
-			get { return this.__PhoneNumber; }
-			set
-			{
-				if (this.__PhoneNumber == value) { return; }
-				this.OnPropertyChanging("PhoneNumber");
-				this.__PhoneNumber = value;
-				this.OnPropertyChanged("PhoneNumber");
-			}
-		}
-
-		protected string _FaxNumber
-		{
-			get { return this.__FaxNumber; }
-			set
-			{
-				if (this.__FaxNumber == value) { return; }
-				this.OnPropertyChanging("FaxNumber");
-				this.__FaxNumber = value;
-				this.OnPropertyChanged("FaxNumber");
-			}
-		}
-
-		protected string _EmailAddress
-		{
-			get { return this.__EmailAddress; }
-			set
-			{
-				if (this.__EmailAddress == value) { return; }
-				this.OnPropertyChanging("EmailAddress");
-				this.__EmailAddress = value;
-				this.OnPropertyChanged("EmailAddress");
-			}
-		}
-
 		#endregion
 
 		#endregion
@@ -175,33 +136,6 @@ namespace XCRI
 		{
 			get { return this._Longitude; }
 			set { this._Longitude = value; }
-		}
-
-		/// <summary>
-		/// The phone number element of the address
-		/// </summary>
-		public string PhoneNumber
-		{
-			get { return this._PhoneNumber; }
-			set { this._PhoneNumber = value; }
-		}
-
-		/// <summary>
-		/// The fax number element of the address
-		/// </summary>
-		public string FaxNumber
-		{
-			get { return this._FaxNumber; }
-			set { this._FaxNumber = value; }
-		}
-
-		/// <summary>
-		/// The email address element of the address
-		/// </summary>
-		public string EmailAddress
-		{
-			get { return this._EmailAddress; }
-			set { this._EmailAddress = value; }
 		}
 
 		#endregion

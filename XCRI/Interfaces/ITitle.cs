@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface ITitle : IElementWithSingleValue<string>
+    public interface ITitle :  XCRICAP11.ITitle 
     {
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI.Interfaces
+namespace XCRI.Interfaces.XCRICAP11
 {
 
-    public interface IQualificationType : XCRICAP11.IQualificationType
+    public interface IQualificationLevel : IElementWithSingleValue<string>
     {
     }
 
