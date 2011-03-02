@@ -7,7 +7,7 @@ using XCRI.Interfaces;
 
 namespace XCRI
 {
-    public class Catalog : ElementWithIdentifiers, Interfaces.ICatalog
+    public class Catalog : Element, Interfaces.ICatalog
     {
 
         #region Properties and Fields
@@ -20,12 +20,20 @@ namespace XCRI
         private List<ISubject> __Subjects = new List<ISubject>();
         private List<IDescription> __Descriptions = new List<IDescription>();
         private Uri __Url = null;
-        private Image __Image = new Image();
+        private Interfaces.IImage __Image = null;
         private List<IProvider> __Providers = new List<IProvider>();
+
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
         #endregion
 
         #region Protected
+
+        protected IList<Interfaces.IIdentifier> _Identifiers
+        {
+            get { return this.__Identifiers; }
+        }
+
 
         protected DateTime? _Generated
         {
@@ -81,7 +89,7 @@ namespace XCRI
             }
         }
 
-        protected Image _Image
+        protected Interfaces.IImage _Image
         {
             get { return this.__Image; }
             set
@@ -104,6 +112,11 @@ namespace XCRI
         #endregion
 
         #region ICatalog Members
+
+        public IList<Interfaces.IIdentifier> Identifiers
+        {
+            get { return this._Identifiers; }
+        }
 
         public DateTime? Generated
         {
@@ -138,7 +151,7 @@ namespace XCRI
             set { this._Url = value; }
         }
 
-        public Image Image
+        public Interfaces.IImage Image
         {
             get { return this._Image; }
             set { this._Image = value; }

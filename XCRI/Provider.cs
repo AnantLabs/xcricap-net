@@ -11,7 +11,7 @@ namespace XCRI
 	/// Provides a base implementation of Interfaces.IProvider.
 	/// Represents the provider element in the XCRI standard.
 	/// </summary>
-	public class Provider : ElementWithIdentifiers, Interfaces.IProvider
+	public class Provider : Element, Interfaces.IProvider
 	{
 
 		#region Properties and Fields
@@ -27,10 +27,19 @@ namespace XCRI
         private List<Interfaces.IDescription> __Descriptions = new List<Interfaces.IDescription>();
         private List<Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
+        private string __PhoneNumber = String.Empty;
+        private string __FaxNumber = String.Empty;
+        private string __EmailAddress = String.Empty;
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
 		#endregion
 
         #region Protected
+
+        protected IList<Interfaces.IIdentifier> _Identifiers
+        {
+            get { return this.__Identifiers; }
+        }
 
         protected ResourceStatus _ResourceStatus
         {
@@ -101,22 +110,63 @@ namespace XCRI
 		}
 
         protected IImage _Image
-		{
-			get { return this.__Image; }
-			set
-			{
-				if (this.__Image == value) { return; }
-				this.OnPropertyChanging("Image");
-				this.__Image = value;
-				this.OnPropertyChanged("Image");
-			}
-		}
+        {
+            get { return this.__Image; }
+            set
+            {
+                if (this.__Image == value) { return; }
+                this.OnPropertyChanging("Image");
+                this.__Image = value;
+                this.OnPropertyChanged("Image");
+            }
+        }
+
+        protected string _PhoneNumber
+        {
+            get { return this.__PhoneNumber; }
+            set
+            {
+                if (this.__PhoneNumber == value) { return; }
+                this.OnPropertyChanging("PhoneNumber");
+                this.__PhoneNumber = value;
+                this.OnPropertyChanged("PhoneNumber");
+            }
+        }
+
+        protected string _FaxNumber
+        {
+            get { return this.__FaxNumber; }
+            set
+            {
+                if (this.__FaxNumber == value) { return; }
+                this.OnPropertyChanging("FaxNumber");
+                this.__FaxNumber = value;
+                this.OnPropertyChanged("FaxNumber");
+            }
+        }
+
+        protected string _EmailAddress
+        {
+            get { return this.__EmailAddress; }
+            set
+            {
+                if (this.__EmailAddress == value) { return; }
+                this.OnPropertyChanging("EmailAddress");
+                this.__EmailAddress = value;
+                this.OnPropertyChanged("EmailAddress");
+            }
+        }
 
 		#endregion
 
 		#endregion
 
         #region IProvider Members
+
+        public IList<Interfaces.IIdentifier> Identifiers
+        {
+            get { return this._Identifiers; }
+        }
 
         public ResourceStatus ResourceStatus
         {
@@ -184,7 +234,25 @@ namespace XCRI
             get { return this._Courses; }
         }
 
-		#endregion
+        public string PhoneNumber
+        {
+            get { return this._PhoneNumber; }
+            set { this._PhoneNumber = value; }
+        }
 
-	}
+        public string FaxNumber
+        {
+            get { return this._FaxNumber; }
+            set { this._FaxNumber = value; }
+        }
+
+        public string EmailAddress
+        {
+            get { return this._EmailAddress; }
+            set { this._EmailAddress = value; }
+        }
+
+        #endregion
+
+    }
 }

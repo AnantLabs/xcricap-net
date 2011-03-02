@@ -5,8 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IStudyMode : IElementWithSingleValue<string>
+    public interface IStudyMode : XCRICAP11.IStudyMode
     {
-        
     }
 }

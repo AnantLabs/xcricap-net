@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI.Interfaces
+namespace XCRI.Interfaces.XCRICAP11
 {
-    public interface ISubject : XCRICAP11.ISubject
+    public interface ITitle : IElementWithSingleValue<string>
     {
     }
 }

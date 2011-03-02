@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI
 {
-    public class Qualification : XmlBaseClasses.ElementWithIdentifiers, Interfaces.IQualification
+    public class Qualification : XmlBaseClasses.Element, Interfaces.IQualification
     {
 
         #region Properties and Fields
@@ -13,7 +13,7 @@ namespace XCRI
         #region Private
 
         private Uri __Url = null;
-        private Image __Image = null;
+        private Interfaces.IImage __Image = null;
         private Interfaces.IQualificationType __Type = null;
         private Interfaces.IQualificationLevel __Level = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
@@ -22,10 +22,16 @@ namespace XCRI
         private List<Interfaces.IQualificationAwardedBy> __AwardedBy = new List<Interfaces.IQualificationAwardedBy>();
         private List<Interfaces.IQualificationAccreditedBy> __AccreditedBy = new List<Interfaces.IQualificationAccreditedBy>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
+        private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
         #endregion
 
         #region Protected
+
+        protected IList<Interfaces.IIdentifier> _Identifiers
+        {
+            get { return this.__Identifiers; }
+        }
 
         protected ResourceStatus _ResourceStatus
         {
@@ -88,7 +94,7 @@ namespace XCRI
             get { return this.__AccreditedBy; }
         }
 
-        protected Image _Image
+        protected Interfaces.IImage _Image
         {
             get { return this.__Image; }
             set
@@ -114,13 +120,14 @@ namespace XCRI
 
         #endregion
 
-        #region Public
-
-        #endregion
-
         #endregion
 
         #region IQualification Members
+
+        public IList<Interfaces.IIdentifier> Identifiers
+        {
+            get { return this._Identifiers; }
+        }
 
         public ResourceStatus ResourceStatus
         {
@@ -149,7 +156,7 @@ namespace XCRI
             set { this._Url = value; }
         }
 
-        public Image Image
+        public Interfaces.IImage Image
         {
             get { return this._Image; }
             set { this._Image = value; }
