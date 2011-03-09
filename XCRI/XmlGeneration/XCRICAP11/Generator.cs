@@ -35,24 +35,32 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IGeneric genericItem
             )
         {
+            if (genericItem == null)
+                throw new ArgumentNullException("genericItem");
+            if ((genericItem.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this.Write(xmlWriter, genericItem.ResourceStatus);
             this._WriteXsiTypeAttribute(xmlWriter, genericItem.XsiTypeValue, genericItem.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, genericItem.XmlLanguage);
             foreach (XCRI.Interfaces.IIdentifier identifier in genericItem.Identifiers)
-                this.Write(xmlWriter, identifier);
+                if (identifier != null)
+                    this.Write(xmlWriter, identifier);
             foreach (XCRI.Interfaces.ITitle title in genericItem.Titles)
-                this.Write(xmlWriter, title);
+                if (title != null)
+                    this.Write(xmlWriter, title);
             foreach (XCRI.Interfaces.ISubject subject in genericItem.Subjects)
-                this.Write(xmlWriter, subject);
+                if (subject != null)
+                    this.Write(xmlWriter, subject);
             foreach (XCRI.Interfaces.IDescription description in genericItem.Descriptions)
-                this.Write(xmlWriter, description);
+                if (description != null)
+                    this.Write(xmlWriter, description);
             if (genericItem.Url != null)
                 this.Write(xmlWriter, genericItem.Url);
             if (genericItem.Image != null)
                 this.Write(xmlWriter, genericItem.Image);
         }
 
-        public virtual void WriteXCRI11OrganisationItem
+        protected virtual void WriteXCRI11OrganisationItem
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.XCRICAP11.IOrganisation organisationItem
@@ -69,7 +77,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 xmlWriter.WriteElementString("email", Configuration.Namespaces.XCRICAP11NamespaceUri, organisationItem.EmailAddress);
         }
 
-        public virtual void WriteXCRI11Address
+        protected virtual void WriteXCRI11Address
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.XCRICAP11.IAddress addressItem
@@ -138,6 +146,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.ICatalog catalog
             )
         {
+            if (catalog == null)
+                throw new ArgumentNullException("catalog");
+            if ((catalog.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (catalog.Generated.HasValue == false)
                 if (String.IsNullOrEmpty(xmlWriter.LookupPrefix(Configuration.Namespaces.XCRICAP11NamespaceUri)))
@@ -151,7 +163,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
                     xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToXCRIString(true));
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)catalog);
             foreach (XCRI.Interfaces.IProvider provider in catalog.Providers)
-                this.Write(xmlWriter, provider);
+                if (provider != null)
+                    this.Write(xmlWriter, provider);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -161,6 +174,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IIdentifier identifier
             )
         {
+            if (identifier == null)
+                throw new ArgumentNullException("identifier");
+            if ((identifier.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -180,6 +197,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.ITitle title
             )
         {
+            if (title == null)
+                throw new ArgumentNullException("title");
+            if ((title.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -199,6 +220,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IDescription description
             )
         {
+            if (description == null)
+                throw new ArgumentNullException("description");
+            if ((description.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "description", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._WriteXsiTypeAttribute
                 (
@@ -249,6 +274,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.ISubject subject
             )
         {
+            if (subject == null)
+                throw new ArgumentNullException("subject");
+            if ((subject.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -268,6 +297,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IQualificationLevel qualLevel
             )
         {
+            if (qualLevel == null)
+                throw new ArgumentNullException("qualLevel");
+            if ((qualLevel.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -287,6 +320,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IQualificationType qualType
             )
         {
+            if (qualType == null)
+                throw new ArgumentNullException("qualType");
+            if ((qualType.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -306,6 +343,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IQualificationAwardedBy awardedBy
             )
         {
+            if (awardedBy == null)
+                throw new ArgumentNullException("awardedBy");
+            if ((awardedBy.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -325,6 +366,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IQualificationAccreditedBy accreditedBy
             )
         {
+            if (accreditedBy == null)
+                throw new ArgumentNullException("accreditedBy");
+            if ((accreditedBy.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             base._Write
                 (
                 xmlWriter,
@@ -344,6 +389,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IQualification qualification
             )
         {
+            if (qualification == null)
+                throw new ArgumentNullException("qualification");
+            if ((qualification.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "qualification", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)qualification);
             if (qualification.Level != null)
@@ -351,9 +400,11 @@ namespace XCRI.XmlGeneration.XCRICAP11
             if (qualification.Type != null)
                 this.Write(xmlWriter, qualification.Type);
             foreach (XCRI.Interfaces.IQualificationAwardedBy awardedBy in qualification.AwardedBy)
-                this.Write(xmlWriter, awardedBy);
+                if (awardedBy != null)
+                    this.Write(xmlWriter, awardedBy);
             foreach (XCRI.Interfaces.IQualificationAccreditedBy accreditedBy in qualification.AccreditedBy)
-                this.Write(xmlWriter, accreditedBy);
+                if (accreditedBy != null)
+                    this.Write(xmlWriter, accreditedBy);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -363,6 +414,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IStudyMode studyMode
             )
         {
+            if (studyMode == null)
+                throw new ArgumentNullException("studyMode");
+            if ((studyMode.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             string value = studyMode.GetElementValueAsString();
             if(String.IsNullOrEmpty(value))
                 return;
@@ -385,6 +440,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IAttendanceMode attendanceMode
             )
         {
+            if (attendanceMode == null)
+                throw new ArgumentNullException("attendanceMode");
+            if ((attendanceMode.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             string value = attendanceMode.GetElementValueAsString();
             if (String.IsNullOrEmpty(value))
                 return;
@@ -407,6 +466,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IAttendancePattern attendancePattern
             )
         {
+            if (attendancePattern == null)
+                throw new ArgumentNullException("attendancePattern");
+            if ((attendancePattern.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             string value = attendancePattern.GetElementValueAsString();
             if (String.IsNullOrEmpty(value))
                 return;
@@ -429,6 +492,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IPresentation presentation
             )
         {
+            if (presentation == null)
+                throw new ArgumentNullException("presentation");
+            if ((presentation.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "presentation", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)presentation);
             if (presentation.Start.HasValue)
@@ -477,6 +544,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IVenue venue
             )
         {
+            if (venue == null)
+                throw new ArgumentNullException("venue");
+            if ((venue.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "venue", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11OrganisationItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IOrganisation)venue);
             this._WriteEndElement(xmlWriter);
@@ -489,7 +560,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
             )
         {
             if (uri == null)
-                return;
+                throw new ArgumentNullException("uri");
             xmlWriter.WriteElementString
                 (
                 "url",
@@ -504,6 +575,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IAddress address
             )
         {
+            if (address == null)
+                throw new ArgumentNullException("address");
+            if ((address.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.IAddress)address);
         }
 
@@ -513,6 +588,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.ICourse course
             )
         {
+            if (course == null)
+                throw new ArgumentNullException("course");
+            if ((course.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "course", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)course);
             foreach (XCRI.Interfaces.IQualification qualification in course.Qualifications)
@@ -529,6 +608,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
             )
         {
             if (image == null)
+                throw new ArgumentNullException("image");
+            if ((image.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
                 return;
             this._WriteStartElement(xmlWriter, "image", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this._WriteXsiTypeAttribute(xmlWriter, image.XsiTypeValue, image.XsiTypeValueNamespace);
@@ -557,6 +638,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             XCRI.Interfaces.XCRICAP11.IProvider provider
             )
         {
+            if (provider == null)
+                throw new ArgumentNullException("provider");
+            if ((provider.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
+                return;
             this._WriteStartElement(xmlWriter, "provider", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (
                 (provider.Identifiers.Count == 0)
