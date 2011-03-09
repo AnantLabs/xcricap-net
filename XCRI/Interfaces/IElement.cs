@@ -32,6 +32,14 @@ namespace XCRI.Interfaces
         /// The language of the resource
         /// </summary>
         string XmlLanguage { get; set; }
+        /// <summary>
+        /// Which versions of the XCRI standard this element is compatible with.
+        /// Use this when populating lists of, for example, Descriptions, and you wish to
+        /// only output some Description elements with XCRI 1.1 and some with XCRI 1.2 feeds.
+        /// Examples of such situations may be when using Description elements which are typed with
+        /// vocabularies that are not applicable for certain profile versions.
+        /// </summary>
+        XCRIProfiles CompatibleWith { get; set; }
 	}
     public interface IElementWithSingleValue : IElement
     {

@@ -7,7 +7,7 @@ namespace XCRI.Interfaces.XCRICAP11
 {
     public interface IOrganisation : IGeneric
     {
-        Interfaces.IAddress Address { get; set; }
+        Interfaces.ILocation Address { get; set; }
         string PhoneNumber { get; set; }
         string FaxNumber { get; set; }
         string EmailAddress { get; set; }

@@ -20,7 +20,7 @@ namespace XCRI
 
 		private Uri __Url = null;
 		private long? __ReferenceNumber = null;
-		private Interfaces.IAddress __Address = null;
+		private Interfaces.ILocation __Address = null;
         private IImage __Image = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<Interfaces.ICourse> __Courses = new List<Interfaces.ICourse>();
@@ -97,7 +97,7 @@ namespace XCRI
 			}
 		}
 
-		protected Interfaces.IAddress _Address
+		protected Interfaces.ILocation _Address
 		{
 			get { return this.__Address; }
 			set
@@ -211,7 +211,7 @@ namespace XCRI
 		/// <summary>
 		/// The main address of the course provider
 		/// </summary>
-		public XCRI.Interfaces.IAddress Address
+		public XCRI.Interfaces.ILocation Address
 		{
 			get { return this._Address; }
             set { this._Address = value; }

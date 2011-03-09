@@ -16,6 +16,7 @@ namespace XCRI.XmlBaseClasses
         private string __XsiTypeValue = String.Empty;
         private string __XsiTypeValueNamespace = String.Empty;
         private string __XmlLanguage = String.Empty;
+        private XCRIProfiles __CompatibleWith = XCRIProfiles.None;
 
         #endregion
 
@@ -31,6 +32,19 @@ namespace XCRI.XmlBaseClasses
                 this.OnPropertyChanging("XsiTypeValue");
                 this.__XsiTypeValue = value;
                 this.OnPropertyChanged("XsiTypeValue");
+            }
+        }
+
+        protected XCRIProfiles _CompatibleWith
+        {
+            get { return this.__CompatibleWith; }
+            set
+            {
+                if (this.__CompatibleWith == value)
+                    return;
+                this.OnPropertyChanging("CompatibleWith");
+                this.__CompatibleWith = value;
+                this.OnPropertyChanged("CompatibleWith");
             }
         }
 
@@ -68,6 +82,12 @@ namespace XCRI.XmlBaseClasses
         {
             get { return this._XsiTypeValue; }
             set { this._XsiTypeValue = value; }
+        }
+
+        public XCRIProfiles CompatibleWith
+        {
+            get { return this._CompatibleWith; }
+            set { this._CompatibleWith = value; }
         }
 
         public string XsiTypeValueNamespace

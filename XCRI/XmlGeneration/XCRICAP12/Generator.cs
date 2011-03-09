@@ -27,210 +27,23 @@ namespace XCRI.XmlGeneration.XCRICAP12
 
         #region Public override
 
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            ResourceStatus resourceStatus
-            )
-        {
-            /* Delta update pattern not supported in 1.2, so far as I can tell */
-            return;
-        }
-
         public override void Generate
             (
             System.Xml.XmlWriter xmlWriter
             )
         {
+            throw new NotImplementedException();
+            /*
             this._WrittenRootNode = false;
             xmlWriter.WriteStartDocument(true);
             if (this.RootElement is ICatalog)
-                this.Write(xmlWriter, this.RootElement as ICatalog);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP12.ICatalog);
             if (this.RootElement is IProvider)
-                this.Write(xmlWriter, this.RootElement as IProvider);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP12.IProvider);
             if (this.RootElement is ICourse)
-                this.Write(xmlWriter, this.RootElement as ICourse);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP12.ICourse);
             xmlWriter.Flush();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICatalog catalog
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IIdentifier identifier
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ITitle title
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IDescription description
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ISubject subject
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationLevel qualLevel
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationType qualType
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAwardedBy awardedBy
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualification qualification
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IStudyMode studyMode
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendanceMode attendanceMode
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendancePattern attendancePattern
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IPresentation presentation
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue venue
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            Uri uri
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAddress address
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICourse course
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IImage image
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IProvider provider
-            )
-        {
-            throw new NotImplementedException();
+            */
         }
 
         #endregion
@@ -265,11 +78,11 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 bool validType = false;
                 if (value == null)
                     validType = true;
-                if (value is ICatalog)
+                if (value is XCRI.Interfaces.XCRICAP12.ICatalog)
                     validType = true;
-                if (value is IProvider)
+                if (value is XCRI.Interfaces.XCRICAP12.IProvider)
                     validType = true;
-                if (value is ICourse)
+                if (value is XCRI.Interfaces.XCRICAP12.ICourse)
                     validType = true;
                 if (validType == false)
                     throw new NotSupportedException("The RootElement must be set to an ICatalog, IProvider or ICourse");

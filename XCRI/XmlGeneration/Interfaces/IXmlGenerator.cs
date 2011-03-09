@@ -28,8 +28,8 @@ namespace XCRI.XmlGeneration.Interfaces
             System.Text.StringBuilder stringBuilder
             );
 
+        /*
         // Write methods
-
         void Write
             (
             System.Xml.XmlWriter xmlWriter,
@@ -99,7 +99,7 @@ namespace XCRI.XmlGeneration.Interfaces
         void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAddress address
+            XCRI.Interfaces.ILocation address
             );
 
         void Write
@@ -149,5 +149,6 @@ namespace XCRI.XmlGeneration.Interfaces
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IProvider provider
             );
+        */
     }
 }

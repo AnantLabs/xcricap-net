@@ -89,9 +89,7 @@ namespace XCRI.XmlGeneration
 
         #endregion
 
-        #endregion
-
-        #region IXmlGenerator Members
+        #region Public
 
         public abstract IElement RootElement { get; set; }
 
@@ -105,6 +103,12 @@ namespace XCRI.XmlGeneration
         {
             get { return this._Namespaces; }
         }
+
+        #endregion
+
+        #endregion
+
+        #region IXmlGenerator Members
 
         public abstract void Generate
             (
@@ -143,24 +147,6 @@ namespace XCRI.XmlGeneration
             }
         }
 
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IStudyMode studyMode
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendanceMode attendanceMode
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendancePattern attendancePattern
-            );
-
         public void Generate
             (
             System.Text.StringBuilder stringBuilder
@@ -171,114 +157,6 @@ namespace XCRI.XmlGeneration
                 this.Generate(writer);
             }
         }
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IIdentifier identifier
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ITitle title
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IDescription description
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ISubject subject
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualification qualification
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IPresentation presentation
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue venue
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICatalog catalog
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            Uri uri
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAddress address
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICourse course
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IImage image
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationLevel qualLevel
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationType qualType
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAwardedBy awardedBy
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IProvider provider
-            );
-
-        public abstract void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            ResourceStatus resourceStatus
-            );
 
         #endregion
 

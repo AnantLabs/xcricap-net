@@ -6,7 +6,7 @@ using System.Text;
 namespace XCRI.XmlBaseClasses
 {
 
-    public class ElementWithSingleValue : Element, Interfaces.IElementWithSingleValue
+    public abstract class ElementWithSingleValue : Element, Interfaces.IElementWithSingleValue
     {
 
         #region Properties and Fields
@@ -66,7 +66,7 @@ namespace XCRI.XmlBaseClasses
 
     }
 
-    public class ElementWithSingleValue<T> : ElementWithSingleValue, Interfaces.IElementWithSingleValue<T>
+    public abstract class ElementWithSingleValue<T> : ElementWithSingleValue, Interfaces.IElementWithSingleValue<T>
     {
 
         #region Properties and Fields

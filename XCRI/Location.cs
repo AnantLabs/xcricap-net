@@ -10,7 +10,7 @@ namespace XCRI
 	/// Provides a base implementation of Interfaces.IAddress.
 	/// Represents common address elements within the XCRI feed.
 	/// </summary>
-    public class Address : Element, Interfaces.IAddress
+    public class Location : Element, Interfaces.ILocation
 	{
 
 		#region Properties and Fields

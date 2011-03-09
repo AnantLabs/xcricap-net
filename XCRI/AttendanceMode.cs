@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI
 {
-    public class AttendanceMode : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IAttendanceMode
+    public class AttendanceMode : XmlBaseClasses.ElementWithSingleValue<string>, XCRI.Interfaces.IAttendanceMode
     {
 
     }

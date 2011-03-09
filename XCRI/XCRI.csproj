@@ -52,8 +52,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IIdentifier.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ISubject.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ITitle.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Catalog.cs" />
+    <Compile Include="Interfaces\ICourseLevel.cs" />
+    <Compile Include="Interfaces\IType.cs" />
+    <Compile Include="Interfaces\IAbstract.cs" />
+    <Compile Include="Interfaces\IApplicationProcedure.cs" />
+    <Compile Include="Interfaces\IAssessment.cs" />
+    <Compile Include="Interfaces\IContributor.cs" />
+    <Compile Include="Interfaces\ICredit.cs" />
+    <Compile Include="Interfaces\IEducationLevel.cs" />
+    <Compile Include="Interfaces\IEngagement.cs" />
+    <Compile Include="Interfaces\ILearningOutcome.cs" />
+    <Compile Include="Interfaces\IObjective.cs" />
+    <Compile Include="Interfaces\IPrerequisite.cs" />
+    <Compile Include="Interfaces\IRegulation.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAddress.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendanceMode.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendancePattern.cs" />
@@ -75,6 +91,20 @@
     <Compile Include="Interfaces\XCRICAP11\ISubject.cs" />
     <Compile Include="Interfaces\XCRICAP11\ITitle.cs" />
     <Compile Include="Interfaces\XCRICAP11\IVenue.cs" />
+    <Compile Include="Interfaces\XCRICAP12\EducationalCredit\ICredit.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IAttendanceMode.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IAttendancePattern.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ICatalog.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ICommonAndCommonDescriptiveElements.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ICommonElements.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ICourse.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IDescription.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IImage.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ILocation.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IPresentation.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IProvider.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IQualification.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IStudyMode.cs" />
     <Compile Include="QualificationLevel.cs" />
     <Compile Include="QualificationType.cs" />
     <Compile Include="QualificationAccreditedBy.cs" />
@@ -102,7 +132,7 @@
     <Compile Include="Interfaces\IDescription.cs" />
     <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\IProvider.cs" />
-    <Compile Include="Interfaces\IAddress.cs" />
+    <Compile Include="Interfaces\ILocation.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Interfaces\IQualification.cs" />
     <Compile Include="Interfaces\ISubject.cs" />
