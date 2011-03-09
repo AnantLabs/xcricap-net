@@ -16,7 +16,7 @@ namespace XCRI.XmlBaseClasses
         private string __XsiTypeValue = String.Empty;
         private string __XsiTypeValueNamespace = String.Empty;
         private string __XmlLanguage = String.Empty;
-        private XCRIProfiles __CompatibleWith = XCRIProfiles.None;
+        private XCRIProfiles __CompatibleWith = XCRIProfiles.All;
 
         #endregion
 

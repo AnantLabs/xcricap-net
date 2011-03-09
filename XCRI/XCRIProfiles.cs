@@ -19,6 +19,10 @@ namespace XCRI
         /// <summary>
         /// The XCRI-CAP 1.2 profile
         /// </summary>
-        XCRI_v1_2 = 2
+        XCRI_v1_2 = 2,
+        /// <summary>
+        ///  All available profiles
+        /// </summary>
+        All = XCRI_v1_1 | XCRI_v1_2
 	}
 }
