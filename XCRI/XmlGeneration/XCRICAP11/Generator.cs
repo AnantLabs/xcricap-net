@@ -91,9 +91,9 @@ namespace XCRI.XmlGeneration.XCRICAP11
 
         #endregion
 
-        #region Public override
+        #region Public
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
             ResourceStatus resourceStatus
@@ -124,18 +124,18 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WrittenRootNode = false;
             xmlWriter.WriteStartDocument(true);
             if (this.RootElement is ICatalog)
-                this.Write(xmlWriter, this.RootElement as ICatalog);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP11.ICatalog);
             if (this.RootElement is IProvider)
-                this.Write(xmlWriter, this.RootElement as IProvider);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP11.IProvider);
             if (this.RootElement is ICourse)
-                this.Write(xmlWriter, this.RootElement as ICourse);
+                this.Write(xmlWriter, this.RootElement as XCRI.Interfaces.XCRICAP11.ICourse);
             xmlWriter.Flush();
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICatalog catalog
+            XCRI.Interfaces.XCRICAP11.ICatalog catalog
             )
         {
             this._WriteStartElement(xmlWriter, "catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -155,10 +155,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IIdentifier identifier
+            XCRI.Interfaces.XCRICAP11.IIdentifier identifier
             )
         {
             base._Write
@@ -174,10 +174,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ITitle title
+            XCRI.Interfaces.XCRICAP11.ITitle title
             )
         {
             base._Write
@@ -193,10 +193,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IDescription description
+            XCRI.Interfaces.XCRICAP11.IDescription description
             )
         {
             this._WriteStartElement(xmlWriter, "description", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -243,10 +243,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ISubject subject
+            XCRI.Interfaces.XCRICAP11.ISubject subject
             )
         {
             base._Write
@@ -262,10 +262,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationLevel qualLevel
+            XCRI.Interfaces.XCRICAP11.IQualificationLevel qualLevel
             )
         {
             base._Write
@@ -281,10 +281,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationType qualType
+            XCRI.Interfaces.XCRICAP11.IQualificationType qualType
             )
         {
             base._Write
@@ -300,10 +300,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAwardedBy awardedBy
+            XCRI.Interfaces.XCRICAP11.IQualificationAwardedBy awardedBy
             )
         {
             base._Write
@@ -319,10 +319,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationAccreditedBy accreditedBy
+            XCRI.Interfaces.XCRICAP11.IQualificationAccreditedBy accreditedBy
             )
         {
             base._Write
@@ -338,10 +338,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualification qualification
+            XCRI.Interfaces.XCRICAP11.IQualification qualification
             )
         {
             this._WriteStartElement(xmlWriter, "qualification", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -357,10 +357,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IStudyMode studyMode
+            XCRI.Interfaces.XCRICAP11.IStudyMode studyMode
             )
         {
             string value = studyMode.GetElementValueAsString();
@@ -379,10 +379,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendanceMode attendanceMode
+            XCRI.Interfaces.XCRICAP11.IAttendanceMode attendanceMode
             )
         {
             string value = attendanceMode.GetElementValueAsString();
@@ -401,10 +401,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAttendancePattern attendancePattern
+            XCRI.Interfaces.XCRICAP11.IAttendancePattern attendancePattern
             )
         {
             string value = attendancePattern.GetElementValueAsString();
@@ -423,10 +423,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IPresentation presentation
+            XCRI.Interfaces.XCRICAP11.IPresentation presentation
             )
         {
             this._WriteStartElement(xmlWriter, "presentation", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -452,10 +452,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 xmlWriter,
                 presentation.AttendancePattern
                 );
-            foreach (string language in presentation.LanguageOfInstruction)
+            foreach (string language in presentation.LanguagesOfInstruction)
                 if (String.IsNullOrEmpty(language) == false)
                     xmlWriter.WriteElementString("languageOfInstruction", Configuration.Namespaces.XCRICAP11NamespaceUri, language);
-            foreach (string language in presentation.LanguageOfAssessment)
+            foreach (string language in presentation.LanguagesOfAssessment)
                 if (String.IsNullOrEmpty(language) == false)
                     xmlWriter.WriteElementString("languageOfAssessment", Configuration.Namespaces.XCRICAP11NamespaceUri, language);
             foreach (IVenue venue in presentation.Venues)
@@ -471,10 +471,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue venue
+            XCRI.Interfaces.XCRICAP11.IVenue venue
             )
         {
             this._WriteStartElement(xmlWriter, "venue", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -482,7 +482,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
             Uri uri
@@ -498,19 +498,19 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 );
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IAddress address
+            XCRI.Interfaces.XCRICAP11.IAddress address
             )
         {
             this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.IAddress)address);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.ICourse course
+            XCRI.Interfaces.XCRICAP11.ICourse course
             )
         {
             this._WriteStartElement(xmlWriter, "course", Configuration.Namespaces.XCRICAP11NamespaceUri);
@@ -522,10 +522,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IImage image
+            XCRI.Interfaces.XCRICAP11.IImage image
             )
         {
             if (image == null)
@@ -551,10 +551,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteEndElement(xmlWriter);
         }
 
-        public override void Write
+        public void Write
             (
-            System.Xml.XmlWriter xmlWriter, 
-            XCRI.Interfaces.IProvider provider
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP11.IProvider provider
             )
         {
             this._WriteStartElement(xmlWriter, "provider", Configuration.Namespaces.XCRICAP11NamespaceUri);

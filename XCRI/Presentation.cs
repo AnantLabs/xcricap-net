@@ -316,12 +316,12 @@ namespace XCRI
 			set { this._AttendancePattern = value; }
 		}
 
-        public IList<string> LanguageOfInstruction
+        public IList<string> LanguagesOfInstruction
 		{
 			get { return this._LanguageOfInstruction; }
 		}
 
-        public IList<string> LanguageOfAssessment
+        public IList<string> LanguagesOfAssessment
 		{
 			get { return this._LanguageOfAssessment; }
 		}

@@ -10,6 +10,8 @@ namespace XCRI
 	/// </summary>
 	public enum XCRIProfiles
 	{
+
+        None = 0,
 		/// <summary>
 		/// The XCRI-CAP 1.1 profile
 		/// </summary>
