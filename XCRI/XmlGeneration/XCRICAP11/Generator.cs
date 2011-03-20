@@ -5,6 +5,7 @@ using System.Text;
 using XCRI.XmlGeneration;
 using XCRI.XmlBaseClasses;
 using XCRI.Interfaces;
+using XCRI.ExtensionMethods;
 
 namespace XCRI.XmlGeneration.XCRICAP11
 {
@@ -42,16 +43,16 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this.Write(xmlWriter, genericItem.ResourceStatus);
             this._WriteXsiTypeAttribute(xmlWriter, genericItem.XsiTypeValue, genericItem.XsiTypeValueNamespace);
             this._WriteXmlLanguageAttribute(xmlWriter, genericItem.XmlLanguage);
-            foreach (XCRI.Interfaces.IIdentifier identifier in genericItem.Identifiers)
+            foreach (XCRI.Interfaces.XCRICAP11.IIdentifier identifier in genericItem.Identifiers)
                 if (identifier != null)
                     this.Write(xmlWriter, identifier);
-            foreach (XCRI.Interfaces.ITitle title in genericItem.Titles)
+            foreach (XCRI.Interfaces.XCRICAP11.ITitle title in genericItem.Titles)
                 if (title != null)
                     this.Write(xmlWriter, title);
-            foreach (XCRI.Interfaces.ISubject subject in genericItem.Subjects)
+            foreach (XCRI.Interfaces.XCRICAP11.ISubject subject in genericItem.Subjects)
                 if (subject != null)
                     this.Write(xmlWriter, subject);
-            foreach (XCRI.Interfaces.IDescription description in genericItem.Descriptions)
+            foreach (XCRI.Interfaces.XCRICAP11.IDescription description in genericItem.Descriptions)
                 if (description != null)
                     this.Write(xmlWriter, description);
             if (genericItem.Url != null)
@@ -67,8 +68,8 @@ namespace XCRI.XmlGeneration.XCRICAP11
             )
         {
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)organisationItem);
-            if(organisationItem.Address != null)
-                this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.IAddress)organisationItem.Address);
+            if(organisationItem.Location != null)
+                this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.ILocation)organisationItem.Location);
             if (String.IsNullOrEmpty(organisationItem.PhoneNumber) == false)
                 xmlWriter.WriteElementString("phone", Configuration.Namespaces.XCRICAP11NamespaceUri, organisationItem.PhoneNumber);
             if (String.IsNullOrEmpty(organisationItem.FaxNumber) == false)
@@ -80,7 +81,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
         protected virtual void WriteXCRI11Address
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP11.IAddress addressItem
+            XCRI.Interfaces.XCRICAP11.ILocation addressItem
             )
         {
             this.WriteLatitudeLongitude
@@ -153,16 +154,16 @@ namespace XCRI.XmlGeneration.XCRICAP11
             this._WriteStartElement(xmlWriter, "catalog", Configuration.Namespaces.XCRICAP11NamespaceUri);
             if (catalog.Generated.HasValue == false)
                 if (String.IsNullOrEmpty(xmlWriter.LookupPrefix(Configuration.Namespaces.XCRICAP11NamespaceUri)))
-                    xmlWriter.WriteAttributeString("generated", DateTime.Now.ToXCRIString(true));
+                    xmlWriter.WriteAttributeString("generated", (new DateTimeOffset(DateTime.Now)).ToISO8601(true));
                 else
-                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, DateTime.Now.ToXCRIString(true));
+                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, (new DateTimeOffset(DateTime.Now)).ToISO8601(true));
             else
                 if (String.IsNullOrEmpty(xmlWriter.LookupPrefix(Configuration.Namespaces.XCRICAP11NamespaceUri)))
-                    xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToXCRIString(true));
+                    xmlWriter.WriteAttributeString("generated", catalog.Generated.Value.ToISO8601(true));
                 else
-                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToXCRIString(true));
+                    xmlWriter.WriteAttributeString("generated", Configuration.Namespaces.XCRICAP11NamespaceUri, catalog.Generated.Value.ToISO8601(true));
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)catalog);
-            foreach (XCRI.Interfaces.IProvider provider in catalog.Providers)
+            foreach (XCRI.Interfaces.XCRICAP11.IProvider provider in catalog.Providers)
                 if (provider != null)
                     this.Write(xmlWriter, provider);
             this._WriteEndElement(xmlWriter);
@@ -399,10 +400,10 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 this.Write(xmlWriter, qualification.Level);
             if (qualification.Type != null)
                 this.Write(xmlWriter, qualification.Type);
-            foreach (XCRI.Interfaces.IQualificationAwardedBy awardedBy in qualification.AwardedBy)
+            foreach (XCRI.Interfaces.XCRICAP11.IQualificationAwardedBy awardedBy in qualification.AwardedBy)
                 if (awardedBy != null)
                     this.Write(xmlWriter, awardedBy);
-            foreach (XCRI.Interfaces.IQualificationAccreditedBy accreditedBy in qualification.AccreditedBy)
+            foreach (XCRI.Interfaces.XCRICAP11.IQualificationAccreditedBy accreditedBy in qualification.AccreditedBy)
                 if (accreditedBy != null)
                     this.Write(xmlWriter, accreditedBy);
             this._WriteEndElement(xmlWriter);
@@ -485,6 +486,16 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 attendancePattern.XmlLanguage
                 );
         }
+        public void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            string elementName,
+            string elementNamespace,
+            XCRI.Interfaces.XCRICAP11.IDate date
+            )
+        {
+            xmlWriter.WriteElementString(elementName, elementNamespace, date.Value.ToISO8601(true));
+        }
 
         public void Write
             (
@@ -498,12 +509,31 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 return;
             this._WriteStartElement(xmlWriter, "presentation", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)presentation);
-            if (presentation.Start.HasValue)
-                xmlWriter.WriteElementString("start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start.Value.ToXCRIString(true));
-            if (presentation.End.HasValue)
-                xmlWriter.WriteElementString("end", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.End.Value.ToXCRIString(true));
-            if (String.IsNullOrEmpty(presentation.Duration) == false)
-                xmlWriter.WriteElementString("duration", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Duration);
+            if (presentation.Start != null)
+                this.Write(xmlWriter, "start", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.Start);
+            if (presentation.End != null)
+                this.Write(xmlWriter, "end", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.End);
+            if (presentation.Duration != null)
+            {
+                TimeSpan duration = presentation.Duration.Value;
+                List<string> durationElements = new List<string>();
+                int years = 0;
+                while (duration.Days >= 365)
+                {
+                    years++;
+                    duration -= TimeSpan.FromDays(365);
+                }
+                if(years > 0)
+                    durationElements.Add(String.Format("{0} year{1}", years, years == 1 ? String.Empty : "s"));
+                if (duration.Days > 0)
+                    durationElements.Add(String.Format("{0} day{1}", duration.Days, duration.Days == 1 ? String.Empty : "s"));
+                xmlWriter.WriteElementString
+                    (
+                    "duration",
+                    Configuration.Namespaces.XCRICAP11NamespaceUri,
+                    String.Join(", ", durationElements.ToArray())
+                    );
+            }
             this.Write
                 (
                 xmlWriter,
@@ -525,7 +555,7 @@ namespace XCRI.XmlGeneration.XCRICAP11
             foreach (string language in presentation.LanguagesOfAssessment)
                 if (String.IsNullOrEmpty(language) == false)
                     xmlWriter.WriteElementString("languageOfAssessment", Configuration.Namespaces.XCRICAP11NamespaceUri, language);
-            foreach (IVenue venue in presentation.Venues)
+            foreach (XCRI.Interfaces.XCRICAP11.IVenue venue in presentation.Venues)
                 this.Write(xmlWriter, venue);
             if (String.IsNullOrEmpty(presentation.PlacesAvailable) == false)
                 xmlWriter.WriteElementString("placesAvailable", Configuration.Namespaces.XCRICAP11NamespaceUri, presentation.PlacesAvailable);
@@ -572,14 +602,14 @@ namespace XCRI.XmlGeneration.XCRICAP11
         public void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP11.IAddress address
+            XCRI.Interfaces.XCRICAP11.ILocation address
             )
         {
             if (address == null)
                 throw new ArgumentNullException("address");
             if ((address.CompatibleWith & XCRIProfiles.XCRI_v1_1) == 0)
                 return;
-            this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.IAddress)address);
+            this.WriteXCRI11Address(xmlWriter, (XCRI.Interfaces.XCRICAP11.ILocation)address);
         }
 
         public void Write
@@ -594,9 +624,9 @@ namespace XCRI.XmlGeneration.XCRICAP11
                 return;
             this._WriteStartElement(xmlWriter, "course", Configuration.Namespaces.XCRICAP11NamespaceUri);
             this.WriteXCRI11GenericItem(xmlWriter, (XCRI.Interfaces.XCRICAP11.IGeneric)course);
-            foreach (XCRI.Interfaces.IQualification qualification in course.Qualifications)
+            foreach (XCRI.Interfaces.XCRICAP11.IQualification qualification in course.Qualifications)
                 this.Write(xmlWriter, qualification);
-            foreach (XCRI.Interfaces.IPresentation presentation in course.Presentations)
+            foreach (XCRI.Interfaces.XCRICAP11.IPresentation presentation in course.Presentations)
                 this.Write(xmlWriter, presentation);
             this._WriteEndElement(xmlWriter);
         }

@@ -19,6 +19,7 @@ namespace XCRI.Vocabularies.XCRICAP11.Terms
         {
             base.XsiTypeValue = "studyModeType";
             base.XsiTypeValueNamespace = XCRI.Configuration.Namespaces.XCRICAP11TermsNamespaceUri;
+            this.CompatibleWith = XCRIProfiles.XCRI_v1_1;
         }
 
         #endregion

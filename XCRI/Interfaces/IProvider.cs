@@ -9,7 +9,8 @@ namespace XCRI.Interfaces
     /// <summary>
     /// Represents the Provider element in the XCRI standard.
     /// </summary>
-    public interface IProvider : XCRICAP11.IProvider
+    public interface IProvider : XCRICAP11.IProvider, XCRICAP12.IProvider
     {
+        new IList<Interfaces.ICourse> Courses { get; }
     }
 }

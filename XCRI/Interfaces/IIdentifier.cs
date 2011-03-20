@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IIdentifier : XCRICAP11.IIdentifier
+    public interface IIdentifier : XCRICAP11.IIdentifier, XCRICAP12.IIdentifier
     {
     }
 }

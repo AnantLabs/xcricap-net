@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI.Interfaces
+namespace XCRI.Interfaces.XCRICAP12
 {
-    public interface IPrerequisite : XCRICAP12.IPrerequisite
+    public interface IContributor : IElementWithSingleValue<string>
     {
     }
 }

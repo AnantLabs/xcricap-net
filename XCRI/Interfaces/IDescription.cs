@@ -9,7 +9,7 @@ namespace XCRI.Interfaces
     /// Represents the Description node in the XCRI definition.
     /// http://www.xcri.org/wiki/index.php/Description.
     /// </summary>
-    public interface IDescription : XCRICAP11.IDescription
+    public interface IDescription : XCRICAP11.IDescription, XCRICAP12.IDescription
     {
     }
 

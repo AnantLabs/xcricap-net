@@ -25,8 +25,18 @@ namespace XCRI
         private List<Interfaces.IQualification> __Qualifications = new List<Interfaces.IQualification>();
         private List<Interfaces.IPresentation> __Presentations = new List<Interfaces.IPresentation>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
-
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+        private List<Interfaces.ICourseLevel> __Levels = new List<Interfaces.ICourseLevel>();
+        private List<Interfaces.ICredit> __Credits = new List<Interfaces.ICredit>();
+        private List<Interfaces.IAbstract> __Abstracts = new List<Interfaces.IAbstract>();
+        private List<Interfaces.IApplicationProcedure> __ApplicationProcedures = new List<Interfaces.IApplicationProcedure>();
+        private List<Interfaces.IAssessment> __Assessments = new List<Interfaces.IAssessment>();
+        private List<Interfaces.ILearningOutcome> __LearningOutcomes = new List<Interfaces.ILearningOutcome>();
+        private List<Interfaces.IObjective> __Objectives = new List<Interfaces.IObjective>();
+        private List<Interfaces.IPrerequisite> __Prerequisites = new List<Interfaces.IPrerequisite>();
+        private List<Interfaces.IRegulation> __Regulations = new List<Interfaces.IRegulation>();
+        private List<Interfaces.IContributor> __Contributors = new List<Interfaces.IContributor>();
+        private List<Interfaces.IType> __Types = new List<Interfaces.IType>();
 
 		#endregion
 
@@ -97,6 +107,50 @@ namespace XCRI
         {
             get { return this.__Presentations; }
         }
+        protected IList<Interfaces.ICourseLevel> _Levels
+		{
+            get { return this.__Levels; }
+		}
+        protected IList<Interfaces.ICredit> _Credits
+		{
+            get { return this.__Credits; }
+		}
+        protected IList<Interfaces.IAbstract> _Abstracts
+		{
+            get { return this.__Abstracts; }
+		}
+        protected IList<Interfaces.IApplicationProcedure> _ApplicationProcedures
+		{
+            get { return this.__ApplicationProcedures; }
+		}
+        protected IList<Interfaces.IAssessment> _Assessments
+		{
+            get { return this.__Assessments; }
+		}
+        protected IList<Interfaces.ILearningOutcome> _LearningOutcomes
+		{
+            get { return this.__LearningOutcomes; }
+		}
+        protected IList<Interfaces.IObjective> _Objectives
+		{
+            get { return this.__Objectives; }
+		}
+        protected IList<Interfaces.IPrerequisite> _Prerequisites
+		{
+            get { return this.__Prerequisites; }
+		}
+        protected IList<Interfaces.IRegulation> _Regulations
+        {
+            get { return this.__Regulations; }
+        }
+        protected IList<Interfaces.IContributor> _Contributors
+		{
+            get { return this.__Contributors; }
+		}
+        protected IList<Interfaces.IType> _Types
+		{
+            get { return this.__Types; }
+		}
 
 		#endregion
 
@@ -151,8 +205,52 @@ namespace XCRI
         {
             get { return this._Presentations; }
         }
+        public IList<Interfaces.ICourseLevel> Levels
+        {
+            get { return this._Levels; }
+        }
+        public IList<Interfaces.ICredit> Credits
+        {
+            get { return this._Credits; }
+        }
+        public IList<Interfaces.IAbstract> Abstracts
+        {
+            get { return this._Abstracts; }
+        }
+        public IList<Interfaces.IApplicationProcedure> ApplicationProcedures
+        {
+            get { return this._ApplicationProcedures; }
+        }
+        public IList<Interfaces.IAssessment> Assessments
+        {
+            get { return this._Assessments; }
+        }
+        public IList<Interfaces.ILearningOutcome> LearningOutcomes
+        {
+            get { return this._LearningOutcomes; }
+        }
+        public IList<Interfaces.IObjective> Objectives
+        {
+            get { return this._Objectives; }
+        }
+        public IList<Interfaces.IPrerequisite> Prerequisites
+        {
+            get { return this._Prerequisites; }
+        }
+        public IList<Interfaces.IRegulation> Regulations
+        {
+            get { return this._Regulations; }
+        }
+        public IList<Interfaces.IContributor> Contributors
+        {
+            get { return this._Contributors; }
+        }
+        public IList<Interfaces.IType> Types
+        {
+            get { return this._Types; }
+        }
 
-		#endregion
+        #endregion
 
-	}
+    }
 }

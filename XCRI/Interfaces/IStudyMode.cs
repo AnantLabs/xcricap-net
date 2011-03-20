@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IStudyMode : XCRICAP11.IStudyMode
+    public interface IStudyMode : XCRICAP11.IStudyMode, XCRICAP12.IStudyMode
     {
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IObjective : IElement
+    public interface IObjective : XCRICAP12.IObjective
     {
     }
 }

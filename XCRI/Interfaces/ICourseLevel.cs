@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface ICourseLevel : IElementWithSingleValue<string>
+    public interface ICourseLevel : XCRICAP12.ICourseLevel
     {
     }
 }

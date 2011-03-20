@@ -14,7 +14,7 @@ namespace XCRI
 
         #region Private
 
-        private DateTime? __Generated = null;
+        private DateTimeOffset? __Generated = null;
         private ResourceStatus __ResourceStatus = ResourceStatus.Unknown;
         private List<ITitle> __Titles = new List<ITitle>();
         private List<ISubject> __Subjects = new List<ISubject>();
@@ -22,6 +22,8 @@ namespace XCRI
         private Uri __Url = null;
         private Interfaces.IImage __Image = null;
         private List<IProvider> __Providers = new List<IProvider>();
+        private List<IContributor> __Contributors = new List<IContributor>();
+        private List<IType> __Types = new List<IType>();
 
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
 
@@ -34,8 +36,7 @@ namespace XCRI
             get { return this.__Identifiers; }
         }
 
-
-        protected DateTime? _Generated
+        protected DateTimeOffset? _Generated
         {
             get { return this.__Generated; }
             set
@@ -107,6 +108,16 @@ namespace XCRI
             get { return this.__Providers; }
         }
 
+        protected List<IContributor> _Contributors
+        {
+            get { return this.__Contributors; }
+        }
+
+        protected List<IType> _Types
+        {
+            get { return this.__Types; }
+        }
+
         #endregion
 
         #endregion
@@ -118,7 +129,7 @@ namespace XCRI
             get { return this._Identifiers; }
         }
 
-        public DateTime? Generated
+        public DateTimeOffset? Generated
         {
             get { return this._Generated; }
             set { this._Generated = value; }
@@ -160,6 +171,16 @@ namespace XCRI
         public IList<XCRI.Interfaces.IProvider> Providers
         {
             get { return this._Providers; }
+        }
+
+        public IList<IContributor> Contributors
+        {
+            get { return this._Contributors; }
+        }
+
+        public IList<IType> Types
+        {
+            get { return this._Types; }
         }
 
         #endregion

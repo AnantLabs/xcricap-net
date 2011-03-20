@@ -9,7 +9,7 @@ namespace XCRI.Interfaces.XCRICAP12
     {
 
         IList<Interfaces.IProvider> Providers { get; }
-        DateTime? Generated { get; set; }
+        DateTimeOffset? Generated { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace XCRI.Interfaces.XCRICAP11
     ///     3. Postcode
     ///     4. Address (lat/long)
 	/// </summary>
-	public interface IAddress : IElement
+	public interface ILocation : IElement
 	{
 
 		/// <summary>
