@@ -29,7 +29,6 @@ namespace XCRI.XmlGeneration
         #region Private
 
         private NamespaceList __Namespaces = NamespaceList.GetNamespaces(NamespaceList.Namespaces.None);
-        private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
         private IElement __RootElement = null;
         private bool __WrittenRootNode = false;
 
@@ -62,18 +61,6 @@ namespace XCRI.XmlGeneration
             }
         }
 
-        protected ResourceStatus _ResourceStatus
-        {
-            get { return this.__ResourceStatus; }
-            set
-            {
-                if (this.__ResourceStatus == value) { return; }
-                this.OnPropertyChanging("ResourceStatus");
-                this.__ResourceStatus = value;
-                this.OnPropertyChanged("ResourceStatus");
-            }
-        }
-
         protected NamespaceList _Namespaces
         {
             get { return this.__Namespaces; }
@@ -92,12 +79,6 @@ namespace XCRI.XmlGeneration
         #region Public
 
         public abstract IElement RootElement { get; set; }
-
-        public ResourceStatus ResourceStatus
-        {
-            get { return this._ResourceStatus; }
-            set { this._ResourceStatus = value; }
-        }
 
         public NamespaceList Namespaces
         {

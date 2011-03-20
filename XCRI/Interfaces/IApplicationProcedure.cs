@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IApplicationProcedure : IElement
+    public interface IApplicationProcedure : XCRICAP12.IApplicationProcedure
     {
     }
 }

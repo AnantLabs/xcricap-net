@@ -18,9 +18,9 @@ namespace XCRI
         private List<XCRI.Interfaces.ISubject> __Subjects = new List<Interfaces.ISubject>();
         private Uri __Url = null;
 		private Interfaces.IImage __Image = null;
-		private DateTime? __Start = null;
-		private DateTime? __End = null;
-		private string __Duration = String.Empty;
+		private Interfaces.IDate __Start = null;
+        private Interfaces.IDate __End = null;
+        private TimeSpan? __Duration = null;
         private Interfaces.IStudyMode __StudyMode = new StudyMode();
         private Interfaces.IAttendanceMode __AttendanceMode = new AttendanceMode();
         private Interfaces.IAttendancePattern __AttendancePattern = new AttendancePattern();
@@ -33,6 +33,17 @@ namespace XCRI
         private string __ApplyTo = String.Empty;
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+        private List<Interfaces.IAbstract> __Abstracts = new List<Interfaces.IAbstract>();
+        private List<Interfaces.IApplicationProcedure> __ApplicationProcedures = new List<Interfaces.IApplicationProcedure>();
+        private List<Interfaces.IAssessment> __Assessments = new List<Interfaces.IAssessment>();
+        private List<Interfaces.ILearningOutcome> __LearningOutcomes = new List<Interfaces.ILearningOutcome>();
+        private List<Interfaces.IObjective> __Objectives = new List<Interfaces.IObjective>();
+        private List<Interfaces.IPrerequisite> __Prerequisites = new List<Interfaces.IPrerequisite>();
+        private List<Interfaces.IRegulation> __Regulations = new List<Interfaces.IRegulation>();
+        private List<Interfaces.IContributor> __Contributors = new List<Interfaces.IContributor>();
+        private List<Interfaces.IType> __Types = new List<Interfaces.IType>();
+        private IList<Interfaces.IEngagement> __Engagements = new List<Interfaces.IEngagement>();
+        private string __AgeRange = String.Empty;
 
 		#endregion
 
@@ -94,7 +105,7 @@ namespace XCRI
 			}
 		}
 
-		protected DateTime? _Start
+        protected Interfaces.IDate _Start
 		{
 			get { return this.__Start; }
 			set
@@ -106,7 +117,7 @@ namespace XCRI
 			}
 		}
 
-		protected DateTime? _End
+        protected Interfaces.IDate _End
 		{
 			get { return this.__End; }
 			set
@@ -118,7 +129,7 @@ namespace XCRI
 			}
 		}
 
-		protected string _Duration
+        protected TimeSpan? _Duration
 		{
 			get { return this.__Duration; }
 			set
@@ -234,7 +245,58 @@ namespace XCRI
 				this.__ApplyTo = value;
 				this.OnPropertyChanged("ApplyTo");
 			}
-		}
+        }
+        protected IList<Interfaces.IAbstract> _Abstracts
+        {
+            get { return this.__Abstracts; }
+        }
+        protected IList<Interfaces.IApplicationProcedure> _ApplicationProcedures
+        {
+            get { return this.__ApplicationProcedures; }
+        }
+        protected IList<Interfaces.IAssessment> _Assessments
+        {
+            get { return this.__Assessments; }
+        }
+        protected IList<Interfaces.ILearningOutcome> _LearningOutcomes
+        {
+            get { return this.__LearningOutcomes; }
+        }
+        protected IList<Interfaces.IObjective> _Objectives
+        {
+            get { return this.__Objectives; }
+        }
+        protected IList<Interfaces.IPrerequisite> _Prerequisites
+        {
+            get { return this.__Prerequisites; }
+        }
+        protected IList<Interfaces.IRegulation> _Regulations
+        {
+            get { return this.__Regulations; }
+        }
+        protected IList<Interfaces.IContributor> _Contributors
+        {
+            get { return this.__Contributors; }
+        }
+        protected IList<Interfaces.IType> _Types
+        {
+            get { return this.__Types; }
+        }
+        protected IList<Interfaces.IEngagement> _Engagements
+        {
+            get { return this.__Engagements; }
+        }
+        protected string _AgeRange
+		{
+			get { return this.__AgeRange; }
+			set
+			{
+				if (this.__AgeRange == value) { return; }
+				this.OnPropertyChanging("AgeRange");
+				this.__AgeRange = value;
+				this.OnPropertyChanged("AgeRange");
+			}
+        }
 
 		#endregion
 
@@ -280,19 +342,19 @@ namespace XCRI
 			set { this._Image = value; }
 		}
 
-		public DateTime? Start
+        public Interfaces.IDate Start
 		{
 			get { return this._Start; }
 			set { this._Start = value; }
 		}
 
-		public DateTime? End
+        public Interfaces.IDate End
 		{
 			get { return this._End; }
 			set { this._End = value; }
 		}
 
-		public string Duration
+        public TimeSpan? Duration
 		{
 			get { return this._Duration; }
 			set { this._Duration = value; }
@@ -355,7 +417,54 @@ namespace XCRI
 			set { this._ApplyTo = value; }
 		}
 
-		#endregion
+        public IList<Interfaces.IEngagement> Engagements
+        {
+            get{ return this._Engagements; }
+        }
 
-	}
+        public string AgeRange
+        {
+            get { return this._AgeRange; }
+            set { this._AgeRange = value; }
+        }
+        public IList<Interfaces.IAbstract> Abstracts
+        {
+            get { return this._Abstracts; }
+        }
+        public IList<Interfaces.IApplicationProcedure> ApplicationProcedures
+        {
+            get { return this._ApplicationProcedures; }
+        }
+        public IList<Interfaces.IAssessment> Assessments
+        {
+            get { return this._Assessments; }
+        }
+        public IList<Interfaces.ILearningOutcome> LearningOutcomes
+        {
+            get { return this._LearningOutcomes; }
+        }
+        public IList<Interfaces.IObjective> Objectives
+        {
+            get { return this._Objectives; }
+        }
+        public IList<Interfaces.IPrerequisite> Prerequisites
+        {
+            get { return this._Prerequisites; }
+        }
+        public IList<Interfaces.IRegulation> Regulations
+        {
+            get { return this._Regulations; }
+        }
+        public IList<Interfaces.IContributor> Contributors
+        {
+            get { return this._Contributors; }
+        }
+        public IList<Interfaces.IType> Types
+        {
+            get { return this._Types; }
+        }
+
+        #endregion
+
+    }
 }

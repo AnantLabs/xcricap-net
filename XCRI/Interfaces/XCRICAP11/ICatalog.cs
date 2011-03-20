@@ -17,7 +17,7 @@ namespace XCRI.Interfaces.XCRICAP11
         /// The date and time at which the catalog was generated.
         /// If set to null - which should be the default - the server time will be used.
         /// </summary>
-        DateTime? Generated { get; set; }
+        DateTimeOffset? Generated { get; set; }
         /// <summary>
         /// The providers which this catalog contains.
         /// In almost all cases there should be only one provider in a feed, however if this

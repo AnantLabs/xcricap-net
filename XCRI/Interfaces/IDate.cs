@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IPrerequisite : XCRICAP12.IPrerequisite
+    public interface IDate : XCRICAP11.IDate, XCRICAP12.IDate
     {
     }
 }

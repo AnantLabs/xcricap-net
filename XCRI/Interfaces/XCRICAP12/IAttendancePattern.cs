@@ -15,8 +15,6 @@ namespace XCRI.Interfaces.XCRICAP12
         Twilight = 3,
         DayOrBlockRelease = 4,
         Weekend = 5,
-        Short = 6,
-        Customised = 7,
-        StandardDays = 8
+        Customised = 6
     }
 }

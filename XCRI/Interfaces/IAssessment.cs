@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IAssessment : IElement
+    public interface IAssessment : XCRICAP12.IAssessment
     {
     }
 }

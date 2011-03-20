@@ -8,7 +8,7 @@ namespace XCRI.Interfaces.XCRICAP12
     public interface IProvider : ICommonElements
     {
 
-        IList<Interfaces.ICatalog> Courses { get; }
+        IList<Interfaces.ICourse> Courses { get; }
         IList<Interfaces.ILocation> Locations { get; }
 
     }

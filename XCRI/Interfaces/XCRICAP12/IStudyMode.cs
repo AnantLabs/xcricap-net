@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces.XCRICAP12
 {
-    public interface IStudyMode : IElementWithSingleValue<StudyModes>
+    public interface IStudyMode : IElementWithSingleValue<string>
     {
     }
     public enum StudyModes

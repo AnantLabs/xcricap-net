@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IImage : XCRICAP11.IImage
+    public interface IImage : XCRICAP11.IImage, XCRICAP12.IImage
     {
     }
 }

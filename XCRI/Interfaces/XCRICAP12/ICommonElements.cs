@@ -10,7 +10,7 @@ namespace XCRI.Interfaces.XCRICAP12
 
         //IList<Interfaces.IHasPart> HasParts { get; }
         IList<Interfaces.IContributor> Contributors { get; }
-        IList<DateTime> Dates { get; }
+        //IList<Interfaces.IDate> Dates { get; }
         IList<Interfaces.IDescription> Descriptions { get; }
         IList<Interfaces.IIdentifier> Identifiers { get; }
         Interfaces.IImage Image { get; set; }

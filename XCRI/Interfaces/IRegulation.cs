@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IRegulation : IElement
+    public interface IRegulation : XCRICAP12.IRegulation
     {
     }
 }

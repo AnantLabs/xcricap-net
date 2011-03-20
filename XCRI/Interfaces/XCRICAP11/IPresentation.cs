@@ -10,9 +10,9 @@ namespace XCRI.Interfaces.XCRICAP11
 	/// </summary>
 	public interface IPresentation : IElement, XCRICAP11.IGeneric
 	{
-		DateTime? Start { get; set; }
-		DateTime? End { get; set; }
-		string Duration { get; set; }
+		Interfaces.IDate Start { get; set; }
+        Interfaces.IDate End { get; set; }
+        TimeSpan? Duration { get; set; }
         Interfaces.IStudyMode StudyMode { get; set; }
         Interfaces.IAttendanceMode AttendanceMode { get; set; }
         Interfaces.IAttendancePattern AttendancePattern { get; set; }

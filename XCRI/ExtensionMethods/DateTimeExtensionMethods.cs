@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI
+namespace XCRI.ExtensionMethods
 {
-	public static class ExtensionMethods
+	public static class DateTimeExtensionMethods
 	{
         /// <summary>
 		/// Converts a standard .NET datetime string into that required by the XCRI standard.
@@ -13,23 +13,23 @@ namespace XCRI
 		/// </summary>
 		/// <param name="input">The datetime to convert</param>
 		/// <returns>The formatted string</returns>
-        public static string ToXCRIString(this DateTime input)
+        public static string ToISO8601(this DateTimeOffset input)
         {
             if (input.TimeOfDay == TimeSpan.Zero)
-                return input.ToXCRIString(false);
+                return input.ToISO8601(false);
             else
-                return input.ToXCRIString(true);
+                return input.ToISO8601(true);
         }
 		/// <summary>
 		/// Converts a standard .NET datetime string into that required by the XCRI standard.
 		/// </summary>
 		/// <param name="input">The datetime to convert</param>
-        /// <param name="outputTime">Whether to include the date</param>
+        /// <param name="outputTime">Whether to include the time</param>
 		/// <returns>The formatted string</returns>
-		public static string ToXCRIString(this DateTime input, bool outputTime)
+		public static string ToISO8601(this DateTimeOffset input, bool outputTime)
 		{
             if(outputTime)
-                    return input.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss+00:00");
+                    return input.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
             else
                 return input.ToUniversalTime().ToString("yyyy-MM-dd");
 		}

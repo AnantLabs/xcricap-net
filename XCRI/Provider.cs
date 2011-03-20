@@ -20,7 +20,7 @@ namespace XCRI
 
 		private Uri __Url = null;
 		private long? __ReferenceNumber = null;
-		private Interfaces.ILocation __Address = null;
+		private Interfaces.ILocation __Location = null;
         private IImage __Image = null;
         private List<Interfaces.ITitle> __Titles = new List<Interfaces.ITitle>();
         private List<Interfaces.ICourse> __Courses = new List<Interfaces.ICourse>();
@@ -31,6 +31,10 @@ namespace XCRI
         private string __FaxNumber = String.Empty;
         private string __EmailAddress = String.Empty;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+        private List<ILocation> __Locations = new List<ILocation>();
+        private List<IContributor> __Contributors = new List<IContributor>();
+        private List<Interfaces.IDate> __Dates = new List<Interfaces.IDate>();
+        private List<IType> __Types = new List<IType>();
 
 		#endregion
 
@@ -97,15 +101,15 @@ namespace XCRI
 			}
 		}
 
-		protected Interfaces.ILocation _Address
+		protected Interfaces.ILocation _Location
 		{
-			get { return this.__Address; }
+			get { return this.__Location; }
 			set
 			{
-				if (this.__Address == value) { return; }
-				this.OnPropertyChanging("Address");
-				this.__Address = value;
-				this.OnPropertyChanged("Address");
+				if (this.__Location == value) { return; }
+                this.OnPropertyChanging("Location");
+				this.__Location = value;
+                this.OnPropertyChanged("Location");
 			}
 		}
 
@@ -155,6 +159,26 @@ namespace XCRI
                 this.__EmailAddress = value;
                 this.OnPropertyChanged("EmailAddress");
             }
+        }
+
+        protected List<ILocation> _Locations
+        {
+            get { return this.__Locations; }
+        }
+
+        protected List<IContributor> _Contributors
+        {
+            get { return this.__Contributors; }
+        }
+
+        protected List<Interfaces.IDate> _Dates
+        {
+            get { return this.__Dates; }
+        }
+
+        protected List<IType> _Types
+        {
+            get { return this.__Types; }
         }
 
 		#endregion
@@ -211,10 +235,10 @@ namespace XCRI
 		/// <summary>
 		/// The main address of the course provider
 		/// </summary>
-		public XCRI.Interfaces.ILocation Address
+		public XCRI.Interfaces.ILocation Location
 		{
-			get { return this._Address; }
-            set { this._Address = value; }
+			get { return this._Location; }
+            set { this._Location = value; }
 		}
 
 		/// <summary>
@@ -252,7 +276,26 @@ namespace XCRI
             set { this._EmailAddress = value; }
         }
 
-        #endregion
+        public IList<ILocation> Locations
+        {
+            get { return this._Locations; }
+        }
 
+        public IList<IContributor> Contributors
+        {
+            get { return this._Contributors; }
+        }
+
+        public IList<Interfaces.IDate> Dates
+        {
+            get { return this._Dates; }
+        }
+
+        public IList<IType> Types
+        {
+            get { return this._Types; }
+        }
+
+        #endregion
     }
 }

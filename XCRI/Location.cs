@@ -22,22 +22,74 @@ namespace XCRI
 		private string __Postcode = String.Empty;
 		private decimal? __Latitude = null;
 		private decimal? __Longitude = null;
+        private string __PhoneNumber = String.Empty;
+        private string __FaxNumber = String.Empty;
+        private string __EmailAddress = String.Empty;
+        private Uri __Url = null;
 
 		#endregion
 
-		#region Protected
+        #region Protected
 
-		protected string _Street
-		{
-			get { return this.__Street; }
-			set
-			{
-				if (this.__Street == value) { return; }
-				this.OnPropertyChanging("Street");
-				this.__Street = value;
-				this.OnPropertyChanged("Street");
-			}
-		}
+        protected string _PhoneNumber
+        {
+            get { return this.__PhoneNumber; }
+            set
+            {
+                if (this.__PhoneNumber == value) { return; }
+                this.OnPropertyChanging("PhoneNumber");
+                this.__PhoneNumber = value;
+                this.OnPropertyChanged("PhoneNumber");
+            }
+        }
+
+        protected string _FaxNumber
+        {
+            get { return this.__FaxNumber; }
+            set
+            {
+                if (this.__FaxNumber == value) { return; }
+                this.OnPropertyChanging("FaxNumber");
+                this.__FaxNumber = value;
+                this.OnPropertyChanged("FaxNumber");
+            }
+        }
+
+        protected string _EmailAddress
+        {
+            get { return this.__EmailAddress; }
+            set
+            {
+                if (this.__EmailAddress == value) { return; }
+                this.OnPropertyChanging("EmailAddress");
+                this.__EmailAddress = value;
+                this.OnPropertyChanged("EmailAddress");
+            }
+        }
+
+        protected Uri _Url
+        {
+            get { return this.__Url; }
+            set
+            {
+                if (this.__Url == value) { return; }
+                this.OnPropertyChanging("Url");
+                this.__Url = value;
+                this.OnPropertyChanged("Url");
+            }
+        }
+
+        protected string _Street
+        {
+            get { return this.__Street; }
+            set
+            {
+                if (this.__Street == value) { return; }
+                this.OnPropertyChanging("Street");
+                this.__Street = value;
+                this.OnPropertyChanged("Street");
+            }
+        }
 
 		protected string _Town
 		{
@@ -140,5 +192,34 @@ namespace XCRI
 
 		#endregion
 
-	}
+        #region ILocation Members
+
+
+        public string PhoneNumber
+        {
+            get { return this._PhoneNumber; }
+            set { this._PhoneNumber = value; }
+        }
+
+        public string FaxNumber
+        {
+            get { return this._FaxNumber; }
+            set { this._FaxNumber = value; }
+        }
+
+        public string EmailAddress
+        {
+            get { return this._EmailAddress; }
+            set { this._EmailAddress = value; }
+        }
+
+        public Uri Url
+        {
+            get { return this._Url; }
+            set { this._Url = value; }
+        }
+
+        #endregion
+
+    }
 }

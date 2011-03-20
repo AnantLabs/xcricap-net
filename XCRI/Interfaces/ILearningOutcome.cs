@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface ILearningOutcome : IElement
+    public interface ILearningOutcome : XCRICAP12.ILearningOutcome
     {
     }
 }

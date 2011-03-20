@@ -20,7 +20,7 @@ namespace XCRI
         private Interfaces.IImage __Image = null;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
-        private Interfaces.ILocation __Address = null;
+        private Interfaces.ILocation __Location = null;
         private string __PhoneNumber = String.Empty;
         private string __FaxNumber = String.Empty;
         private string __EmailAddress = String.Empty;
@@ -41,15 +41,15 @@ namespace XCRI
             }
         }
 
-        protected Interfaces.ILocation _Address
+        protected Interfaces.ILocation _Location
         {
-            get { return this.__Address; }
+            get { return this.__Location; }
             set
             {
-                if (this.__Address == value) { return; }
-                this.OnPropertyChanging("Address");
-                this.__Address = value;
-                this.OnPropertyChanged("Address");
+                if (this.__Location == value) { return; }
+                this.OnPropertyChanging("Location");
+                this.__Location = value;
+                this.OnPropertyChanged("Location");
             }
         }
 
@@ -154,10 +154,10 @@ namespace XCRI
             set { this._ResourceStatus = value; }
         }
 
-        public Interfaces.ILocation Address
+        public Interfaces.ILocation Location
         {
-            get { return this._Address; }
-            set { this._Address = value; }
+            get { return this._Location; }
+            set { this._Location = value; }
         }
 
         public IList<Interfaces.ITitle> Titles

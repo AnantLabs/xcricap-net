@@ -52,6 +52,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Date.cs" />
+    <Compile Include="ExtensionMethods\DurationExtensionMethods.cs" />
+    <Compile Include="Interfaces\IDate.cs" />
+    <Compile Include="Interfaces\XCRICAP11\IDate.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IAbstract.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IApplicationProcedure.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IAssessment.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ICourseLevel.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IDate.cs" />
+    <Compile Include="Interfaces\XCRICAP12\ILearningOutcome.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IObjective.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IPrerequisite.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IRegulation.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IType.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IContributor.cs" />
     <Compile Include="Interfaces\XCRICAP12\IIdentifier.cs" />
     <Compile Include="Interfaces\XCRICAP12\ISubject.cs" />
     <Compile Include="Interfaces\XCRICAP12\ITitle.cs" />
@@ -70,7 +85,7 @@
     <Compile Include="Interfaces\IObjective.cs" />
     <Compile Include="Interfaces\IPrerequisite.cs" />
     <Compile Include="Interfaces\IRegulation.cs" />
-    <Compile Include="Interfaces\XCRICAP11\IAddress.cs" />
+    <Compile Include="Interfaces\XCRICAP11\ILocation.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendanceMode.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendancePattern.cs" />
     <Compile Include="Interfaces\XCRICAP11\ICatalog.cs" />
@@ -125,7 +140,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Description.cs" />
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\DateTimeExtensionMethods.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="Interfaces\ICatalog.cs" />
     <Compile Include="Interfaces\ICourse.cs" />
@@ -166,7 +181,9 @@
     <Compile Include="XmlGeneration\XmlGeneratorBase.cs" />
     <Compile Include="XmlGeneration\XmlGeneratorFactory.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ExtensionMethods\XCRICAP11\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
