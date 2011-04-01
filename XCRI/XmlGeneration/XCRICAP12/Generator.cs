@@ -332,6 +332,65 @@ namespace XCRI.XmlGeneration.XCRICAP12
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.EducationalCredit.ICredit element
+            )
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.IAbbreviation element
+            )
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationType element
+            )
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.ICourseLevel element
+            )
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "level",
+                Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IVenue element
+            )
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.XCRICAP12.IPresentation element
             )
         {
@@ -482,52 +541,27 @@ namespace XCRI.XmlGeneration.XCRICAP12
             this._WriteEndElement(xmlWriter);
         }
 
-        protected bool _TryExtractStudyModeIdentifierFromRecommendedVocab(string studyMode, out string identifier)
-        {
-            identifier = String.Empty;
-            try
-            {
-                XCRI.Interfaces.XCRICAP12.StudyModes studyModeEnum =
-                    (XCRI.Interfaces.XCRICAP12.StudyModes)Enum.Parse
-                        (
-                        typeof(XCRI.Interfaces.XCRICAP12.StudyModes),
-                        studyMode.ToLower().Replace(" ", String.Empty).Trim(),
-                        true
-                        );
-                switch (studyModeEnum)
-                {
-                    case XCRI.Interfaces.XCRICAP12.StudyModes.NotKnown:
-                        identifier = "NK";
-                        return true;
-                    case XCRI.Interfaces.XCRICAP12.StudyModes.Flexible:
-                        identifier = "FL";
-                        return true;
-                    case XCRI.Interfaces.XCRICAP12.StudyModes.FullTime:
-                        identifier = "FT";
-                        return true;
-                    case XCRI.Interfaces.XCRICAP12.StudyModes.PartOfAFullTimeProgramme:
-                        identifier = "PF";
-                        return true;
-                    case XCRI.Interfaces.XCRICAP12.StudyModes.PartTime:
-                        identifier = "PT";
-                        return true;
-                }
-                return false;
-            }
-            catch
-            {
-                identifier = String.Empty;
-                return false;
-            }
-        }
-
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.IEngagement element
             )
         {
-            throw new NotImplementedException();
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "engagement",
+                Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
         }
 
         public virtual void Write
@@ -571,7 +605,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 (
                 xmlWriter,
                 "interval",
-                Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri,
+                String.Empty,
                 duration.ToISO8601(),
                 String.Empty
                 );
@@ -607,37 +641,106 @@ namespace XCRI.XmlGeneration.XCRICAP12
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP12.EducationalCredit.ICredit element
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue element
-            )
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.XCRICAP12.IQualification element
             )
         {
-            throw new NotImplementedException();
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            this._WriteStartElement
+                (
+                xmlWriter, 
+                "qualification",
+                Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri
+                );
+            foreach (XCRI.Interfaces.XCRICAP12.IIdentifier identifier in element.Identifiers)
+                this.Write(xmlWriter, identifier);
+            foreach (XCRI.Interfaces.XCRICAP12.ITitle title in element.Titles)
+                this.Write(xmlWriter, title);
+            if(element.Abbreviation != null)
+                this.Write(xmlWriter, element.Abbreviation);
+            foreach (XCRI.Interfaces.XCRICAP12.IDescription desc in element.Descriptions)
+                this.WriteDescription(xmlWriter, desc, "description", Configuration.Namespaces.DublinCoreNamespaceUri);
+            if (element.EducationLevel != null)
+                this.Write(xmlWriter, element.EducationLevel);
+            if (element.Type != null)
+                this.Write(xmlWriter, element.Type);
+            if ((element.AwardedBy != null) && (element.AwardedBy.Count > 0))
+                this.Write(xmlWriter, element.AwardedBy[0]);
+            if ((element.AccreditedBy != null) && (element.AccreditedBy.Count > 0))
+                this.Write(xmlWriter, element.AccreditedBy[0]);
+            this._WriteEndElement(xmlWriter);
         }
 
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP12.ICourseLevel element
+            XCRI.Interfaces.XCRICAP12.IEducationLevel element
             )
         {
-            throw new NotImplementedException();
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "educationLevel",
+                Configuration.Namespaces.DublinCoreTermsNamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.IQualificationAwardedBy element
+            )
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "awardedBy",
+                Configuration.Namespaces.XCRICAP12NamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.IQualificationAccreditedBy element
+            )
+        {
+
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "accreditedBy",
+                Configuration.Namespaces.XCRICAP12NamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
         }
 
         public virtual void Write
@@ -646,7 +749,21 @@ namespace XCRI.XmlGeneration.XCRICAP12
             XCRI.Interfaces.XCRICAP12.IContributor contributor
             )
         {
-            throw new NotImplementedException();
+            if (contributor == null)
+                throw new ArgumentNullException("contributor");
+            if ((contributor.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "contributor",
+                Configuration.Namespaces.DublinCoreNamespaceUri,
+                contributor.Value,
+                contributor.RenderRaw,
+                contributor.XsiTypeValue,
+                contributor.XsiTypeValueNamespace,
+                contributor.XmlLanguage
+                );
         }
 
         public virtual void Write
@@ -666,7 +783,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 (
                 xmlWriter,
                 "dtf",
-                Configuration.Namespaces.XCRICAP12NamespaceUri,
+                String.Empty,
                 date.Value.ToISO8601(),
                 String.Empty
                 );
@@ -716,16 +833,16 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 return;
             this._WriteStartElement(xmlWriter, "location", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri);
             if (String.IsNullOrEmpty(location.Street) == false)
-                this._Write(xmlWriter, "street", Configuration.Namespaces.XCRICAP12NamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "street", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.Town) == false)
-                this._Write(xmlWriter, "town", Configuration.Namespaces.XCRICAP12NamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "town", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             this.WriteLatitudeLongitude(xmlWriter, location.Latitude, location.Longitude);
             if (String.IsNullOrEmpty(location.PhoneNumber) == false)
-                this._Write(xmlWriter, "phone", Configuration.Namespaces.XCRICAP12NamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "phone", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.FaxNumber) == false)
-                this._Write(xmlWriter, "fax", Configuration.Namespaces.XCRICAP12NamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "fax", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.EmailAddress) == false)
-                this._Write(xmlWriter, "email", Configuration.Namespaces.XCRICAP12NamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "email", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             if (location.Url != null)
                 this.Write(xmlWriter, location.Url);
             this._WriteEndElement(xmlWriter);
@@ -903,7 +1020,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     (
                     xmlWriter,
                     "address",
-                    Configuration.Namespaces.XCRICAP12NamespaceUri
+                    Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri
                     );
                 this._WriteAttribute
                     (
@@ -922,7 +1039,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     (
                     xmlWriter,
                     "address",
-                    Configuration.Namespaces.XCRICAP12NamespaceUri
+                    Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri
                     );
                 this._WriteAttribute
                     (
@@ -940,6 +1057,45 @@ namespace XCRI.XmlGeneration.XCRICAP12
         #endregion
 
         #region Protected virtual
+
+        protected virtual bool _TryExtractStudyModeIdentifierFromRecommendedVocab(string studyMode, out string identifier)
+        {
+            identifier = String.Empty;
+            try
+            {
+                XCRI.Interfaces.XCRICAP12.StudyModes studyModeEnum =
+                    (XCRI.Interfaces.XCRICAP12.StudyModes)Enum.Parse
+                        (
+                        typeof(XCRI.Interfaces.XCRICAP12.StudyModes),
+                        studyMode.ToLower().Replace(" ", String.Empty).Trim(),
+                        true
+                        );
+                switch (studyModeEnum)
+                {
+                    case XCRI.Interfaces.XCRICAP12.StudyModes.NotKnown:
+                        identifier = "NK";
+                        return true;
+                    case XCRI.Interfaces.XCRICAP12.StudyModes.Flexible:
+                        identifier = "FL";
+                        return true;
+                    case XCRI.Interfaces.XCRICAP12.StudyModes.FullTime:
+                        identifier = "FT";
+                        return true;
+                    case XCRI.Interfaces.XCRICAP12.StudyModes.PartOfAFullTimeProgramme:
+                        identifier = "PF";
+                        return true;
+                    case XCRI.Interfaces.XCRICAP12.StudyModes.PartTime:
+                        identifier = "PT";
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                identifier = String.Empty;
+                return false;
+            }
+        }
 
         protected virtual bool _TryExtractAttendancePatternIdentifierFromRecommendedVocab(string attendancePattern, out string identifier)
         {

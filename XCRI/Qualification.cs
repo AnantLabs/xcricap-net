@@ -23,6 +23,8 @@ namespace XCRI
         private List<Interfaces.IQualificationAccreditedBy> __AccreditedBy = new List<Interfaces.IQualificationAccreditedBy>();
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
+        private Interfaces.IAbbreviation __Abbreviation = null;
+        private Interfaces.IEducationLevel __EducationLevel = null;
 
         #endregion
 
@@ -118,6 +120,30 @@ namespace XCRI
             }
         }
 
+        protected Interfaces.IAbbreviation _Abbreviation
+        {
+            get { return this.__Abbreviation; }
+            set
+            {
+                if (this.__Abbreviation == value) { return; }
+                this.OnPropertyChanging("Abbreviation");
+                this.__Abbreviation = value;
+                this.OnPropertyChanged("Abbreviation");
+            }
+        }
+
+        protected Interfaces.IEducationLevel _EducationLevel
+        {
+            get { return this.__EducationLevel; }
+            set
+            {
+                if (this.__EducationLevel == value) { return; }
+                this.OnPropertyChanging("EducationLevel");
+                this.__EducationLevel = value;
+                this.OnPropertyChanged("EducationLevel");
+            }
+        }
+
         #endregion
 
         #endregion
@@ -184,8 +210,19 @@ namespace XCRI
             get { return this._AccreditedBy; }
         }
 
-        #endregion
+        public Interfaces.IAbbreviation Abbreviation
+        {
+            get { return this._Abbreviation; }
+            set { this._Abbreviation = value; }
+        }
 
+        public Interfaces.IEducationLevel EducationLevel
+        {
+            get { return this._EducationLevel; }
+            set { this._EducationLevel = value; }
+        }
+
+        #endregion
     }
 
 }

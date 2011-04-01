@@ -6,7 +6,7 @@ using System.Text;
 namespace XCRI.Interfaces
 {
 
-    public interface IQualificationAwardedBy : XCRICAP11.IQualificationAwardedBy
+    public interface IQualificationAwardedBy : XCRICAP11.IQualificationAwardedBy, XCRICAP12.IQualificationAwardedBy
     {
     }
 

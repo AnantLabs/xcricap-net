@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface IEducationLevel : XCRI.Interfaces.XCRICAP12.IEducationLevel
+    public interface IAbbreviation : XCRICAP12.IAbbreviation
     {
     }
 }
