@@ -54,16 +54,21 @@
   <ItemGroup>
     <Compile Include="Date.cs" />
     <Compile Include="ExtensionMethods\DurationExtensionMethods.cs" />
+    <Compile Include="Interfaces\IAbbreviation.cs" />
     <Compile Include="Interfaces\IDate.cs" />
     <Compile Include="Interfaces\XCRICAP11\IDate.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IAbbreviation.cs" />
     <Compile Include="Interfaces\XCRICAP12\IAbstract.cs" />
     <Compile Include="Interfaces\XCRICAP12\IApplicationProcedure.cs" />
     <Compile Include="Interfaces\XCRICAP12\IAssessment.cs" />
     <Compile Include="Interfaces\XCRICAP12\ICourseLevel.cs" />
     <Compile Include="Interfaces\XCRICAP12\IDate.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IEducationLevel.cs" />
     <Compile Include="Interfaces\XCRICAP12\ILearningOutcome.cs" />
     <Compile Include="Interfaces\XCRICAP12\IObjective.cs" />
     <Compile Include="Interfaces\XCRICAP12\IPrerequisite.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IQualificationAccreditedBy.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IQualificationAwardedBy.cs" />
     <Compile Include="Interfaces\XCRICAP12\IRegulation.cs" />
     <Compile Include="Interfaces\XCRICAP12\IType.cs" />
     <Compile Include="Interfaces\XCRICAP12\IContributor.cs" />
