@@ -176,6 +176,79 @@ namespace XCRI.XmlGeneration.XCRICAP12
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.IQualificationType element
+            )
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            this._Write
+                (
+                xmlWriter,
+                "type",
+                Configuration.Namespaces.DublinCoreNamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
+            XCRI.Interfaces.XCRICAP12.EducationalCredit.ICredit element
+            )
+        {
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            this._WriteStartElement(xmlWriter, "credit", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri);
+            foreach (string scheme in element.Schemes)
+                this._Write
+                    (
+                    xmlWriter,
+                    "scheme",
+                    Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri,
+                    scheme,
+                    false,
+                    String.Empty,
+                    String.Empty,
+                    String.Empty
+                    );
+            foreach (string level in element.Levels)
+                this._Write
+                    (
+                    xmlWriter,
+                    "level",
+                    Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri,
+                    level,
+                    false,
+                    String.Empty,
+                    String.Empty,
+                    String.Empty
+                    );
+            foreach (string value in element.Values)
+                this._Write
+                    (
+                    xmlWriter,
+                    "value",
+                    Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri,
+                    value,
+                    false,
+                    String.Empty,
+                    String.Empty,
+                    String.Empty
+                    );
+            this._WriteEndElement(xmlWriter);
+        }
+
+        public virtual void Write
+            (
+            System.Xml.XmlWriter xmlWriter,
             XCRI.Interfaces.XCRICAP12.IAssessment element
             )
         {
@@ -332,10 +405,18 @@ namespace XCRI.XmlGeneration.XCRICAP12
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP12.EducationalCredit.ICredit element
+            XCRI.Interfaces.IVenue element
             )
         {
-            throw new NotImplementedException();
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            this._WriteStartElement(xmlWriter, "venue", Configuration.Namespaces.XCRICAP12NamespaceUri);
+            this._WriteStartElement(xmlWriter, "location", Configuration.Namespaces.XCRICAP12NamespaceUri);
+            this.Write(xmlWriter, element as ILocation);
+            this._WriteEndElement(xmlWriter);
+            this._WriteEndElement(xmlWriter);
         }
 
         public virtual void Write
@@ -344,16 +425,21 @@ namespace XCRI.XmlGeneration.XCRICAP12
             XCRI.Interfaces.XCRICAP12.IAbbreviation element
             )
         {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IQualificationType element
-            )
-        {
-            throw new NotImplementedException();
+            if (element == null)
+                throw new ArgumentNullException("element");
+            if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            base._Write
+                (
+                xmlWriter,
+                "abbr",
+                Configuration.Namespaces.XCRICAP12NamespaceUri,
+                element.Value,
+                element.RenderRaw,
+                element.XsiTypeValue,
+                element.XsiTypeValueNamespace,
+                element.XmlLanguage
+                );
         }
 
         public virtual void Write
@@ -377,15 +463,6 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 element.XsiTypeValueNamespace,
                 element.XmlLanguage
                 );
-        }
-
-        public virtual void Write
-            (
-            System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.IVenue element
-            )
-        {
-            throw new NotImplementedException();
         }
 
         public virtual void Write
