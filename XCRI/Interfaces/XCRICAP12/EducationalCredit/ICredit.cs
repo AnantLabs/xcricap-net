@@ -10,7 +10,7 @@ namespace XCRI.Interfaces.XCRICAP12.EducationalCredit
 
         IList<string> Schemes { get; }
         IList<string> Levels { get; }
-        IList<string> Value { get; }
+        IList<string> Values { get; }
 
     }
 }

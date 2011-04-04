@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI.Interfaces
 {
-    public interface ICredit : IElement
+    public interface ICredit : IElement, XCRICAP12.EducationalCredit.ICredit
     {
     }
 }

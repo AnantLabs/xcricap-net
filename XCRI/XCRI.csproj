@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Credit.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="ExtensionMethods\DurationExtensionMethods.cs" />
     <Compile Include="Interfaces\IAbbreviation.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Interfaces\XCRICAP12\IPrerequisite.cs" />
     <Compile Include="Interfaces\XCRICAP12\IQualificationAccreditedBy.cs" />
     <Compile Include="Interfaces\XCRICAP12\IQualificationAwardedBy.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IQualificationType.cs" />
     <Compile Include="Interfaces\XCRICAP12\IRegulation.cs" />
     <Compile Include="Interfaces\XCRICAP12\IType.cs" />
     <Compile Include="Interfaces\XCRICAP12\IContributor.cs" />
