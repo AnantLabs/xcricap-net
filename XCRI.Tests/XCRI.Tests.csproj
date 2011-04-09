@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9729D33-1B1C-412B-A96C-877E718C664F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XCRI.Tests</RootNamespace>
+    <AssemblyName>XCRI.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClasses\IElement.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Location.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\AttendanceMode.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\AttendancePattern.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Catalog.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IGeneric.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IOrganisation.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Venue.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Title.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Subject.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\StudyMode.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Qualification.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Provider.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Presentation.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Identifier.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Description.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Course.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\Image.cs" />
+    <Compile Include="ExtensionMethods\Type.cs" />
+    <Compile Include="XmlGeneration\XmlGeneratorFactory.cs" />
+    <Compile Include="XmlGeneration\Interfaces\ITestXmlGenerator.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IVenue.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\ITitle.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\ISubject.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IStudyMode.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IQualification.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IProvider.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IPresentation.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IIdentifier.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IDescription.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\ICatalog.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IAttendancePattern.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IAttendanceMode.cs" />
+    <Compile Include="BaseClasses\INotifyPropertyChangingAndINotifyPropertyChanged.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\ILocation.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\ICourse.cs" />
+    <Compile Include="BaseClasses\XCRICAP11\InterfaceTests\IImage.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Catalog.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\IGeneric.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\IOrganisation.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Provider.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\QualificationAccreditedBy.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\QualificationAwardedBy.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\QualificationType.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\QualificationLevel.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Image.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Course.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Address.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Venue.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\AttendancePattern.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\AttendanceMode.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\StudyMode.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Presentation.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Qualification.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Subject.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Description.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Identifier.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Title.cs" />
+    <Compile Include="XmlGeneration\XCRICAP11\Generator.PartialClasses\Url.cs" />
+    <Compile Include="XmlGeneration\XmlGeneratorBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XCRI\XCRI.csproj">
+      <Project>{1BA7A833-56BC-4900-8712-B12D530ECD99}</Project>
+      <Name>XCRI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

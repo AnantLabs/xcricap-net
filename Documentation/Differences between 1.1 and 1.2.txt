@@ -1,0 +1,8 @@
+The following elements inherit core common elements:
+	Catalog
+	Provider
+These common elements are:
+	mlo:hasPart (0,)
+	dc:contributor (0,)
+	dc:date(0,)
+	xcri12:description
