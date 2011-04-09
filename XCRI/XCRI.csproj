@@ -52,8 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abbreviation.cs" />
     <Compile Include="Credit.cs" />
     <Compile Include="Date.cs" />
+    <Compile Include="EducationLevel.cs" />
     <Compile Include="ExtensionMethods\DurationExtensionMethods.cs" />
     <Compile Include="Interfaces\IAbbreviation.cs" />
     <Compile Include="Interfaces\IDate.cs" />
