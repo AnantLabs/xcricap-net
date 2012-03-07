@@ -611,7 +611,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     (
                     xmlWriter,
                     "identifier",
-                    Configuration.Namespaces.XCRICAP12NamespaceUri,
+                    String.Empty,
                     identifier,
                     String.Empty
                     );
@@ -912,14 +912,16 @@ namespace XCRI.XmlGeneration.XCRICAP12
             if (String.IsNullOrEmpty(location.Street) == false)
                 this._Write(xmlWriter, "street", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.Town) == false)
-                this._Write(xmlWriter, "town", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "town", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Town, false, String.Empty, String.Empty, String.Empty);
+            if (String.IsNullOrEmpty(location.Postcode) == false)
+                this._Write(xmlWriter, "postcode", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Postcode, false, String.Empty, String.Empty, String.Empty);
             this.WriteLatitudeLongitude(xmlWriter, location.Latitude, location.Longitude);
             if (String.IsNullOrEmpty(location.PhoneNumber) == false)
-                this._Write(xmlWriter, "phone", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "phone", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.PhoneNumber, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.FaxNumber) == false)
-                this._Write(xmlWriter, "fax", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "fax", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.FaxNumber, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.EmailAddress) == false)
-                this._Write(xmlWriter, "email", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+                this._Write(xmlWriter, "email", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.EmailAddress, false, String.Empty, String.Empty, String.Empty);
             if (location.Url != null)
                 this.Write(xmlWriter, location.Url);
             this._WriteEndElement(xmlWriter);
