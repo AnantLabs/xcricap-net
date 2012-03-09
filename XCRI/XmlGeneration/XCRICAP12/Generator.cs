@@ -413,8 +413,11 @@ namespace XCRI.XmlGeneration.XCRICAP12
             if ((element.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
                 return;
             this._WriteStartElement(xmlWriter, "venue", Configuration.Namespaces.XCRICAP12NamespaceUri);
-            this._WriteStartElement(xmlWriter, "location", Configuration.Namespaces.XCRICAP12NamespaceUri);
-            this.Write(xmlWriter, element as ILocation);
+            this._WriteStartElement(xmlWriter, "provider", Configuration.Namespaces.XCRICAP12NamespaceUri);
+            foreach (XCRI.Interfaces.XCRICAP12.ITitle title in element.Titles)
+                if (title != null)
+                    this.Write(xmlWriter, title);
+            this.Write(xmlWriter, element.Location);
             this._WriteEndElement(xmlWriter);
             this._WriteEndElement(xmlWriter);
         }
@@ -615,6 +618,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     identifier,
                     String.Empty
                     );
+            xmlWriter.WriteValue(element.Value);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -660,10 +664,11 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     (
                     xmlWriter,
                     "identifier",
-                    Configuration.Namespaces.XCRICAP12NamespaceUri,
+                    String.Empty,
                     identifier,
                     String.Empty
                     );
+            xmlWriter.WriteValue(element.Value);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -708,10 +713,11 @@ namespace XCRI.XmlGeneration.XCRICAP12
                     (
                     xmlWriter,
                     "identifier",
-                    Configuration.Namespaces.XCRICAP12NamespaceUri,
+                    String.Empty,
                     identifier,
                     String.Empty
                     );
+            xmlWriter.WriteValue(element.Value);
             this._WriteEndElement(xmlWriter);
         }
 
@@ -1005,6 +1011,8 @@ namespace XCRI.XmlGeneration.XCRICAP12
             if (subject == null)
                 throw new ArgumentNullException("subject");
             if ((subject.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
+                return;
+            if (String.IsNullOrEmpty(subject.Value))
                 return;
             base._Write
                 (
