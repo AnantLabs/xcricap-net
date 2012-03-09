@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abbreviation.cs" />
+    <Compile Include="Abstract.cs" />
     <Compile Include="Credit.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="EducationLevel.cs" />
