@@ -77,8 +77,10 @@ namespace XCRI
             /* Generic */
             if ((namespacesToInclude & Namespaces.XmlSchemaInstance) > 0)
                 list.Add(Configuration.Namespaces.XmlSchemaInstanceNamespaceUri, "xsi", "");
+
             if ((namespacesToInclude & Namespaces.Geolocation) > 0)
                 list.Add(Configuration.Namespaces.GeolocationNamespaceUri, "geo", "http://www.craighawker.co.uk/xcri/validation/xsds/geo.xsd");
+            
             /* XCRI-CAP 1.1 */
             if((namespacesToInclude & Namespaces.XCRICAP11) > 0)
                 list.Add(Configuration.Namespaces.XCRICAP11NamespaceUri, "xcri11", @"http://www.xcri.org/bindings/xcri_cap_1_1.xsd");
@@ -86,21 +88,22 @@ namespace XCRI
                 list.Add(Configuration.Namespaces.XCRICAP11TermsNamespaceUri, "xcri11terms", "http://www.xcri.org/bindings/xcri_cap_terms_1_1.xsd");
             if ((namespacesToInclude & Namespaces.XCRICAP11UKRegisterOfLearningProviders) > 0)
                 list.Add(Configuration.Namespaces.UKRegisterOfLearningProvidersNamespaceUri, "ukrlp", "http://www.craighawker.co.uk/xcri/validation/xsds/ukprn.xsd");
+            
             /* XCRI-CAP 1.2 */
             if ((namespacesToInclude & Namespaces.XCRICAP12) > 0)
-                list.Add(Configuration.Namespaces.XCRICAP12NamespaceUri, "xcri12", @"http://www.xcri.org/svn/trunk/bindings/1.2/xcri_cap_1_2.xsd");
+                list.Add(Configuration.Namespaces.XCRICAP12NamespaceUri, "xcri12", @"http://www.xcri.co.uk/bindings/xcri_cap_1_2.xsd");
             if ((namespacesToInclude & Namespaces.XCRICAP12Terms) > 0)
-                list.Add(Configuration.Namespaces.XCRICAP12TermsNamespaceUri, "xcri12terms", @"http://www.xcri.org/svn/trunk/bindings/1.2/xcri_cap_terms_1_2.xsd");
+                list.Add(Configuration.Namespaces.XCRICAP12TermsNamespaceUri, "xcri12terms", @"http://www.xcri.co.uk/bindings/xcri_cap_terms_1_2.xsd");
             if ((namespacesToInclude & Namespaces.XCRICAP12UKRegisterOfLearningProviders) > 0)
                 list.Add(Configuration.Namespaces.UKRegisterOfLearningProvidersNamespaceUri, "ukrlp", "http://www.craighawker.co.uk/xcri/validation/xsds/xcri1.2/ukprn.xsd");
             if ((namespacesToInclude & Namespaces.MetadataForLearningOpportunities) > 0)
-                list.Add(Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, "mlo", @"http://www.xcri.org/svn/trunk/bindings/1.2/mlo_xcri_profile.xsd");
+                list.Add(Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, "mlo", string.Empty);
             if ((namespacesToInclude & Namespaces.DublinCore) > 0)
-                list.Add(Configuration.Namespaces.DublinCoreNamespaceUri, "dc", @"http://www.xcri.org/svn/trunk/bindings/1.2/dc.xsd");
+                list.Add(Configuration.Namespaces.DublinCoreNamespaceUri, "dc", string.Empty);
             if ((namespacesToInclude & Namespaces.DublinCoreTerms) > 0)
-                list.Add(Configuration.Namespaces.DublinCoreTermsNamespaceUri, "dcterms", @"http://www.xcri.org/svn/trunk/bindings/1.2/dcterms.xsd");
+                list.Add(Configuration.Namespaces.DublinCoreTermsNamespaceUri, "dcterms", string.Empty);
             if ((namespacesToInclude & Namespaces.CENEducationalCreditInformationModel) > 0)
-                list.Add(Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri, "credit", @"http://www.xcri.org/svn/trunk/bindings/1.2/educationalcredit.xsd");
+                list.Add(Configuration.Namespaces.CENEducationalCreditInformationModelNamespaceUri, "credit", string.Empty);
             return list;
         }
 
