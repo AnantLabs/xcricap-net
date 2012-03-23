@@ -915,13 +915,14 @@ namespace XCRI.XmlGeneration.XCRICAP12
             if ((location.CompatibleWith & XCRIProfiles.XCRI_v1_2) == 0)
                 return;
             this._WriteStartElement(xmlWriter, "location", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri);
-            if (String.IsNullOrEmpty(location.Street) == false)
-                this._Write(xmlWriter, "street", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
-            if (String.IsNullOrEmpty(location.Town) == false)
-                this._Write(xmlWriter, "town", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Town, false, String.Empty, String.Empty, String.Empty);
+            
             if (String.IsNullOrEmpty(location.Postcode) == false)
                 this._Write(xmlWriter, "postcode", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Postcode, false, String.Empty, String.Empty, String.Empty);
             this.WriteLatitudeLongitude(xmlWriter, location.Latitude, location.Longitude);
+            if (String.IsNullOrEmpty(location.Street) == false)
+                this._Write(xmlWriter, "address", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Street, false, String.Empty, String.Empty, String.Empty);
+            if (String.IsNullOrEmpty(location.Town) == false)
+                this._Write(xmlWriter, "address", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.Town, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.PhoneNumber) == false)
                 this._Write(xmlWriter, "phone", Configuration.Namespaces.MetadataForLearningOpportunitiesNamespaceUri, location.PhoneNumber, false, String.Empty, String.Empty, String.Empty);
             if (String.IsNullOrEmpty(location.FaxNumber) == false)
