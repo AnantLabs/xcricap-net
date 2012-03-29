@@ -8,12 +8,12 @@ namespace XCRI.Tests.ExtensionMethods
 {
     public static class TypeExtensionMethods
     {
-        public static PropertyInfo[] GetPublicProperties(this Type type)
+        public static PropertyInfo[] GetPublicProperties(this System.Type type)
         {
                 var propertyInfos = new List<PropertyInfo>();
 
-                var considered = new List<Type>();
-                var queue = new Queue<Type>();
+                var considered = new List<System.Type>();
+                var queue = new Queue<System.Type>();
                 considered.Add(type);
                 queue.Enqueue(type);
                 while (queue.Count > 0)

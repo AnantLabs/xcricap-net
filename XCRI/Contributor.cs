@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XCRI
 {
-    public class Abstract : Description, Interfaces.IAbstract
+    public class Contributor : XmlBaseClasses.ElementWithSingleValue<string>, Interfaces.IContributor
     {
     }
 }
