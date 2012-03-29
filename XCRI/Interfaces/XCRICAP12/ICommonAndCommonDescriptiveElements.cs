@@ -14,7 +14,7 @@ namespace XCRI.Interfaces.XCRICAP12
         IList<Interfaces.ILearningOutcome> LearningOutcomes { get; }
         IList<Interfaces.IObjective> Objectives { get; }
         IList<Interfaces.IPrerequisite> Prerequisites { get; }
-        IList<Interfaces.IRegulation> Regulations { get; }
+        IList<Interfaces.IRegulations> Regulations { get; }
 
     }
 }

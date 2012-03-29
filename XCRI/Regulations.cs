@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XCRI.Interfaces
+namespace XCRI
 {
-    public interface IRegulation : XCRICAP12.IRegulation
+    public class Regulations : Description, Interfaces.IRegulations
     {
     }
 }

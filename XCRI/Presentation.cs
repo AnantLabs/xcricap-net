@@ -39,7 +39,7 @@ namespace XCRI
         private List<Interfaces.ILearningOutcome> __LearningOutcomes = new List<Interfaces.ILearningOutcome>();
         private List<Interfaces.IObjective> __Objectives = new List<Interfaces.IObjective>();
         private List<Interfaces.IPrerequisite> __Prerequisites = new List<Interfaces.IPrerequisite>();
-        private List<Interfaces.IRegulation> __Regulations = new List<Interfaces.IRegulation>();
+        private List<Interfaces.IRegulations> __Regulations = new List<Interfaces.IRegulations>();
         private List<Interfaces.IContributor> __Contributors = new List<Interfaces.IContributor>();
         private List<Interfaces.IType> __Types = new List<Interfaces.IType>();
         private IList<Interfaces.IEngagement> __Engagements = new List<Interfaces.IEngagement>();
@@ -270,7 +270,7 @@ namespace XCRI
         {
             get { return this.__Prerequisites; }
         }
-        protected IList<Interfaces.IRegulation> _Regulations
+        protected IList<Interfaces.IRegulations> _Regulations
         {
             get { return this.__Regulations; }
         }
@@ -451,7 +451,7 @@ namespace XCRI
         {
             get { return this._Prerequisites; }
         }
-        public IList<Interfaces.IRegulation> Regulations
+        public IList<Interfaces.IRegulations> Regulations
         {
             get { return this._Regulations; }
         }

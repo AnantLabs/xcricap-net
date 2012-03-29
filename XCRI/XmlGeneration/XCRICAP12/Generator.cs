@@ -55,7 +55,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
                 this.Write(xmlWriter, element);
             foreach (XCRI.Interfaces.XCRICAP12.IPrerequisite element in commonAndCommonDescriptiveElements.Prerequisites)
                 this.Write(xmlWriter, element);
-            foreach (XCRI.Interfaces.XCRICAP12.IRegulation element in commonAndCommonDescriptiveElements.Prerequisites)
+            foreach (XCRI.Interfaces.XCRICAP12.IRegulations element in commonAndCommonDescriptiveElements.Prerequisites)
                 this.Write(xmlWriter, element);
         }
 
@@ -341,7 +341,7 @@ namespace XCRI.XmlGeneration.XCRICAP12
         public virtual void Write
             (
             System.Xml.XmlWriter xmlWriter,
-            XCRI.Interfaces.XCRICAP12.IRegulation element
+            XCRI.Interfaces.XCRICAP12.IRegulations element
             )
         {
 
