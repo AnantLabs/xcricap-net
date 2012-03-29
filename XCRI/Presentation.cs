@@ -29,7 +29,9 @@ namespace XCRI
 		private string __PlacesAvailable = String.Empty;
 		private string __Cost = String.Empty;
 		private List<XCRI.Interfaces.IVenue> __Venues = new List<XCRI.Interfaces.IVenue>();
-		private string __EnquireTo = String.Empty;
+        private string __EnquireTo = String.Empty;
+        private Interfaces.IDate __ApplyFrom = null;
+        private Interfaces.IDate __ApplyUntil = null;
         private string __ApplyTo = String.Empty;
         private ResourceStatus __ResourceStatus = XCRI.ResourceStatus.Unknown;
         private List<Interfaces.IIdentifier> __Identifiers = new List<Interfaces.IIdentifier>();
@@ -105,17 +107,41 @@ namespace XCRI
 			}
 		}
 
+        protected Interfaces.IDate _ApplyFrom
+        {
+            get { return this.__ApplyFrom; }
+            set
+            {
+                if (this.__ApplyFrom == value) { return; }
+                this.OnPropertyChanging("ApplyFrom");
+                this.__ApplyFrom = value;
+                this.OnPropertyChanged("ApplyFrom");
+            }
+        }
+
+        protected Interfaces.IDate _ApplyUntil
+        {
+            get { return this.__ApplyUntil; }
+            set
+            {
+                if (this.__ApplyUntil == value) { return; }
+                this.OnPropertyChanging("ApplyUntil");
+                this.__ApplyUntil = value;
+                this.OnPropertyChanged("ApplyUntil");
+            }
+        }
+
         protected Interfaces.IDate _Start
-		{
-			get { return this.__Start; }
-			set
-			{
-				if (this.__Start == value) { return; }
-				this.OnPropertyChanging("Start");
-				this.__Start = value;
-				this.OnPropertyChanged("Start");
-			}
-		}
+        {
+            get { return this.__Start; }
+            set
+            {
+                if (this.__Start == value) { return; }
+                this.OnPropertyChanging("Start");
+                this.__Start = value;
+                this.OnPropertyChanged("Start");
+            }
+        }
 
         protected Interfaces.IDate _End
 		{
@@ -343,10 +369,22 @@ namespace XCRI
 		}
 
         public Interfaces.IDate Start
-		{
-			get { return this._Start; }
-			set { this._Start = value; }
-		}
+        {
+            get { return this._Start; }
+            set { this._Start = value; }
+        }
+
+        public Interfaces.IDate ApplyFrom
+        {
+            get { return this._ApplyFrom; }
+            set { this._ApplyFrom = value; }
+        }
+
+        public Interfaces.IDate ApplyUntil
+        {
+            get { return this._ApplyUntil; }
+            set { this._ApplyUntil = value; }
+        }
 
         public Interfaces.IDate End
 		{
