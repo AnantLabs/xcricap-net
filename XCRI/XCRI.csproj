@@ -55,6 +55,12 @@
     <Compile Include="Abbreviation.cs" />
     <Compile Include="Abstract.cs" />
     <Compile Include="Contributor.cs" />
+    <Compile Include="ApplicationProcedure.cs" />
+    <Compile Include="Assessment.cs" />
+    <Compile Include="Regulations.cs" />
+    <Compile Include="Prerequisite.cs" />
+    <Compile Include="Objective.cs" />
+    <Compile Include="LearningOutcome.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="Credit.cs" />
     <Compile Include="Date.cs" />
@@ -76,7 +82,7 @@
     <Compile Include="Interfaces\XCRICAP12\IQualificationAccreditedBy.cs" />
     <Compile Include="Interfaces\XCRICAP12\IQualificationAwardedBy.cs" />
     <Compile Include="Interfaces\XCRICAP12\IQualificationType.cs" />
-    <Compile Include="Interfaces\XCRICAP12\IRegulation.cs" />
+    <Compile Include="Interfaces\XCRICAP12\IRegulations.cs" />
     <Compile Include="Interfaces\XCRICAP12\IType.cs" />
     <Compile Include="Interfaces\XCRICAP12\IContributor.cs" />
     <Compile Include="Interfaces\XCRICAP12\IIdentifier.cs" />
@@ -96,7 +102,7 @@
     <Compile Include="Interfaces\ILearningOutcome.cs" />
     <Compile Include="Interfaces\IObjective.cs" />
     <Compile Include="Interfaces\IPrerequisite.cs" />
-    <Compile Include="Interfaces\IRegulation.cs" />
+    <Compile Include="Interfaces\IRegulations.cs" />
     <Compile Include="Interfaces\XCRICAP11\ILocation.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendanceMode.cs" />
     <Compile Include="Interfaces\XCRICAP11\IAttendancePattern.cs" />

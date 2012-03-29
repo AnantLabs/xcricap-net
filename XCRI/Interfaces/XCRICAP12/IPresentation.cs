@@ -11,6 +11,8 @@ namespace XCRI.Interfaces.XCRICAP12
         Interfaces.IDate Start { get; set; }
         Interfaces.IDate End { get; set; }
         TimeSpan? Duration { get; set; }
+        Interfaces.IDate ApplyFrom { get; set; }
+        Interfaces.IDate ApplyUntil { get; set; }
         string ApplyTo { get; set; }
         IList<Interfaces.IEngagement> Engagements { get; }
         Interfaces.IStudyMode StudyMode { get; set; }
