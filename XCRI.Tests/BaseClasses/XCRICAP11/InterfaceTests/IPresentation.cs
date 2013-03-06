@@ -26,6 +26,28 @@ namespace XCRI.Tests.BaseClasses.XCRICAP11.InterfaceTests
             this.TestEnquireTo();
             this.TestApplyTo();
             this.TestAgeRange();
+            this.TestApplyFrom();
+            this.TestApplyUntil();
+        }
+        [TestMethod]
+        public void TestApplyFrom()
+        {
+            this.TestProperty<Interfaces.IDate>
+                (
+                "ApplyFrom",
+                new XCRI.Date(DateTime.Now.AddDays(-30)),
+                new XCRI.Date(DateTime.Now.AddDays(-15))
+                );
+        }
+        [TestMethod]
+        public void TestApplyUntil()
+        {
+            this.TestProperty<Interfaces.IDate>
+                (
+                "ApplyUntil",
+                new XCRI.Date(DateTime.Now.AddDays(-30)),
+                new XCRI.Date(DateTime.Now.AddDays(-15))
+                );
         }
         [TestMethod]
         public void TestStart()

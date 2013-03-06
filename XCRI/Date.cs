@@ -26,7 +26,7 @@ namespace XCRI
                 if (this._DisplayValue == value)
                     return;
                 this.OnPropertyChanging("DisplayValue");
-                this._DisplayValue = value;
+                this.__DisplayValue = value;
                 this.OnPropertyChanged("DisplayValue");
             }
         }
